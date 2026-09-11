@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Assessments – AnatomIQ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../assets/css/global.css"/>
+  <link rel="stylesheet" href="../assets/css/sidebar.css"/>
+  <link rel="stylesheet" href="../assets/css/teacher.css"/>
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon">
+        <svg viewBox="0 0 60 60" fill="none">
+          <path d="M30 12C30 12,22 18,22 26C22 30,25 33,30 33C35 33,38 30,38 26C38 18,30 12,30 12Z" fill="#ffffff" opacity="0.9"/>
+          <path d="M30 33L30 48" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M22 40L30 37L38 40" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="sidebar-logo-text"><div class="sidebar-logo-name">AnatomIQ</div><div class="sidebar-logo-sub">Teacher Portal</div></div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Main</div>
+      <a class="nav-item" href="dashboard.html" data-tooltip="Dashboard"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></span><span class="nav-label">Dashboard</span></a>
+      <a class="nav-item" href="modules.html" data-tooltip="Modules"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span><span class="nav-label">Modules & Lessons</span></a>
+      <a class="nav-item" href="students.html" data-tooltip="Students"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></span><span class="nav-label">Students</span><span class="nav-badge">38</span></a>
+      <a class="nav-item active" href="assessments.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span><span class="nav-label">Assessments</span></a>
+      <div class="nav-section-label">Management</div>
+      <a class="nav-item" href="monitoring.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span><span class="nav-label">Monitoring</span></a>
+      <a class="nav-item" href="reports.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span><span class="nav-label">Reports</span></a>
+      <a class="nav-item" href="announcements.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3z"/></svg></span><span class="nav-label">Announcements</span></a>
+      <a class="nav-item" href="media.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></span><span class="nav-label">Media Library</span></a>
+    </nav>
+    <div class="sidebar-footer"><div class="user-card"><div class="avatar">CR</div><div class="user-info"><div class="user-name">Mrs. C. Reyes</div><div class="user-role">Science Teacher</div></div><button class="logout-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></button></div></div>
+  </aside>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <main class="main-content" id="mainContent">
+    <header class="topbar">
+      <button class="topbar-toggle" id="sidebarToggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+      <div class="topbar-breadcrumb"><span class="breadcrumb-item">Teacher Portal</span><span class="breadcrumb-sep">/</span><span class="breadcrumb-current">Assessments</span></div>
+      <div class="topbar-actions"><div style="position:relative;"><button class="notif-btn" id="notifBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3z"/></svg><span class="notif-dot"></span></button><div class="notif-dropdown" id="notifDropdown" style="display:none;"><div class="notif-header"><span>Notifications</span></div><div class="notif-list"></div></div></div><div class="topbar-user"><div class="avatar" style="width:32px;height:32px;font-size:0.75rem;">CR</div><div><div class="topbar-user-name">Mrs. C. Reyes</div></div></div></div>
+    </header>
+
+    <div class="page-content">
+      <div class="page-header">
+        <div class="page-header-left">
+          <h2>Quiz & Assessment Manager</h2>
+          <p>Create, manage, and review quizzes, identification exercises, and interactive anatomy activities.</p>
+        </div>
+        <div class="page-header-right">
+          <button class="btn btn-primary" onclick="openModal('createAssessModal')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Create Assessment
+          </button>
+        </div>
+      </div>
+
+      <!-- Type Filters -->
+      <div style="display:flex;gap:var(--space-2);margin-bottom:var(--space-6);flex-wrap:wrap;">
+        <div class="chip active" onclick="filterAssess(this,'all')">All Types</div>
+        <div class="chip" onclick="filterAssess(this,'quiz')">Multiple Choice Quiz</div>
+        <div class="chip" onclick="filterAssess(this,'interactive')">Hotspot Activity</div>
+        <div class="chip" onclick="filterAssess(this,'identification')">Identification</div>
+        <div class="chip" onclick="filterAssess(this,'diagram')">Labeled Diagram</div>
+      </div>
+
+      <!-- Assessment Cards -->
+      <div class="module-grid" id="assessmentGrid">
+        <div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--text-muted);">Loading assessments from database…</div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- Create Assessment Modal -->
+<div class="modal-overlay" id="createAssessModal" style="display:none;" onclick="if(event.target===this)closeModal('createAssessModal')">
+  <div class="modal-box" style="width:min(95%,560px);">
+    <div class="modal-header">
+      <h3>Create New Assessment</h3>
+      <button class="modal-close" onclick="closeModal('createAssessModal')">&times;</button>
+    </div>
+    <form id="createAssessForm" onsubmit="handleCreateAssessment(event)">
+      <div class="modal-body">
+        <div style="display:flex;flex-direction:column;gap:var(--space-4);">
+          <div class="form-group">
+            <label>Assessment Title *</label>
+            <div class="input-wrapper"><input type="text" id="assessTitle" placeholder="e.g. Skeletal System Chapter Quiz" required/></div>
+          </div>
+          <div class="form-group">
+            <label>Body System *</label>
+            <div class="input-wrapper">
+              <select id="assessSystem" class="anatomy-system-select" style="width:100%;background:transparent;" required>
+                <option value="">Select System…</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Assessment Type</label>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-2);">
+              <label style="display:flex;align-items:center;gap:var(--space-2);padding:var(--space-3);background:var(--bg-inset);border:1px solid var(--border-light);border-radius:var(--radius-md);cursor:pointer;">
+                <input type="radio" name="assessType" value="quiz" checked/> Multiple Choice
+              </label>
+              <label style="display:flex;align-items:center;gap:var(--space-2);padding:var(--space-3);background:var(--bg-inset);border:1px solid var(--border-light);border-radius:var(--radius-md);cursor:pointer;">
+                <input type="radio" name="assessType" value="interactive"/> Hotspot Activity
+              </label>
+              <label style="display:flex;align-items:center;gap:var(--space-2);padding:var(--space-3);background:var(--bg-inset);border:1px solid var(--border-light);border-radius:var(--radius-md);cursor:pointer;">
+                <input type="radio" name="assessType" value="identification"/> Identification
+              </label>
+              <label style="display:flex;align-items:center;gap:var(--space-2);padding:var(--space-3);background:var(--bg-inset);border:1px solid var(--border-light);border-radius:var(--radius-md);cursor:pointer;">
+                <input type="radio" name="assessType" value="diagram"/> Labeled Diagram
+              </label>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3);">
+            <div class="form-group">
+              <label>Time Limit (mins)</label>
+              <div class="input-wrapper"><input type="number" id="assessTime" value="30" min="5" max="180"/></div>
+            </div>
+            <div class="form-group">
+              <label>Passing Score (%)</label>
+              <div class="input-wrapper"><input type="number" id="assessPass" value="75" min="50" max="100"/></div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Due Date</label>
+            <div class="input-wrapper"><input type="datetime-local" id="assessDue"/></div>
+          </div>
+          <div class="form-group">
+            <label>Instructions for Students</label>
+            <div class="input-wrapper"><textarea id="assessInstructions" rows="3" placeholder="Write instructions for students..." style="resize:vertical;width:100%;background:transparent;border:none;outline:none;color:var(--text-primary);font-family:var(--font-body);"></textarea></div>
+          </div>
+          <div id="createAssessError" style="display:none;color:var(--error);font-size:0.85rem;padding:0.5rem;border:1px solid var(--error);border-radius:6px;"></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal('createAssessModal')">Cancel</button>
+        <button type="submit" class="btn btn-primary" id="createAssessSubmitBtn">Create Assessment</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Question Builder Modal -->
+<div class="modal-overlay" id="questionBuilderModal" style="display:none;" onclick="if(event.target===this)closeModal('questionBuilderModal')">
+  <div class="modal-box" style="width:min(95%,750px);max-height:90vh;display:flex;flex-direction:column;">
+    <div class="modal-header">
+      <h3 id="builderModalTitle">Question Bank</h3>
+      <button class="modal-close" onclick="closeModal('questionBuilderModal')">&times;</button>
+    </div>
+    <div class="modal-body" style="overflow-y:auto;flex:1;" id="builderModalBody">
+      <div style="text-align:center;padding:2rem;color:var(--text-muted);">Loading questions…</div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('questionBuilderModal')">Close</button>
+      <button class="btn btn-primary" onclick="showAddQuestionForm()">+ Add New Question</button>
+    </div>
+  </div>
+</div>
+
+<!-- Add Question Form Modal -->
+<div class="modal-overlay" id="addQuestionModal" style="display:none;" onclick="if(event.target===this)closeModal('addQuestionModal')">
+  <div class="modal-box" style="width:min(95%,600px);">
+    <div class="modal-header">
+      <h3>Add Question to Assessment</h3>
+      <button class="modal-close" onclick="closeModal('addQuestionModal')">&times;</button>
+    </div>
+    <form id="addQuestionForm" onsubmit="handleSaveQuestion(event)">
+      <div class="modal-body">
+        <div style="display:flex;flex-direction:column;gap:var(--space-4);">
+          <div class="form-group">
+            <label>Question Text *</label>
+            <div class="input-wrapper"><textarea id="qText" rows="2" placeholder="e.g. Which bone is the longest in the human body?" required style="resize:vertical;width:100%;background:transparent;border:none;outline:none;color:var(--text-primary);font-family:var(--font-body);"></textarea></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3);">
+            <div class="form-group">
+              <label>Question Type</label>
+              <div class="input-wrapper">
+                <select id="qType" onchange="toggleQuestionTypeFields(this.value)" style="width:100%;background:transparent;color:var(--text-primary);border:none;outline:none;">
+                  <option value="multiple_choice">Multiple Choice (4 Choices)</option>
+                  <option value="true_false">True / False</option>
+                  <option value="identification">Identification (Exact Term)</option>
+                  <option value="hotspot">Hotspot / Click-to-Identify</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Points</label>
+              <div class="input-wrapper"><input type="number" id="qPoints" value="1" min="1" max="10"/></div>
+            </div>
+          </div>
+
+          <!-- Multiple Choice Options Group -->
+          <div id="mcOptionsGroup" style="display:flex;flex-direction:column;gap:var(--space-2);">
+            <label style="font-size:0.8rem;color:var(--text-muted);font-weight:600;">Answer Choices (select the radio for the correct option):</label>
+            <div style="display:flex;align-items:center;gap:var(--space-2);">
+              <input type="radio" name="mcCorrect" value="0" checked/>
+              <div class="input-wrapper" style="flex:1;"><input type="text" id="opt0" placeholder="Option A (Correct)"/></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:var(--space-2);">
+              <input type="radio" name="mcCorrect" value="1"/>
+              <div class="input-wrapper" style="flex:1;"><input type="text" id="opt1" placeholder="Option B"/></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:var(--space-2);">
+              <input type="radio" name="mcCorrect" value="2"/>
+              <div class="input-wrapper" style="flex:1;"><input type="text" id="opt2" placeholder="Option C"/></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:var(--space-2);">
+              <input type="radio" name="mcCorrect" value="3"/>
+              <div class="input-wrapper" style="flex:1;"><input type="text" id="opt3" placeholder="Option D"/></div>
+            </div>
+          </div>
+
+          <!-- True / False Group -->
+          <div id="tfOptionsGroup" style="display:none;flex-direction:column;gap:var(--space-2);">
+            <label style="font-size:0.8rem;color:var(--text-muted);font-weight:600;">Select the Correct Statement Value:</label>
+            <div style="display:flex;gap:var(--space-4);padding:var(--space-2) 0;">
+              <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-weight:600;color:var(--teal-400);">
+                <input type="radio" name="tfCorrect" value="True" checked/> True
+              </label>
+              <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-weight:600;color:var(--red-400);">
+                <input type="radio" name="tfCorrect" value="False"/> False
+              </label>
+            </div>
+          </div>
+
+          <!-- Identification Group -->
+          <div id="identificationGroup" style="display:none;flex-direction:column;gap:var(--space-3);">
+            <div class="form-group">
+              <label>Expected Correct Term / Scientific Name *</label>
+              <div class="input-wrapper"><input type="text" id="idTargetWord" placeholder="e.g. Femur, Alveoli, or Mitral Valve"/></div>
+              <span style="font-size:0.75rem;color:var(--text-muted);margin-top:4px;">Students will be required to type this exact term (evaluation is case-insensitive).</span>
+            </div>
+          </div>
+
+          <!-- Hotspot Group -->
+          <div id="hotspotGroup" style="display:none;flex-direction:column;gap:var(--space-3);">
+            <div class="form-group">
+              <label>Target Structure Label *</label>
+              <div class="input-wrapper"><input type="text" id="targetLabel" placeholder="e.g. Left Ventricle or Femur"/></div>
+            </div>
+            <div class="form-group">
+              <label>Diagram Image URL</label>
+              <div class="input-wrapper"><input type="text" id="targetImgUrl" placeholder="e.g. /Prototype2/uploads/media/heart.png"/></div>
+            </div>
+          </div>
+
+          <div id="saveQuestionError" style="display:none;color:var(--error);font-size:0.85rem;padding:0.5rem;border:1px solid var(--error);border-radius:6px;"></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal('addQuestionModal')">Back</button>
+        <button type="submit" class="btn btn-primary" id="saveQBtn">Save Question</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="../assets/js/app.js"></script>
+<script>
+'use strict';
+Auth.requireAuthSync('teacher');
+
+let allAssessments = [];
+let allSystems = [];
+let currentFilter = 'all';
+let activeAssessmentId = null;
+
+const typeColors = { quiz:'#3b82f6', interactive:'#8b5cf6', identification:'#10b981', diagram:'#f59e0b', exploration:'#06b6d4' };
+const typeIcons  = { quiz:'📝', interactive:'📍', identification:'🔍', diagram:'🖼', exploration:'🌐' };
+const statusBadge = { active:'badge-success', closed:'badge-error', draft:'badge-warning', scheduled:'badge-info' };
+
+// ── Load Assessments & Systems ──────────────────────────────────
+async function loadAssessments() {
+  const grid = document.getElementById('assessmentGrid');
+  try {
+    const [assRes, sysRes] = await Promise.all([
+      fetch(`${API_BASE}/assessments.php`, { credentials: 'same-origin' }),
+      fetch(`${API_BASE}/body-systems.php`, { credentials: 'same-origin' })
+    ]);
+
+    const assData = await assRes.json();
+    const sysData = await sysRes.json();
+
+    if (!assData.success) {
+      grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;color:var(--error);padding:3rem;">Failed to load assessments.</div>`;
+      return;
+    }
+
+    allAssessments = assData.data || [];
+    allSystems     = sysData.success ? sysData.data : [];
+
+    // Populate system dropdown
+    const sysSelect = document.getElementById('assessSystem');
+    sysSelect.innerHTML = '<option value="">Select System…</option>';
+    allSystems.forEach(s => {
+      const opt = document.createElement('option');
+      opt.value = s.system_id;
+      opt.textContent = `${s.icon_emoji} ${s.system_name}`;
+      sysSelect.appendChild(opt);
+    });
+
+    renderAssessments();
+  } catch (err) {
+    grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;color:var(--error);padding:3rem;">Server connection error.</div>`;
+  }
+}
+
+// ── Render Assessment Cards ─────────────────────────────────────
+function renderAssessments() {
+  const grid = document.getElementById('assessmentGrid');
+  const data = currentFilter === 'all'
+    ? allAssessments
+    : allAssessments.filter(a => a.assessment_type === currentFilter);
+
+  if (!data.length) {
+    grid.innerHTML = `
+      <div style="grid-column:1/-1;text-align:center;padding:4rem 1rem;color:var(--text-muted);">
+        <div style="font-weight:600;font-size:1.1rem;margin-bottom:0.5rem;">No assessments found</div>
+        <p style="font-size:0.85rem;">Click <strong>Create Assessment</strong> to create your first quiz or hotspot activity.</p>
+      </div>
+    `;
+    return;
+  }
+
+  grid.innerHTML = data.map(a => {
+    const dueDateStr = a.due_date ? fmtDate(a.due_date) : 'No due date';
+
+    return `
+      <div class="module-card">
+        <div class="module-card-header" style="background:var(--bg-inset);border-bottom:1px solid var(--border-light);height:60px;display:flex;align-items:center;justify-content:center;">
+          <div style="font-size:0.75rem;color:var(--brand);font-weight:700;text-transform:uppercase;letter-spacing:.06em;">
+            ${a.assessment_type === 'interactive' ? 'Hotspot Activity' : a.assessment_type.replace('_', ' ')}
+          </div>
+        </div>
+        <div class="module-card-body">
+          <div class="module-card-title">${escHtml(a.title)}</div>
+          <div class="module-card-desc">
+            System: <strong>${escHtml(a.system_name || 'General')}</strong> • ${a.question_count} questions • Due: ${dueDateStr}
+          </div>
+          <div class="module-card-meta">
+            <span class="badge ${statusBadge[a.status] || 'badge-neutral'}">${a.status}</span>
+            <span style="font-size:0.78rem;color:var(--text-muted);">${a.submission_count} submissions</span>
+          </div>
+          ${a.submission_count > 0 ? `
+          <div style="margin-top:var(--space-3);">
+            <div style="display:flex;justify-content:space-between;font-size:0.75rem;color:var(--text-muted);margin-bottom:4px;">
+              <span>Class Average</span><span>${a.avg_score}%</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" style="width:${a.avg_score}%;background:${a.avg_score>=85?'var(--success)':a.avg_score>=70?'var(--warning)':'var(--error)'};"></div></div>
+          </div>` : ''}
+        </div>
+        <div class="module-card-actions">
+          <button class="btn btn-secondary btn-sm" style="flex:1;" onclick="openQuestionBuilder(${a.assessment_id}, '${escHtml(a.title)}')">Questions (${a.question_count})</button>
+          <button class="btn btn-primary btn-sm" style="flex:1;" onclick="toggleAssessmentStatus(${a.assessment_id}, '${a.status}')">
+            ${a.status === 'active' ? 'Pause' : 'Activate'}
+          </button>
+          <button class="btn btn-secondary btn-sm" onclick="deleteAssessment(${a.assessment_id}, '${escHtml(a.title)}')" title="Delete assessment">Delete</button>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function filterAssess(el, filter) {
+  document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  currentFilter = filter;
+  renderAssessments();
+}
+
+// ── Create Assessment Handler ───────────────────────────────────
+async function handleCreateAssessment(e) {
+  e.preventDefault();
+  const btn = document.getElementById('createAssessSubmitBtn');
+  const err = document.getElementById('createAssessError');
+  err.style.display = 'none';
+  btn.disabled = true;
+  btn.textContent = 'Creating…';
+
+  const typeEl = document.querySelector('input[name="assessType"]:checked');
+  const payload = {
+    title:           document.getElementById('assessTitle').value.trim(),
+    system_id:       parseInt(document.getElementById('assessSystem').value),
+    assessment_type: typeEl ? typeEl.value : 'quiz',
+    time_limit_mins: parseInt(document.getElementById('assessTime').value) || 30,
+    passing_score:   parseFloat(document.getElementById('assessPass').value) || 75,
+    due_date:        document.getElementById('assessDue').value || null,
+    instructions:    document.getElementById('assessInstructions').value.trim(),
+    status:          'active'
+  };
+
+  try {
+    const res = await fetch(`${API_BASE}/assessments.php`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'same-origin',
+      body: JSON.stringify(payload)
+    });
+    const result = await res.json();
+    if (result.success) {
+      showToast('Assessment created successfully!', 'success');
+      closeModal('createAssessModal');
+      document.getElementById('createAssessForm').reset();
+      await loadAssessments();
+      // Open Question Builder immediately for convenience
+      if (result.data && result.data.assessment_id) {
+        openQuestionBuilder(result.data.assessment_id, payload.title);
+      }
+    } else {
+      err.textContent = result.message || 'Creation failed.';
+      err.style.display = 'block';
+    }
+  } catch (ex) {
+    err.textContent = 'Server error during creation.';
+    err.style.display = 'block';
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Create Assessment';
+  }
+}
+
+// ── Question Builder ────────────────────────────────────────────
+async function openQuestionBuilder(assessmentId, title) {
+  activeAssessmentId = assessmentId;
+  document.getElementById('builderModalTitle').textContent = `Questions: ${title}`;
+  openModal('questionBuilderModal');
+  await reloadQuestions();
+}
+
+async function reloadQuestions() {
+  const body = document.getElementById('builderModalBody');
+  body.innerHTML = '<div style="text-align:center;padding:2rem;color:var(--text-muted);">Loading questions…</div>';
+
+  try {
+    const res = await fetch(`${API_BASE}/questions.php?assessment_id=${activeAssessmentId}`, { credentials: 'same-origin' });
+    const result = await res.json();
+    if (!result.success) {
+      body.innerHTML = `<div style="color:var(--error);">${escHtml(result.message)}</div>`;
+      return;
+    }
+
+    const questions = result.data || [];
+    if (!questions.length) {
+      body.innerHTML = `
+        <div style="text-align:center;padding:3rem 1rem;color:var(--text-muted);">
+          <div style="font-size:2.5rem;margin-bottom:0.5rem;">❓</div>
+          <div style="font-weight:600;font-size:1rem;margin-bottom:0.5rem;">No questions in this assessment yet</div>
+          <p style="font-size:0.85rem;">Click the <strong>+ Add New Question</strong> button below to build questions.</p>
+        </div>
+      `;
+      return;
+    }
+
+    body.innerHTML = questions.map((q, idx) => {
+      let details = '';
+      if (q.question_type === 'multiple_choice') {
+        details = (q.options || []).map(opt => `
+          <div style="display:flex;align-items:center;gap:8px;font-size:0.8rem;padding:2px 0;">
+            <span style="color:${opt.is_correct ? '#34d399' : 'var(--text-muted)'};font-weight:${opt.is_correct ? '700' : '400'};">
+              ${opt.is_correct ? '✓ [Correct]' : '○'} ${escHtml(opt.option_text)}
+            </span>
+          </div>
+        `).join('');
+      } else if (q.question_type === 'true_false') {
+        const correctOpt = (q.options || []).find(o => o.is_correct);
+        details = `<div style="font-size:0.82rem;color:var(--success);">Correct Answer: <strong>${escHtml(correctOpt ? correctOpt.option_text : 'True')}</strong></div>`;
+      } else if (q.question_type === 'identification' || q.question_type === 'fill_blank') {
+        const target = q.hotspot_data?.target_label || (q.options?.[0]?.option_text) || '';
+        details = `<div style="font-size:0.82rem;color:var(--brand);">Target Scientific Term: <strong>${escHtml(target)}</strong></div>`;
+      } else if (q.question_type === 'hotspot') {
+        details = `<div style="font-size:0.82rem;color:var(--brand);">Hotspot target area: <strong>${escHtml(q.hotspot_data?.target_label || 'Marked structure')}</strong></div>`;
+      }
+
+      return `
+        <div style="padding:var(--space-3);background:var(--bg-inset);border-radius:var(--radius-md);margin-bottom:var(--space-3);border:1px solid var(--border-light);">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
+            <div style="font-weight:600;font-size:0.9rem;">
+              <span style="color:var(--brand);">Q${idx + 1}.</span> ${escHtml(q.question_text)}
+            </div>
+            <button class="btn btn-secondary btn-sm" onclick="deleteQuestion(${q.question_id})" title="Delete question" style="color:var(--error);">Delete</button>
+          </div>
+          <div style="margin-left:1.5rem;">
+            ${details}
+            <div style="font-size:0.75rem;color:var(--text-muted);margin-top:6px;">
+              ${q.points} pt${q.points !== 1 ? 's' : ''} • Type: ${q.question_type}
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  } catch (err) {
+    body.innerHTML = `<div style="color:var(--error);">Network error loading question bank.</div>`;
+  }
+}
+
+function showAddQuestionForm() {
+  document.getElementById('addQuestionForm').reset();
+  document.getElementById('saveQuestionError').style.display = 'none';
+  toggleQuestionTypeFields('multiple_choice');
+  openModal('addQuestionModal');
+}
+
+function toggleQuestionTypeFields(type) {
+  const mc = document.getElementById('mcOptionsGroup');
+  const tf = document.getElementById('tfOptionsGroup');
+  const idGroup = document.getElementById('identificationGroup');
+  const hs = document.getElementById('hotspotGroup');
+
+  mc.style.display      = (type === 'multiple_choice') ? 'flex' : 'none';
+  tf.style.display      = (type === 'true_false') ? 'flex' : 'none';
+  idGroup.style.display = (type === 'identification') ? 'flex' : 'none';
+  hs.style.display      = (type === 'hotspot') ? 'flex' : 'none';
+}
+
+async function handleSaveQuestion(e) {
+  e.preventDefault();
+  const btn = document.getElementById('saveQBtn');
+  const err = document.getElementById('saveQuestionError');
+  err.style.display = 'none';
+  btn.disabled = true;
+  btn.textContent = 'Saving…';
+
+  const type = document.getElementById('qType').value;
+  let options = [];
+  let hotspotData = null;
+
+  if (type === 'multiple_choice') {
+    const selectedCorrect = parseInt(document.querySelector('input[name="mcCorrect"]:checked')?.value || 0);
+    options = [
+      { option_text: document.getElementById('opt0').value.trim(), is_correct: selectedCorrect === 0 },
+      { option_text: document.getElementById('opt1').value.trim(), is_correct: selectedCorrect === 1 },
+      { option_text: document.getElementById('opt2').value.trim(), is_correct: selectedCorrect === 2 },
+      { option_text: document.getElementById('opt3').value.trim(), is_correct: selectedCorrect === 3 }
+    ].filter(o => o.option_text !== '');
+    if (options.length < 2) {
+      err.textContent = 'Please enter at least 2 answer choices.';
+      err.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = 'Save Question';
+      return;
+    }
+  } else if (type === 'true_false') {
+    const isTrue = (document.querySelector('input[name="tfCorrect"]:checked')?.value || 'True') === 'True';
+    options = [
+      { option_text: 'True', is_correct: isTrue, sort_order: 1 },
+      { option_text: 'False', is_correct: !isTrue, sort_order: 2 }
+    ];
+  } else if (type === 'identification') {
+    const target = document.getElementById('idTargetWord').value.trim();
+    if (!target) {
+      err.textContent = 'Please specify the expected anatomical term.';
+      err.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = 'Save Question';
+      return;
+    }
+    hotspotData = { target_label: target };
+    options = [
+      { option_text: target, is_correct: true, sort_order: 1 }
+    ];
+  } else {
+    // hotspot
+    const target = document.getElementById('targetLabel').value.trim();
+    if (!target) {
+      err.textContent = 'Please specify the target structure label.';
+      err.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = 'Save Question';
+      return;
+    }
+    hotspotData = {
+      target_label: target,
+      image_url:    document.getElementById('targetImgUrl').value.trim()
+    };
+  }
+
+  const payload = {
+    assessment_id: activeAssessmentId,
+    question_text: document.getElementById('qText').value.trim(),
+    question_type: type,
+    points:        parseFloat(document.getElementById('qPoints').value) || 1.0,
+    options:       options,
+    hotspot_data:  hotspotData
+  };
+
+  try {
+    const res = await fetch(`${API_BASE}/questions.php`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'same-origin',
+      body: JSON.stringify(payload)
+    });
+    const result = await res.json();
+    if (result.success) {
+      showToast('Question added!', 'success');
+      closeModal('addQuestionModal');
+      await reloadQuestions();
+      loadAssessments(); // Update count on cards
+    } else {
+      err.textContent = result.message || 'Failed to save question.';
+      err.style.display = 'block';
+    }
+  } catch (ex) {
+    err.textContent = 'Server error saving question.';
+    err.style.display = 'block';
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Save Question';
+  }
+}
+
+async function deleteQuestion(questionId) {
+  if (!confirm('Delete this question?')) return;
+  try {
+    const res = await fetch(`${API_BASE}/questions.php?id=${questionId}`, {
+      method: 'DELETE',
+      credentials: 'same-origin'
+    });
+    const result = await res.json();
+    if (result.success) {
+      showToast('Question deleted.', 'success');
+      await reloadQuestions();
+      loadAssessments();
+    } else {
+      showToast(result.message || 'Delete failed.', 'error');
+    }
+  } catch (err) {
+    showToast('Server error.', 'error');
+  }
+}
+
+// ── Toggle Assessment Status ────────────────────────────────────
+async function toggleAssessmentStatus(id, currentStatus) {
+  const newStatus = currentStatus === 'active' ? 'draft' : 'active';
+  try {
+    const res = await fetch(`${API_BASE}/assessments.php?id=${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'same-origin',
+      body: JSON.stringify({ status: newStatus })
+    });
+    const result = await res.json();
+    if (result.success) {
+      showToast(`Assessment status set to ${newStatus}.`, 'success');
+      loadAssessments();
+    } else {
+      showToast(result.message || 'Failed to update status.', 'error');
+    }
+  } catch (err) {
+    showToast('Server error.', 'error');
+  }
+}
+
+// ── Delete Assessment ───────────────────────────────────────────
+async function deleteAssessment(id, title) {
+  if (!confirm(`Are you sure you want to delete "${title}"? This cannot be undone.`)) return;
+  try {
+    const res = await fetch(`${API_BASE}/assessments.php?id=${id}`, {
+      method: 'DELETE',
+      credentials: 'same-origin'
+    });
+    const result = await res.json();
+    if (result.success) {
+      showToast('Assessment deleted.', 'success');
+      loadAssessments();
+    } else {
+      showToast(result.message || 'Failed to delete assessment.', 'error');
+    }
+  } catch (err) {
+    showToast('Server error.', 'error');
+  }
+}
+
+// ── Init ────────────────────────────────────────────────────────
+loadAssessments();
+</script>
+</body>
+</html>

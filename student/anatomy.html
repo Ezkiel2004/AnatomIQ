@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>3D Anatomy Explorer – AnatomIQ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../assets/css/global.css"/>
+  <link rel="stylesheet" href="../assets/css/sidebar.css"/>
+  <link rel="stylesheet" href="../assets/css/student.css"/>
+  <!-- Three.js WebGL Libraries (Local with CDN fallback) -->
+  <script src="../assets/vendor/three/three.min.js"></script>
+  <script src="../assets/vendor/three/OrbitControls.js"></script>
+  <script src="../assets/vendor/three/GLTFLoader.js"></script>
+</head>
+<body>
+<div class="app-layout">
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon">
+        <svg viewBox="0 0 60 60" fill="none">
+          <path d="M30 12C30 12,22 18,22 26C22 30,25 33,30 33C35 33,38 30,38 26C38 18,30 12,30 12Z" fill="#ffffff" opacity="0.9"/>
+          <path d="M30 33L30 48" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M22 40L30 37L38 40" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="sidebar-logo-text">
+        <div class="sidebar-logo-name">AnatomIQ</div>
+        <div class="sidebar-logo-sub">Student Portal</div>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Learning</div>
+      <a class="nav-item" href="dashboard.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></span><span class="nav-label">Dashboard</span></a>
+      <a class="nav-item active" href="anatomy.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><line x1="2" y1="12" x2="22" y2="12"/></svg></span><span class="nav-label">3D Anatomy Explorer</span></a>
+      <a class="nav-item" href="lessons.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span><span class="nav-label">My Lessons</span></a>
+      <a class="nav-item" href="quiz.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span><span class="nav-label">Quizzes and Activities</span><span class="nav-badge" style="display:none;">0</span></a>
+      <div class="nav-section-label">My Progress</div>
+      <a class="nav-item" href="progress.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span><span class="nav-label">My Progress</span></a>
+      <a class="nav-item" href="scores.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span><span class="nav-label">My Scores</span></a>
+      <a class="nav-item" href="notifications.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3z"/></svg></span><span class="nav-label">Notifications</span><span class="nav-badge" style="display:none;">0</span></a>
+      <div class="nav-section-label">Account</div>
+      <a class="nav-item" href="settings.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span><span class="nav-label">Settings and Profile</span></a>
+    </nav>
+    <div class="sidebar-footer"><div class="user-card" onclick="window.location.href='settings.html'" style="cursor:pointer;" title="Go to Settings"><div class="avatar">MS</div><div class="user-info"><div class="user-name">Maria Santos</div><div class="user-role">Grade 10 – Narra</div></div><button class="logout-btn" onclick="event.stopPropagation(); Auth.logout();" title="Log Out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></button></div></div>
+  </aside>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <main class="main-content" id="mainContent">
+    <header class="topbar">
+      <button class="topbar-toggle" id="sidebarToggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+      <div class="topbar-breadcrumb"><span class="breadcrumb-item">Student Portal</span><span class="breadcrumb-sep">/</span><span class="breadcrumb-current">3D Anatomy Explorer</span></div>
+      <div class="topbar-actions">
+        <div style="position:relative;"><button class="notif-btn" id="notifBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3z"/></svg><span class="notif-dot"></span></button><div class="notif-dropdown" id="notifDropdown" style="display:none;"><div class="notif-header"><span>Notifications</span></div><div class="notif-list"></div></div></div>
+        <a href="settings.html" class="topbar-user" style="text-decoration:none;color:inherit;" title="Manage Account"><div class="avatar" style="width:32px;height:32px;font-size:0.75rem;">MS</div><div><div class="topbar-user-name">Maria Santos</div></div></a>
+      </div>
+    </header>
+
+    <div class="page-content page-content-full">
+      <!-- Anatomy Viewer -->
+      <div class="anatomy-viewer">
+
+        <!-- 3D Canvas Area -->
+        <div class="anatomy-canvas-area">
+          <!-- Dynamic, Spacious Toolbar -->
+          <div class="anatomy-toolbar">
+            <!-- Left: Camera & Inspection Groups -->
+            <div class="anatomy-toolbar-left">
+              <!-- Camera Navigation Group -->
+              <div class="anatomy-toolbar-group" title="Camera Navigation">
+                <button type="button" class="tool-btn" title="Zoom In (+)" onclick="zoomIn()" id="toolZoomIn">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                </button>
+                <button type="button" class="tool-btn" title="Zoom Out (-)" onclick="zoomOut()" id="toolZoomOut">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                </button>
+                <button type="button" class="tool-btn" title="Reset Camera View" onclick="resetView()" id="toolReset">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 2v6h6"/><path d="M3 13a9 9 0 1 0 3-7.7L3 8"/></svg>
+                </button>
+              </div>
+
+              <div class="toolbar-divider"></div>
+
+              <!-- Anatomical Tools & Inspection Group -->
+              <div class="anatomy-toolbar-group" title="Anatomical Inspection Tools">
+                <button type="button" class="tool-btn active" title="Toggle On-Canvas Info HUD" onclick="toggleInfoCardVisibility()" id="toolInfoCard">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                </button>
+                <button type="button" class="tool-btn active" title="Toggle Structure Labels" onclick="toggleLabels()" id="toolLabels">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                </button>
+                <button type="button" class="tool-btn" title="Highlight Key Structures (X-Ray)" onclick="toggleHighlight()" id="toolHighlight">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="4.93" y1="4.93" x2="9.17" y2="9.17"/><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"/><line x1="14.83" y1="9.17" x2="19.07" y2="4.93"/><line x1="14.83" y1="9.17" x2="18.36" y2="5.64"/><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"/></svg>
+                </button>
+                <button type="button" class="tool-btn" title="Export Diagram (PNG)" onclick="exportDiagram()" id="toolExport">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                </button>
+                <button type="button" class="tool-btn" title="Quick Practice Challenge" onclick="toggleQuickPractice()" id="toolPractice">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                </button>
+                <button type="button" class="tool-btn" title="Toggle Fullscreen Canvas" onclick="toggleFullscreen()" id="toolFullscreen">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Center: Optional Rotation Mode Toggle (Static vs 360° Rotating) -->
+            <div class="anatomy-toolbar-center">
+              <div class="rotation-control-wrap" title="Rotation Mode: Choose Static or 360° Rotating">
+                <span class="rotation-mode-label">Rotation:</span>
+                <button type="button" class="rotation-toggle-btn active-static" id="rotBtnStatic" onclick="setRotationMode(false, event)">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><circle cx="12" cy="12" r="9"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg>
+                  <span>Static</span>
+                </button>
+                <button type="button" class="rotation-toggle-btn" id="rotBtnRotating" onclick="setRotationMode(true, event)">
+                  <svg class="rot-spin-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/></svg>
+                  <span>360° Spin</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Right: System Selector & Hint -->
+            <div class="anatomy-toolbar-right">
+              <select class="anatomy-system-select" id="systemSelect" onchange="changeSystem(this.value)">
+                <option value="skeletal">Skeletal System</option>
+                <option value="muscular">Muscular System</option>
+                <option value="circulatory">Circulatory System</option>
+                <option value="respiratory">Respiratory System</option>
+                <option value="digestive">Digestive System</option>
+                <option value="urinary">Urinary System</option>
+                <option value="nervous">Nervous System</option>
+                <option value="reproductive">Reproductive System</option>
+                <option value="endocrine">Endocrine System</option>
+              </select>
+              <div class="anatomy-hint-pill">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                <span>Drag to Orbit · Scroll to Zoom</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3D Canvas -->
+          <div class="anatomy-3d-canvas" style="position:relative;">
+            <!-- On-Canvas 3D Anatomy Information HUD -->
+            <div class="canvas-hud-card" id="canvasInfoCard">
+              <div class="hud-card-header">
+                <div class="hud-title-wrap">
+                  <span class="hud-system-dot" id="hudSystemDot"></span>
+                  <h3 class="hud-system-title" id="hudSystemTitle">Skeletal System</h3>
+                  <span class="hud-layer-badge" id="hudLayerBadge">1 Layer Active</span>
+                </div>
+                <div class="hud-header-actions">
+                  <button type="button" class="hud-btn-toggle" id="hudToggleBtn" onclick="toggleCanvasInfoCard()" title="Collapse / Expand Info HUD">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 15l-6-6-6 6"/></svg>
+                  </button>
+                </div>
+              </div>
+              <!-- Multi-System Tabs (Shown when 2+ systems are active) -->
+              <div class="hud-system-tabs" id="hudSystemTabs" style="display:none;"></div>
+              <div class="hud-card-body" id="hudCardBody">
+                <div class="hud-system-sub" id="hudSystemSub">206 bones • Structural Framework</div>
+                <p class="hud-system-desc" id="hudSystemDesc"></p>
+                <div class="hud-facts-grid" id="hudFactsGrid"></div>
+              </div>
+            </div>
+
+            <!-- Quick Practice Overlay -->
+            <div id="quickPracticeOverlay" style="display:none;position:absolute;top:16px;left:16px;right:16px;z-index:20;background:rgba(27,35,50,0.96);border:1px solid var(--border);border-radius:var(--radius-lg);padding:var(--space-4);box-shadow:var(--shadow-md);">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-2);">
+                <div style="display:flex;align-items:center;gap:8px;">
+                  <strong style="font-size:0.875rem;color:#ffffff;">Quick Practice Challenge</strong>
+                  <span class="badge" id="practiceStreakBadge" style="background:var(--warning-light);color:var(--warning);font-size:0.75rem;">Streak: 0</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:12px;">
+                  <div style="font-size:0.8rem;color:rgba(255,255,255,0.7);" id="practiceScoreText">Score: 0/0</div>
+                  <button class="btn-icon btn-sm" onclick="toggleQuickPractice(false)" title="Exit Practice Mode" style="color:rgba(255,255,255,0.8);background:transparent;border:none;">✕</button>
+                </div>
+              </div>
+              <p id="practiceQuestionPrompt" style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:var(--space-3);line-height:1.4;">
+                Loading question…
+              </p>
+              <div id="practiceOptionsGrid" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));gap:var(--space-2);">
+              </div>
+              <div id="practiceFeedbackMsg" style="margin-top:var(--space-2);font-size:0.8rem;display:none;"></div>
+            </div>
+
+            <!-- Loading Screen -->
+            <div class="anatomy-loading" id="loadingScreen">
+              <div class="anatomy-loading-icon" id="loadingIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+              <div class="anatomy-loading-text">Loading Skeletal System...</div>
+              <div class="anatomy-loading-bar">
+                <div class="progress-bar"><div class="progress-fill" id="loadingBar" style="width:0%;transition:width 0.1s;"></div></div>
+              </div>
+            </div>
+
+            <!-- Explicit 3D Placeholder Banner -->
+            <div class="anatomy-placeholder-badge" id="placeholderBadge">
+              <div class="placeholder-pill">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="placeholder-icon">
+                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                  <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                  <line x1="12" y1="22.08" x2="12" y2="12"/>
+                </svg>
+                <span class="placeholder-label">3D Model Placeholder (Three.js WebGL Engine Ready for GLB Drop-in)</span>
+                <button type="button" class="placeholder-info-btn" onclick="openEngineSpecsModal()" title="View WebGL Engine Specs">Details</button>
+              </div>
+            </div>
+
+            <canvas id="anatomyCanvas"></canvas>
+          </div>
+
+          <!-- Floating Canvas Controls Overlay -->
+          <div class="anatomy-controls-overlay">
+            <button type="button" class="ctrl-btn" title="Zoom In (+)" onclick="zoomIn()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <button type="button" class="ctrl-btn" title="Zoom Out (-)" onclick="zoomOut()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <button type="button" class="ctrl-btn" title="Reset View" onclick="resetView()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 2v6h6"/><path d="M3 13a9 9 0 1 0 3-7.7L3 8"/></svg>
+            </button>
+            <button type="button" class="ctrl-btn" id="ctrlBtnRotToggle" title="Toggle Static / 360° Rotation" onclick="toggleRotationMode()">
+              <svg class="rot-spin-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Info Panel -->
+        <div class="anatomy-info-panel">
+
+          <!-- Body Systems Layer Selector -->
+          <div class="card" style="padding:var(--space-3);">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-2);">
+              <div style="font-size:0.72rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;font-weight:600;">Body Systems (Layers)</div>
+              <button type="button" onclick="resetToSingleSystem('skeletal')" style="font-size:0.7rem;color:var(--brand);background:none;border:none;cursor:pointer;font-weight:600;padding:0;" title="Reset to Skeletal only">Reset</button>
+            </div>
+            <div class="system-selector" id="systemBtnGrid"></div>
+          </div>
+
+          <!-- Key Structures -->
+          <div class="card">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-3);">
+              <div style="font-size:0.8rem;font-weight:600;">Key Structures</div>
+              <span class="badge" id="structuresCountBadge" style="font-size:0.7rem;">Active Layers</span>
+            </div>
+            <div id="structureList" style="display:flex;flex-direction:column;gap:var(--space-2);max-height:420px;overflow-y:auto;padding-right:2px;"></div>
+          </div>
+
+          <!-- Start Quiz Button -->
+          <a href="quiz.html" class="btn btn-primary" id="takeQuizBtn" style="width:100%;justify-content:center;padding:12px;">
+            Take System Quiz
+          </a>
+        </div>
+
+      </div><!-- /anatomy-viewer -->
+    </div>
+  </main>
+</div>
+
+<!-- WebGL Architecture Details Modal -->
+<div class="modal-backdrop" id="engineSpecsModal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(15,23,42,0.7);z-index:2000;align-items:center;justify-content:center;padding:16px;" onclick="closeEngineSpecsModal()">
+  <div class="modal-card" onclick="event.stopPropagation();" style="background:var(--bg-surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:var(--space-6);max-width:540px;width:100%;box-shadow:var(--shadow-lg);">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-4);">
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div style="width:32px;height:32px;border-radius:8px;background:var(--brand-light);color:var(--brand);display:flex;align-items:center;justify-content:center;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+        </div>
+        <h3 style="font-size:1.1rem;font-weight:600;margin:0;color:var(--text-primary);">3D Anatomy WebGL Architecture</h3>
+      </div>
+      <button type="button" class="btn-icon" onclick="closeEngineSpecsModal()" style="border:none;background:transparent;cursor:pointer;color:var(--text-muted);font-size:1.1rem;">✕</button>
+    </div>
+    <div style="font-size:0.875rem;color:var(--text-secondary);line-height:1.6;display:flex;flex-direction:column;gap:12px;">
+      <p style="margin:0;">
+        AnatomIQ utilizes a production-grade <strong>Three.js WebGL engine</strong> featuring real-time OrbitControls, raycasting mesh picking, dynamic lighting rigs, and automated <code>THREE.Box3</code> bounding-box model auto-centering.
+      </p>
+      <div style="background:var(--bg-inset);border:1px solid var(--border-light);border-radius:var(--radius-md);padding:12px;">
+        <strong style="color:var(--text-primary);display:block;margin-bottom:4px;">GLB/GLTF Drop-in Pipeline:</strong>
+        To introduce production photorealistic anatomical models, place standard <code>.glb</code> files into <code>uploads/models/{system_code}.glb</code> (e.g. <code>skeletal.glb</code>, <code>circulatory.glb</code>). The dynamic loader detects, auto-centers, and frames them automatically without code changes.
+      </div>
+      <div style="background:var(--bg-inset);border:1px solid var(--border-light);border-radius:var(--radius-md);padding:12px;">
+        <strong style="color:var(--text-primary);display:block;margin-bottom:4px;">Current Placeholder Mode:</strong>
+        Procedural 3D anatomical mannequins built with modular Three.js geometry groups, material caching, interactive structure inspection, and layer toggles.
+      </div>
+    </div>
+    <div style="display:flex;justify-content:flex-end;margin-top:var(--space-5);">
+      <button type="button" class="btn btn-primary" onclick="closeEngineSpecsModal()">Understood</button>
+    </div>
+  </div>
+</div>
+
+<script src="../assets/js/app.js"></script>
+<script src="../assets/js/anatomy.js"></script>
+<script src="../assets/js/anatomy-three.js"></script>
+<script>
+Auth.requireAuthSync('student');
+
+// ── Exploration Telemetry State ──
+let sessionSystemCode = 'skeletal';
+let sessionStart = Date.now();
+let interactionsCount = 0;
+let viewedStructures = new Set();
+
+async function logExplorationSession() {
+  const elapsed = Math.round((Date.now() - sessionStart) / 1000);
+  if (elapsed < 3) return; // Skip trivial micro-glances
+
+  const payload = {
+    system_code: sessionSystemCode,
+    duration_secs: elapsed,
+    interactions: interactionsCount,
+    structures_viewed: Array.from(viewedStructures)
+  };
+
+  // Reset counters for the next session
+  sessionStart = Date.now();
+  interactionsCount = 0;
+  viewedStructures.clear();
+
+  try {
+    await fetch(`${API_BASE}/analytics/exploration.php`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'same-origin',
+      keepalive: true,
+      body: JSON.stringify(payload)
+    });
+  } catch (err) {
+    console.warn('[AnatomIQ] Exploration logging deferred:', err);
+  }
+}
+
+// ── System Color Mapping ──
+const SYSTEM_COLORS = {
+  skeletal: '#f59e0b',
+  muscular: '#ef4444',
+  circulatory: '#dc2626',
+  respiratory: '#38bdf8',
+  digestive: '#10b981',
+  urinary: '#6366f1',
+  nervous: '#a855f7',
+  reproductive: '#ec4899',
+  endocrine: '#06b6d4'
+};
+let focusedSystemCode = 'skeletal';
+
+// ── Init System Selector Buttons ──
+const systems = AnatomyData.getAllSystems();
+document.getElementById('systemBtnGrid').innerHTML = systems.map(s => `
+  <button type="button" class="sys-btn ${s.id === 'skeletal' ? 'active' : ''}" onclick="toggleSystemSelection('${s.id}')" id="sysbtn-${s.id}">
+    <span class="sys-indicator-dot" style="${s.id === 'skeletal' ? 'background:' + SYSTEM_COLORS[s.id] + ';box-shadow:0 0 6px ' + SYSTEM_COLORS[s.id] : ''}"></span>
+    <span>${s.name.replace(' System','')}</span>
+  </button>
+`).join('');
+
+// ── Loading Simulation ──
+function simulateLoad(sysId) {
+  const loading = document.getElementById('loadingScreen');
+  const bar = document.getElementById('loadingBar');
+  const icon = document.getElementById('loadingIcon');
+  const sys = AnatomyData.getSystem(sysId);
+  if (!loading) return;
+  loading.style.display = 'flex';
+  if (icon) icon.textContent = '';
+  if (loading.children[1]) loading.children[1].textContent = `Loading ${sys?.name || sysId}...`;
+  let pct = 0;
+  const interval = setInterval(() => {
+    pct += Math.random() * 25 + 15;
+    if (bar) bar.style.width = Math.min(pct, 100) + '%';
+    if (pct >= 100) {
+      clearInterval(interval);
+      setTimeout(() => { loading.style.display = 'none'; }, 200);
+    }
+  }, 90);
+}
+
+// ── Multi-System Selection Controller ──
+function toggleSystemSelection(sysId) {
+  const isNowActive = AnatomyViewer.toggleSystem(sysId);
+  const activeList = AnatomyViewer.getActiveSystems();
+
+  if (isNowActive) {
+    focusedSystemCode = sysId;
+    sessionSystemCode = sysId;
+    showToast(`${AnatomyData.getSystem(sysId)?.name || sysId} layer added to 3D view`, 'success', 1800);
+  } else {
+    showToast(`${AnatomyData.getSystem(sysId)?.name || sysId} layer removed`, 'info', 1500);
+    if (focusedSystemCode === sysId) {
+      focusedSystemCode = activeList[0] || 'skeletal';
+      sessionSystemCode = focusedSystemCode;
+    }
+  }
+
+  refreshSystemsUI();
+  interactionsCount++;
+}
+
+// ── Reset to Single System ──
+function resetToSingleSystem(sysId, silent = false) {
+  focusedSystemCode = sysId;
+  sessionSystemCode = sysId;
+  AnatomyViewer.setSystem(sysId);
+  simulateLoad(sysId);
+  refreshSystemsUI();
+  if (!silent) {
+    showToast(`Reset to single layer: ${AnatomyData.getSystem(sysId)?.name || sysId}`, 'info', 1800);
+  }
+  interactionsCount++;
+}
+
+// ── Backwards Compatible changeSystem() ──
+function changeSystem(sysId, silent = false) {
+  if (sessionSystemCode !== sysId) {
+    logExplorationSession();
+    sessionSystemCode = sysId;
+  }
+  resetToSingleSystem(sysId, silent);
+}
+
+// ── Master UI Refresh ──
+function refreshSystemsUI() {
+  const activeList = AnatomyViewer.getActiveSystems();
+
+  // Update button active state & indicator dots
+  systems.forEach(s => {
+    const btn = document.getElementById('sysbtn-' + s.id);
+    const dot = btn?.querySelector('.sys-indicator-dot');
+    const isActive = activeList.includes(s.id);
+    if (btn) btn.classList.toggle('active', isActive);
+    if (dot) {
+      if (isActive) {
+        const col = SYSTEM_COLORS[s.id] || 'var(--brand)';
+        dot.style.background = col;
+        dot.style.boxShadow = `0 0 6px ${col}`;
+      } else {
+        dot.style.background = 'var(--border)';
+        dot.style.boxShadow = 'none';
+      }
+    }
+  });
+
+  // Sync toolbar select dropdown
+  const sel = document.getElementById('systemSelect');
+  if (sel) sel.value = focusedSystemCode;
+
+  // Update On-Canvas HUD Card
+  updateCanvasInfoCard(focusedSystemCode);
+
+  // Update Key Structures in panel
+  updateKeyStructuresList();
+
+  // Update Quiz Button
+  const takeQuizBtn = document.getElementById('takeQuizBtn');
+  if (takeQuizBtn) {
+    takeQuizBtn.href = `quiz.html?system=${focusedSystemCode}`;
+    takeQuizBtn.textContent = `Take ${focusedSystemCode.charAt(0).toUpperCase() + focusedSystemCode.slice(1)} Quiz`;
+  }
+}
+
+// ── Update On-Canvas 3D HUD Card ──
+function updateCanvasInfoCard(focusedId) {
+  const activeList = AnatomyViewer.getActiveSystems();
+  if (!activeList.includes(focusedId)) {
+    focusedId = activeList[0] || 'skeletal';
+  }
+  focusedSystemCode = focusedId;
+
+  const sys = AnatomyData.getSystem(focusedId);
+  if (!sys) return;
+
+  const titleEl = document.getElementById('hudSystemTitle');
+  if (titleEl) titleEl.textContent = sys.name;
+
+  const dotEl = document.getElementById('hudSystemDot');
+  const sysCol = SYSTEM_COLORS[focusedId] || '#f59e0b';
+  if (dotEl) {
+    dotEl.style.background = sysCol;
+    dotEl.style.boxShadow = `0 0 8px ${sysCol}`;
+  }
+
+  const badgeEl = document.getElementById('hudLayerBadge');
+  if (badgeEl) {
+    badgeEl.textContent = `${activeList.length} Layer${activeList.length > 1 ? 's' : ''} Active`;
+  }
+
+  const subEl = document.getElementById('hudSystemSub');
+  if (subEl) {
+    const firstFact = Object.values(sys.keyFacts)[0] || '';
+    subEl.textContent = `${firstFact} • ${sys.modules} modules`;
+    subEl.style.color = sysCol;
+  }
+
+  const descEl = document.getElementById('hudSystemDesc');
+  if (descEl) descEl.textContent = sys.description;
+
+  const factsEl = document.getElementById('hudFactsGrid');
+  if (factsEl) {
+    factsEl.innerHTML = Object.entries(sys.keyFacts).map(([k, v]) => `
+      <div class="hud-fact-item">
+        <div class="hud-fact-label">${escHtml(k)}</div>
+        <div class="hud-fact-val">${escHtml(v)}</div>
+      </div>
+    `).join('');
+  }
+
+  // Multi-System Tabs inside the HUD
+  const tabsEl = document.getElementById('hudSystemTabs');
+  if (tabsEl) {
+    if (activeList.length > 1) {
+      tabsEl.style.display = 'flex';
+      tabsEl.innerHTML = activeList.map(id => {
+        const s = AnatomyData.getSystem(id);
+        const col = SYSTEM_COLORS[id] || '#cbd5e1';
+        const isSel = (id === focusedId);
+        return `
+          <button type="button" class="hud-system-pill ${isSel ? 'active' : ''}" onclick="focusHUDSystem('${id}')" style="${isSel ? 'border-color:' + col + ';box-shadow:0 0 8px ' + col + '55;' : ''}">
+            <span style="width:6px;height:6px;border-radius:50%;background:${col};display:inline-block;"></span>
+            <span>${s ? s.name.replace(' System','') : id}</span>
+          </button>
+        `;
+      }).join('');
+    } else {
+      tabsEl.style.display = 'none';
+    }
+  }
+
+  if (practiceActive) {
+    nextPracticeQuestion();
+  }
+}
+
+function focusHUDSystem(sysId) {
+  focusedSystemCode = sysId;
+  sessionSystemCode = sysId;
+  updateCanvasInfoCard(sysId);
+  const takeQuizBtn = document.getElementById('takeQuizBtn');
+  if (takeQuizBtn) {
+    takeQuizBtn.href = `quiz.html?system=${sysId}`;
+    takeQuizBtn.textContent = `Take ${sysId.charAt(0).toUpperCase() + sysId.slice(1)} Quiz`;
+  }
+  const sel = document.getElementById('systemSelect');
+  if (sel) sel.value = sysId;
+  interactionsCount++;
+}
+
+// ── On-Canvas HUD Card Collapse / Expand ──
+function toggleCanvasInfoCard() {
+  const card = document.getElementById('canvasInfoCard');
+  if (!card) return;
+  const isCollapsed = card.classList.toggle('collapsed');
+  const btn = document.getElementById('hudToggleBtn');
+  if (btn) {
+    btn.title = isCollapsed ? 'Expand Info HUD' : 'Collapse Info HUD';
+  }
+  interactionsCount++;
+}
+
+// ── On-Canvas HUD Card Show / Hide for Small Resolutions ──
+function toggleInfoCardVisibility() {
+  const card = document.getElementById('canvasInfoCard');
+  const btn = document.getElementById('toolInfoCard');
+  if (!card) return;
+  const isHidden = (card.style.display === 'none');
+  card.style.display = isHidden ? 'block' : 'none';
+  btn?.classList.toggle('active', isHidden);
+  showToast(isHidden ? 'HUD Card: Visible' : 'HUD Card: Hidden', 'info', 1500);
+  interactionsCount++;
+}
+
+// ── Aggregate Key Structures from All Active Systems ──
+function updateKeyStructuresList() {
+  const listEl = document.getElementById('structureList');
+  const countBadge = document.getElementById('structuresCountBadge');
+  if (!listEl) return;
+  const activeList = AnatomyViewer.getActiveSystems();
+
+  let allStructures = [];
+  activeList.forEach(sysId => {
+    const sys = AnatomyData.getSystem(sysId);
+    if (sys && sys.structures) {
+      sys.structures.forEach(st => {
+        allStructures.push({
+          ...st,
+          systemId: sysId,
+          systemName: sys.name.replace(' System', ''),
+          systemColor: SYSTEM_COLORS[sysId] || 'var(--brand)'
+        });
+      });
+    }
+  });
+
+  if (countBadge) {
+    countBadge.textContent = `${allStructures.length} Structures (${activeList.length} ${activeList.length > 1 ? 'Layers' : 'Layer'})`;
+  }
+
+  if (allStructures.length === 0) {
+    listEl.innerHTML = `<div style="font-size:0.8rem;color:var(--text-muted);padding:8px 0;">No active system structures.</div>`;
+    return;
+  }
+
+  listEl.innerHTML = allStructures.map(st => `
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);padding:var(--space-3);background:var(--bg-surface);border:1px solid var(--border);border-radius:var(--radius-md);cursor:pointer;transition:var(--transition-fast);"
+         onclick="inspectStructure('${escHtml(st.name)}')">
+      <div style="flex:1;min-width:0;">
+        <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+          <span style="font-size:0.8125rem;font-weight:600;color:var(--text-primary);">${escHtml(st.name)}</span>
+          ${activeList.length > 1 ? `<span style="font-size:0.65rem;padding:1px 6px;border-radius:9999px;background:${st.systemColor}18;color:${st.systemColor};font-weight:600;border:1px solid ${st.systemColor}40;">${escHtml(st.systemName)}</span>` : ''}
+        </div>
+        <div style="font-size:0.75rem;color:var(--text-secondary);margin-top:2px;line-height:1.4;">${escHtml(st.desc)}</div>
+      </div>
+      <button type="button" class="btn-icon btn-sm" onclick="speakStructure('${escHtml(st.name)}', event)" title="Pronounce: ${escHtml(st.name)}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+      </button>
+    </div>
+  `).join('');
+}
+
+// ── Audio Pronunciation (Web Speech API) ────────────────────────
+function speakStructure(name, event) {
+  if (event) event.stopPropagation();
+  if (!('speechSynthesis' in window)) {
+    showToast('Audio pronunciation is not supported by your browser.', 'warning');
+    return;
+  }
+  window.speechSynthesis.cancel();
+  const utter = new SpeechSynthesisUtterance(name);
+  utter.rate = 0.85; // Natural anatomical clarity
+  utter.pitch = 1.0;
+  utter.lang = 'en-US';
+  showToast(`Pronouncing: "${name}"`, 'info', 1800);
+  window.speechSynthesis.speak(utter);
+  viewedStructures.add(name);
+  interactionsCount++;
+}
+
+// ── PNG Diagram Export ──────────────────────────────────────────
+function exportDiagram() {
+  const canvas = document.getElementById('anatomyCanvas');
+  if (!canvas) return;
+
+  // Force render current WebGL frame so drawing buffer contains latest frame
+  if (AnatomyViewer.renderer && AnatomyViewer.scene && AnatomyViewer.camera) {
+    AnatomyViewer.renderer.render(AnatomyViewer.scene, AnatomyViewer.camera);
+  }
+
+  const sys = AnatomyData.getSystem(sessionSystemCode) || { name: 'Anatomical Model' };
+
+  // Create an offscreen canvas to compose diagram with branded header card
+  const exportCanvas = document.createElement('canvas');
+  exportCanvas.width = canvas.width;
+  exportCanvas.height = canvas.height;
+  const ctx = exportCanvas.getContext('2d');
+
+  // Copy current 3D frame
+  ctx.drawImage(canvas, 0, 0);
+
+  // Overlay polished branded header card
+  ctx.save();
+  ctx.fillStyle = 'rgba(7, 13, 26, 0.85)';
+  ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  if (typeof ctx.roundRect === 'function') {
+    ctx.roundRect(16, 16, 280, 68, 8);
+  } else {
+    ctx.rect(16, 16, 280, 68);
+  }
+  ctx.fill();
+  ctx.stroke();
+
+  // Header texts
+  ctx.fillStyle = '#14b8a6'; // Teal
+  ctx.font = 'bold 15px sans-serif';
+  ctx.fillText(`AnatomIQ • ${sys.name}`, 28, 40);
+
+  ctx.fillStyle = '#94a3b8'; // Muted slate
+  ctx.font = '11px sans-serif';
+  const dateStr = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+  ctx.fillText(`Exported: ${dateStr} • 3D Explorer`, 28, 62);
+  ctx.restore();
+
+  // Trigger download
+  const dataURL = exportCanvas.toDataURL('image/png');
+  const link = document.createElement('a');
+  link.download = `AnatomIQ-${sessionSystemCode}-diagram.png`;
+  link.href = dataURL;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+
+  showToast(`${sys.name} diagram exported as PNG.`, 'success', 2500);
+  interactionsCount++;
+}
+
+// ── Quick Practice Challenge Engine ─────────────────────────────
+let practiceActive = false;
+let practiceScore = 0;
+let practiceTotal = 0;
+let practiceStreak = 0;
+let currentPracticeQ = null;
+
+function toggleQuickPractice(forceState) {
+  practiceActive = (forceState !== undefined) ? forceState : !practiceActive;
+  const overlay = document.getElementById('quickPracticeOverlay');
+  const btn = document.getElementById('toolPractice');
+  if (practiceActive) {
+    overlay.style.display = 'block';
+    btn?.classList.add('active');
+    practiceScore = 0;
+    practiceTotal = 0;
+    practiceStreak = 0;
+    updatePracticeStats();
+    nextPracticeQuestion();
+    showToast('Quick Practice activated! Test your anatomy recognition.', 'info', 2000);
+  } else {
+    overlay.style.display = 'none';
+    btn?.classList.remove('active');
+  }
+}
+
+function updatePracticeStats() {
+  document.getElementById('practiceScoreText').textContent = `Score: ${practiceScore}/${practiceTotal}`;
+  document.getElementById('practiceStreakBadge').textContent = `Streak: ${practiceStreak} correct`;
+}
+
+function nextPracticeQuestion() {
+  const sys = AnatomyData.getSystem(sessionSystemCode);
+  if (!sys || !sys.structures || sys.structures.length < 2) return;
+
+  const structures = [...sys.structures];
+  const target = structures[Math.floor(Math.random() * structures.length)];
+
+  // Pick up to 3 distractors
+  const distractors = structures.filter(s => s.name !== target.name)
+    .sort(() => 0.5 - Math.random())
+    .slice(0, 3);
+
+  const choices = [target, ...distractors].sort(() => 0.5 - Math.random());
+  const isDescPrompt = Math.random() > 0.35;
+
+  currentPracticeQ = {
+    target,
+    isDescPrompt,
+    answered: false
+  };
+
+  const promptEl = document.getElementById('practiceQuestionPrompt');
+  if (isDescPrompt) {
+    promptEl.innerHTML = `Which structure matches this function or description: <br><strong style="color:var(--text-primary);">"${escHtml(target.desc)}"</strong>?`;
+  } else {
+    promptEl.innerHTML = `What is the primary role of the <strong style="color:var(--text-primary);">${escHtml(target.name)}</strong>?`;
+  }
+
+  const fb = document.getElementById('practiceFeedbackMsg');
+  fb.style.display = 'none';
+
+  const grid = document.getElementById('practiceOptionsGrid');
+  grid.innerHTML = choices.map(choice => {
+    const label = isDescPrompt ? choice.name : choice.desc;
+    return `
+      <button type="button" class="btn btn-secondary practice-opt-btn" onclick="handlePracticeAnswer('${escHtml(choice.name)}', this)" style="justify-content:flex-start;text-align:left;padding:10px 14px;font-size:0.8rem;border:1px solid var(--border-subtle);background:var(--bg-elevated);border-radius:var(--radius-md);line-height:1.4;">
+        ${choice.emoji} <span>${escHtml(label)}</span>
+      </button>
+    `;
+  }).join('');
+}
+
+function handlePracticeAnswer(chosenName, btnEl) {
+  if (!currentPracticeQ || currentPracticeQ.answered) return;
+  currentPracticeQ.answered = true;
+
+  practiceTotal++;
+  const isCorrect = (chosenName === currentPracticeQ.target.name);
+  const fb = document.getElementById('practiceFeedbackMsg');
+
+  document.querySelectorAll('.practice-opt-btn').forEach(b => {
+    b.disabled = true;
+    b.style.opacity = '0.85';
+  });
+
+  if (isCorrect) {
+    practiceScore++;
+    practiceStreak++;
+    btnEl.style.borderColor = 'var(--teal-400)';
+    btnEl.style.background = 'rgba(20,184,166,0.25)';
+    fb.style.color = 'var(--teal-400)';
+    fb.innerHTML = `✓ Correct! <strong>${escHtml(currentPracticeQ.target.name)}</strong>: ${escHtml(currentPracticeQ.target.desc)}`;
+  } else {
+    practiceStreak = 0;
+    btnEl.style.borderColor = 'var(--red-400)';
+    btnEl.style.background = 'rgba(239,68,68,0.25)';
+    fb.style.color = 'var(--red-400)';
+    fb.innerHTML = `✗ Incorrect. The correct answer is <strong>${escHtml(currentPracticeQ.target.name)}</strong>.`;
+  }
+
+  fb.style.display = 'block';
+  updatePracticeStats();
+
+  setTimeout(() => {
+    if (practiceActive) nextPracticeQuestion();
+  }, 1800);
+}
+
+function inspectStructure(name) {
+  viewedStructures.add(name);
+  interactionsCount++;
+  showToast(`Focused on: ${name}`, 'info', 2000);
+}
+
+// ── Viewer Controls ──
+function zoomIn()  { AnatomyViewer.zoomIn(); interactionsCount++; }
+function zoomOut() { AnatomyViewer.zoomOut(); interactionsCount++; }
+function resetView() {
+  AnatomyViewer.resetView();
+  interactionsCount++;
+  showToast('3D View reset & centered!', 'info', 1800);
+}
+
+// ── Rotation Mode Handlers (Static vs 360° Rotating) ──
+function setRotationMode(isRotating, event) {
+  if (event) event.stopPropagation();
+  const rotating = !!isRotating;
+  AnatomyViewer.setRotation(rotating);
+
+  const btnStatic = document.getElementById('rotBtnStatic');
+  const btnRotating = document.getElementById('rotBtnRotating');
+  const floatBtn = document.getElementById('ctrlBtnRotToggle');
+
+  if (rotating) {
+    btnStatic?.classList.remove('active-static');
+    btnRotating?.classList.add('active-rotating');
+    floatBtn?.classList.add('active');
+    showToast('360° Continuous Rotation: ACTIVE', 'info', 1800);
+  } else {
+    btnRotating?.classList.remove('active-rotating');
+    btnStatic?.classList.add('active-static');
+    floatBtn?.classList.remove('active');
+    showToast('Static Mode: Manual Orbit & Inspection', 'info', 1800);
+  }
+  interactionsCount++;
+}
+
+function toggleRotationMode() {
+  const newState = !AnatomyViewer.autoRotate;
+  setRotationMode(newState);
+}
+
+function toggleLabels() {
+  const btn = document.getElementById('toolLabels');
+  const isActive = AnatomyViewer.toggleLabels();
+  if (isActive) btn?.classList.add('active');
+  else btn?.classList.remove('active');
+  interactionsCount++;
+  showToast(isActive ? 'HUD Labels: Visible' : 'HUD Labels: Hidden', 'info', 1500);
+}
+
+function toggleHighlight() {
+  const btn = document.getElementById('toolHighlight');
+  const isActive = AnatomyViewer.toggleHighlight();
+  if (isActive) btn?.classList.add('active');
+  else btn?.classList.remove('active');
+  interactionsCount++;
+  showToast(isActive ? 'Key Structure X-Ray: ACTIVE' : 'Structure Highlighting: Normal', 'info', 1500);
+}
+
+function toggleFullscreen() {
+  const canvas = document.querySelector('.anatomy-canvas-area');
+  const btn = document.getElementById('toolFullscreen');
+  if (!document.fullscreenElement) {
+    canvas.requestFullscreen?.();
+    btn?.classList.add('active');
+  } else {
+    document.exitFullscreen?.();
+    btn?.classList.remove('active');
+  }
+  interactionsCount++;
+}
+function toggleLayer(el, layerId) {
+  const toggle = document.getElementById('layer-' + layerId);
+  toggle?.classList.toggle('on');
+  const isOn = toggle?.classList.contains('on');
+  AnatomyViewer.setLayer(layerId, isOn);
+  interactionsCount++;
+  showToast(`Layer ${isOn ? 'shown' : 'hidden'}: ${layerId}`, 'info');
+}
+
+// ── Modal Engine Specs Helpers ──
+function openEngineSpecsModal() {
+  const m = document.getElementById('engineSpecsModal');
+  if (m) m.style.display = 'flex';
+}
+function closeEngineSpecsModal() {
+  const m = document.getElementById('engineSpecsModal');
+  if (m) m.style.display = 'none';
+}
+
+// ── Periodic Logging & Unload Listeners ──
+setInterval(logExplorationSession, 45000);
+window.addEventListener('beforeunload', logExplorationSession);
+window.addEventListener('pagehide', logExplorationSession);
+
+// ── Initialize ──
+window.addEventListener('load', () => {
+  // Sync authenticated student profile in sidebar/topbar
+  Auth._populateUserUI();
+
+  // Initialize Three.js WebGL Engine
+  AnatomyViewer.init('anatomyCanvas');
+
+  // Track canvas drag interactions
+  const canvas = document.getElementById('anatomyCanvas');
+  canvas?.addEventListener('mouseup', () => { interactionsCount++; });
+  canvas?.addEventListener('wheel', () => { interactionsCount++; }, { passive: true });
+
+  // Check URL param for pre-selected system
+  const params = new URLSearchParams(window.location.search);
+  const sys = params.get('system') || 'skeletal';
+  changeSystem(sys, true);
+
+  // Set tool labels active by default
+  document.getElementById('toolLabels')?.classList.add('active');
+});
+</script>
+</body>
+</html>

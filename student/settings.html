@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Account Settings & Profile – AnatomIQ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../assets/css/global.css"/>
+  <link rel="stylesheet" href="../assets/css/sidebar.css"/>
+  <link rel="stylesheet" href="../assets/css/student.css"/>
+</head>
+<body>
+<div class="app-layout">
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon">
+        <svg viewBox="0 0 60 60" fill="none">
+          <path d="M30 12C30 12,22 18,22 26C22 30,25 33,30 33C35 33,38 30,38 26C38 18,30 12,30 12Z" fill="#ffffff" opacity="0.9"/>
+          <path d="M30 33L30 48" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M22 40L30 37L38 40" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="sidebar-logo-text">
+        <div class="sidebar-logo-name">AnatomIQ</div>
+        <div class="sidebar-logo-sub">Student Portal</div>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Learning</div>
+      <a class="nav-item" href="dashboard.html">
+        <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></span>
+        <span class="nav-label">Dashboard</span>
+      </a>
+      <a class="nav-item" href="anatomy.html">
+        <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><line x1="2" y1="12" x2="22" y2="12"/></svg></span>
+        <span class="nav-label">3D Anatomy Explorer</span>
+      </a>
+      <a class="nav-item" href="lessons.html">
+        <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
+        <span class="nav-label">My Lessons</span>
+      </a>
+      <a class="nav-item" href="quiz.html">
+        <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span>
+        <span class="nav-label">Quizzes & Activities</span>
+      </a>
+      <div class="nav-section-label">My Progress</div>
+      <a class="nav-item" href="progress.html">
+        <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>
+        <span class="nav-label">My Progress</span>
+      </a>
+      <a class="nav-item" href="scores.html">
+        <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+        <span class="nav-label">My Scores</span>
+      </a>
+      <a class="nav-item" href="notifications.html">
+        <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3z"/></svg></span>
+        <span class="nav-label">Notifications</span>
+      </a>
+      <div class="nav-section-label">Account</div>
+      <a class="nav-item active" href="settings.html">
+        <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span>
+        <span class="nav-label">Settings & Profile</span>
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="user-card" onclick="window.location.href='settings.html'" style="cursor:pointer;" title="Go to Settings">
+        <div class="avatar" id="sidebarAvatar">ST</div>
+        <div class="user-info">
+          <div class="user-name" id="sidebarUserName">Student</div>
+          <div class="user-role" id="sidebarUserRole">Grade 10</div>
+        </div>
+        <button class="logout-btn" onclick="event.stopPropagation(); Auth.logout();" title="Log Out">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- Main Content -->
+  <main class="main-content" id="mainContent">
+    <header class="topbar">
+      <button class="topbar-toggle" id="sidebarToggle">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <div class="topbar-breadcrumb">
+        <span class="breadcrumb-item">Student Portal</span>
+        <span class="breadcrumb-sep">/</span>
+        <span class="breadcrumb-current">Settings & Profile</span>
+      </div>
+      <div class="topbar-actions">
+        <div style="position:relative;">
+          <button class="notif-btn" id="notifBtn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3z"/></svg>
+            <span class="notif-dot"></span>
+          </button>
+          <div class="notif-dropdown" id="notifDropdown" style="display:none;">
+            <div class="notif-header"><span>Notifications</span></div>
+            <div class="notif-list"></div>
+          </div>
+        </div>
+        <a href="settings.html" class="topbar-user" style="text-decoration:none;color:inherit;" title="Manage Account">
+          <div class="avatar" id="topbarAvatar" style="width:32px;height:32px;font-size:0.75rem;">ST</div>
+          <div><div class="topbar-user-name" id="topbarUserName">Student</div></div>
+        </a>
+      </div>
+    </header>
+
+    <div class="page-content">
+      <div class="page-header">
+        <div class="page-header-left">
+          <h2>Student Profile & Account Settings</h2>
+          <p>Manage your student credentials, update contact information, change your password, and review academic status.</p>
+        </div>
+      </div>
+
+      <!-- Settings Grid -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(min(100%, 320px), 1fr));gap:var(--space-5);">
+
+        <!-- Personal Info & Academic Card -->
+        <div class="card">
+          <h3 style="margin-bottom:var(--space-4);display:flex;align-items:center;gap:var(--space-2);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;color:var(--brand);"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span>Student Information</span>
+          </h3>
+          <form id="profileForm" onsubmit="handleProfileUpdate(event)">
+            <div style="display:flex;flex-direction:column;gap:var(--space-4);">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3);">
+                <div class="form-group">
+                  <label>Username</label>
+                  <div class="input-wrapper">
+                    <input type="text" id="settingUsername" readonly style="opacity:0.7;cursor:not-allowed;background:var(--bg-inset);"/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Student LRN / ID</label>
+                  <div class="input-wrapper">
+                    <input type="text" id="settingStudentId" readonly style="opacity:0.7;cursor:not-allowed;background:var(--bg-inset);"/>
+                  </div>
+                </div>
+              </div>
+
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3);">
+                <div class="form-group">
+                  <label>Grade Level</label>
+                  <div class="input-wrapper">
+                    <input type="text" id="settingGradeLevel" readonly style="opacity:0.7;cursor:not-allowed;background:var(--bg-inset);"/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Section</label>
+                  <div class="input-wrapper">
+                    <input type="text" id="settingSection" readonly style="opacity:0.7;cursor:not-allowed;background:var(--bg-inset);"/>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Full Name *</label>
+                <div class="input-wrapper">
+                  <input type="text" id="settingFullName" required placeholder="e.g. Maria Santos"/>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Email Address</label>
+                <div class="input-wrapper">
+                  <input type="email" id="settingEmail" placeholder="e.g. maria.santos@lubangnhs.edu.ph"/>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>School Year</label>
+                <div class="input-wrapper">
+                  <input type="text" id="settingSchoolYear" readonly style="opacity:0.7;cursor:not-allowed;background:var(--bg-inset);"/>
+                </div>
+              </div>
+
+              <div style="display:flex;justify-content:flex-end;margin-top:var(--space-2);">
+                <button type="submit" class="btn btn-primary" id="saveProfileBtn">
+                  Save Changes
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- Security & Password Card -->
+        <div class="card">
+          <h3 style="margin-bottom:var(--space-4);">Security & Password</h3>
+          <form id="passwordForm" onsubmit="handlePasswordChange(event)">
+            <div style="display:flex;flex-direction:column;gap:var(--space-4);">
+              <div class="form-group">
+                <label>Current Password *</label>
+                <div class="input-wrapper">
+                  <input type="password" id="currentPassword" required placeholder="Enter current password"/>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>New Password *</label>
+                <div class="input-wrapper">
+                  <input type="password" id="newPassword" required minlength="6" placeholder="At least 6 characters"/>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Confirm New Password *</label>
+                <div class="input-wrapper">
+                  <input type="password" id="confirmNewPassword" required minlength="6" placeholder="Repeat new password"/>
+                </div>
+              </div>
+
+              <div id="passwordError" style="display:none;color:var(--error);font-size:0.82rem;"></div>
+
+              <div style="display:flex;justify-content:flex-end;margin-top:var(--space-2);">
+                <button type="submit" class="btn btn-secondary" id="savePasswordBtn">
+                  Update Password
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <hr style="margin:var(--space-5) 0;border:0;border-top:1px solid var(--border-light);"/>
+
+          <!-- School Information Banner -->
+          <div style="display:flex;align-items:flex-start;gap:var(--space-3);background:var(--bg-inset);border:1px solid var(--border-light);border-radius:var(--radius-md);padding:var(--space-3);">
+            <div style="width:32px;height:32px;border-radius:var(--radius-sm);background:var(--brand-light);color:var(--brand);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            </div>
+            <div style="font-size:0.8125rem;color:var(--text-secondary);line-height:1.5;">
+              <strong style="color:var(--text-primary);display:block;">Lubang National High School</strong>
+              Department of Education • Division of Occidental Mindoro<br/>
+              Grade 10 Science — Human Biology & Anatomical Systems
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Academic Learning Summary Card -->
+      <div class="card" style="margin-top:var(--space-6);">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-4);flex-wrap:wrap;gap:var(--space-3);">
+          <h3 style="margin:0;">Academic Learning Summary</h3>
+          <div style="display:flex;gap:var(--space-2);">
+            <a href="progress.html" class="btn btn-secondary btn-sm">Full Progress Report</a>
+            <a href="scores.html" class="btn btn-secondary btn-sm">Assessment History</a>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(160px, 1fr));gap:var(--space-4);" id="statsGrid">
+          <div style="padding:var(--space-4);background:var(--bg-inset);border-radius:var(--radius-md);border:1px solid var(--border-light);text-align:center;">
+            <div style="font-size:1.5rem;font-weight:700;color:var(--text-primary);" id="statLessons">—</div>
+            <div style="font-size:0.75rem;color:var(--text-secondary);margin-top:2px;">Lessons Completed</div>
+          </div>
+          <div style="padding:var(--space-4);background:var(--bg-inset);border-radius:var(--radius-md);border:1px solid var(--border-light);text-align:center;">
+            <div style="font-size:1.5rem;font-weight:700;color:var(--brand);" id="statAvgScore">—</div>
+            <div style="font-size:0.75rem;color:var(--text-secondary);margin-top:2px;">Average Quiz Score</div>
+          </div>
+          <div style="padding:var(--space-4);background:var(--bg-inset);border-radius:var(--radius-md);border:1px solid var(--border-light);text-align:center;">
+            <div style="font-size:1.5rem;font-weight:700;color:var(--text-primary);" id="statQuizzes">—</div>
+            <div style="font-size:0.75rem;color:var(--text-secondary);margin-top:2px;">Quizzes Passed</div>
+          </div>
+          <div style="padding:var(--space-4);background:var(--bg-inset);border-radius:var(--radius-md);border:1px solid var(--border-light);text-align:center;">
+            <div style="font-size:1.5rem;font-weight:700;color:var(--text-primary);" id="statSystems">—</div>
+            <div style="font-size:0.75rem;color:var(--text-secondary);margin-top:2px;">Systems Explored</div>
+          </div>
+          <div style="padding:var(--space-4);background:var(--bg-inset);border-radius:var(--radius-md);border:1px solid var(--border-light);text-align:center;">
+            <div style="font-size:1.5rem;font-weight:700;color:var(--text-primary);" id="statHours">—</div>
+            <div style="font-size:0.75rem;color:var(--text-secondary);margin-top:2px;">Total Study Hours</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="../assets/js/app.js"></script>
+<script>
+Auth.requireAuthSync('student');
+
+async function loadStudentProfile() {
+  try {
+    const res = await fetch(`${API_BASE}/settings.php`, { credentials: 'same-origin' });
+    const json = await res.json();
+
+    if (!json.success || !json.data) {
+      showToast('Could not load profile information.', 'error');
+      return;
+    }
+
+    const p = json.data.profile;
+
+    document.getElementById('settingUsername').value   = p.username || '';
+    document.getElementById('settingStudentId').value  = p.student_id || 'STU-001';
+    document.getElementById('settingFullName').value   = p.full_name || '';
+    document.getElementById('settingEmail').value      = p.email || '';
+    document.getElementById('settingGradeLevel').value = p.grade_level ? `Grade ${p.grade_level}` : 'Grade 10';
+    document.getElementById('settingSection').value    = p.section || 'Narra';
+    document.getElementById('settingSchoolYear').value = p.school_year || '2024-2025';
+
+    // Update avatar text and names
+    const initials = p.full_name
+      ? p.full_name.split(' ').map(n => n[0]).slice(0, 2).join('').toUpperCase()
+      : 'ST';
+    
+    document.getElementById('topbarAvatar').textContent = initials;
+    document.getElementById('sidebarAvatar').textContent = initials;
+    document.getElementById('topbarUserName').textContent = p.full_name || p.username;
+    document.getElementById('sidebarUserName').textContent = p.full_name || p.username;
+    document.getElementById('sidebarUserRole').textContent = `${p.grade_level ? 'Grade ' + p.grade_level : 'Grade 10'} – ${p.section || 'Narra'}`;
+
+  } catch (err) {
+    console.error('Profile fetch error:', err);
+    showToast('Failed to load profile details.', 'error');
+  }
+}
+
+async function loadStudentSummary() {
+  try {
+    const res = await fetch(`${API_BASE}/dashboard/student-stats.php`, { credentials: 'same-origin' });
+    const json = await res.json();
+    if (json.success && json.data?.profile) {
+      const sp = json.data.profile;
+      document.getElementById('statLessons').textContent  = `${sp.completed_lessons} / ${sp.total_lessons}`;
+      document.getElementById('statAvgScore').textContent = sp.avg_quiz_score !== null ? `${sp.avg_quiz_score}%` : 'N/A';
+      document.getElementById('statQuizzes').textContent  = `${sp.quizzes_passed} / ${sp.quizzes_taken}`;
+      document.getElementById('statSystems').textContent  = `${sp.systems_explored} / 9`;
+      document.getElementById('statHours').textContent    = `${sp.total_time_hours || 0} hrs`;
+    }
+  } catch (err) {
+    console.warn('Could not load student stats summary:', err);
+  }
+}
+
+async function handleProfileUpdate(e) {
+  e.preventDefault();
+  const btn = document.getElementById('saveProfileBtn');
+  btn.disabled = true;
+  btn.textContent = 'Saving…';
+
+  const payload = {
+    full_name: document.getElementById('settingFullName').value.trim(),
+    email:     document.getElementById('settingEmail').value.trim()
+  };
+
+  try {
+    const res = await fetch(`${API_BASE}/settings.php`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'same-origin',
+      body: JSON.stringify(payload)
+    });
+
+    const json = await res.json();
+    if (json.success) {
+      showToast('Profile updated successfully!', 'success');
+      // Update session storage cache
+      const stored = Auth.getUser();
+      if (stored) {
+        stored.full_name = payload.full_name;
+        sessionStorage.setItem('anatomiq_user', JSON.stringify(stored));
+      }
+      loadStudentProfile();
+    } else {
+      showToast(json.message || 'Failed to update profile.', 'error');
+    }
+  } catch (err) {
+    showToast('Server error updating profile.', 'error');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Save Changes';
+  }
+}
+
+async function handlePasswordChange(e) {
+  e.preventDefault();
+  const errBox = document.getElementById('passwordError');
+  errBox.style.display = 'none';
+
+  const curPass = document.getElementById('currentPassword').value;
+  const newPass = document.getElementById('newPassword').value;
+  const cnfPass = document.getElementById('confirmNewPassword').value;
+
+  if (newPass !== cnfPass) {
+    errBox.textContent = 'New passwords do not match.';
+    errBox.style.display = 'block';
+    return;
+  }
+
+  if (newPass.length < 6) {
+    errBox.textContent = 'New password must be at least 6 characters.';
+    errBox.style.display = 'block';
+    return;
+  }
+
+  const btn = document.getElementById('savePasswordBtn');
+  btn.disabled = true;
+  btn.textContent = 'Updating…';
+
+  try {
+    const res = await fetch(`${API_BASE}/settings.php`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'same-origin',
+      body: JSON.stringify({
+        current_password: curPass,
+        new_password:     newPass
+      })
+    });
+
+    const json = await res.json();
+    if (json.success) {
+      showToast('Password changed successfully!', 'success');
+      document.getElementById('passwordForm').reset();
+    } else {
+      errBox.textContent = json.message || 'Failed to change password.';
+      errBox.style.display = 'block';
+    }
+  } catch (err) {
+    errBox.textContent = 'Server error changing password.';
+    errBox.style.display = 'block';
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Update Password';
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  loadStudentProfile();
+  loadStudentSummary();
+});
+</script>
+</body>
+</html>

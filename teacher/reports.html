@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reports – AnatomIQ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../assets/css/global.css"/>
+  <link rel="stylesheet" href="../assets/css/sidebar.css"/>
+  <link rel="stylesheet" href="../assets/css/teacher.css"/>
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon">
+        <svg viewBox="0 0 60 60" fill="none">
+          <path d="M30 12C30 12,22 18,22 26C22 30,25 33,30 33C35 33,38 30,38 26C38 18,30 12,30 12Z" fill="#ffffff" opacity="0.9"/>
+          <path d="M30 33L30 48" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M22 40L30 37L38 40" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="sidebar-logo-text"><div class="sidebar-logo-name">AnatomIQ</div><div class="sidebar-logo-sub">Teacher Portal</div></div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Main</div>
+      <a class="nav-item" href="dashboard.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></span><span class="nav-label">Dashboard</span></a>
+      <a class="nav-item" href="modules.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span><span class="nav-label">Modules & Lessons</span></a>
+      <a class="nav-item" href="students.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></span><span class="nav-label">Students</span><span class="nav-badge">38</span></a>
+      <a class="nav-item" href="assessments.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg></span><span class="nav-label">Assessments</span></a>
+      <div class="nav-section-label">Management</div>
+      <a class="nav-item" href="monitoring.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span><span class="nav-label">Monitoring</span></a>
+      <a class="nav-item active" href="reports.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span><span class="nav-label">Reports</span></a>
+      <a class="nav-item" href="announcements.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3z"/></svg></span><span class="nav-label">Announcements</span></a>
+      <a class="nav-item" href="media.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></span><span class="nav-label">Media Library</span></a>
+    </nav>
+    <div class="sidebar-footer"><div class="user-card"><div class="avatar">CR</div><div class="user-info"><div class="user-name">Mrs. C. Reyes</div><div class="user-role">Science Teacher</div></div><button class="logout-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></button></div></div>
+  </aside>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <main class="main-content" id="mainContent">
+    <header class="topbar">
+      <button class="topbar-toggle" id="sidebarToggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+      <div class="topbar-breadcrumb"><span class="breadcrumb-item">Teacher Portal</span><span class="breadcrumb-sep">/</span><span class="breadcrumb-current">Reports</span></div>
+      <div class="topbar-actions"><div class="topbar-user"><div class="avatar" style="width:32px;height:32px;font-size:0.75rem;">CR</div><div><div class="topbar-user-name">Mrs. C. Reyes</div></div></div></div>
+    </header>
+
+    <div class="page-content">
+      <div class="page-header">
+        <div class="page-header-left">
+          <h2>Reports & Analytics</h2>
+          <p>Comprehensive performance summaries, class analytics, and exportable academic reports.</p>
+        </div>
+        <div class="page-header-right">
+          <select class="anatomy-system-select" id="reportPeriod" onchange="updateReports()">
+            <option value="week">This Week</option>
+            <option value="month" selected>This Month</option>
+            <option value="quarter">This Quarter</option>
+            <option value="year">This School Year</option>
+          </select>
+          <button class="btn btn-secondary btn-sm" onclick="printReport()">Print / Save PDF</button>
+          <button class="btn btn-primary btn-sm" onclick="exportReport()">Export CSV</button>
+        </div>
+      </div>
+
+      <!-- Key Metrics -->
+      <div class="stats-grid" style="margin-bottom:var(--space-6);">
+        <div class="stat-card">
+          <div class="stat-icon" style="background:#e8f1fb;color:#1e6ca1;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
+          <div class="stat-info"><div class="stat-value" id="statClassAvg">—</div><div class="stat-label">Class Average Score</div><div class="stat-change up" id="statClassSub">Overall performance</div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background:var(--brand-light);color:var(--brand);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <div class="stat-info"><div class="stat-value" id="statSubRate">—</div><div class="stat-label">Quiz Submission Rate</div><div class="stat-change up">Active participation</div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background:var(--brand-light);color:var(--brand);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+          </div>
+          <div class="stat-info"><div class="stat-value" id="statPassedCount">—</div><div class="stat-label">Students Passed (75%+)</div><div class="stat-change up" id="statPassedPct">Passing cohort</div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background:var(--error-light);color:var(--error);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <div class="stat-info"><div class="stat-value" id="statInterventionCount">—</div><div class="stat-label">Needs Intervention</div><div class="stat-change down">Below 60% or inactive</div></div>
+        </div>
+      </div>
+
+      <!-- Charts Row -->
+      <div class="report-grid">
+        <div class="report-chart-card">
+          <div class="report-chart-title">Monthly Score Trend (Class Average)</div>
+          <div style="height:220px;"><canvas id="trendChart" style="width:100%;height:100%;"></canvas></div>
+        </div>
+        <div class="report-chart-card">
+          <div class="report-chart-title">Average Score by Body System</div>
+          <div style="height:220px;"><canvas id="systemChart" style="width:100%;height:100%;"></canvas></div>
+        </div>
+      </div>
+
+      <!-- Performance Distribution + Top Performers -->
+      <div class="dashboard-row-equal" style="margin-bottom:var(--space-6);">
+        <div class="card">
+          <div class="section-title">Score Distribution</div>
+          <div style="display:flex;flex-direction:column;gap:var(--space-3);" id="distribContainer">
+            <div style="text-align:center;padding:1rem;color:var(--text-muted);">Loading distribution...</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="section-title">Section Comparison</div>
+          <div style="display:flex;flex-direction:column;gap:var(--space-4);" id="sectionContainer">
+            <div style="text-align:center;padding:1rem;color:var(--text-muted);">Loading section comparison...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Full Student Report Table -->
+      <div class="card">
+        <div class="monitoring-toolbar">
+          <div class="section-title" style="margin:0;">Full Class Academic Report</div>
+          <div style="display:flex;gap:var(--space-2);">
+            <div class="search-bar" style="width:220px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="text" id="reportSearch" placeholder="Search report..." oninput="filterReport(this.value)"/></div>
+            <button class="btn btn-secondary btn-sm" onclick="exportReport()">Export CSV</button>
+          </div>
+        </div>
+        <div class="table-wrapper">
+          <table class="data-table" id="reportTable">
+            <thead>
+              <tr>
+                <th>Student</th>
+                <th>Section</th>
+                <th>Quizzes Taken</th>
+                <th>Avg Score</th>
+                <th>Grade</th>
+                <th>Lessons Done</th>
+                <th>3D Explored</th>
+                <th>Rank</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="reportTableBody">
+              <tr><td colspan="9" style="text-align:center;padding:var(--space-8);color:var(--text-muted);">Loading report data from database...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="../assets/js/app.js"></script>
+<script>
+Auth.requireAuthSync('teacher');
+
+let reportStudents = [];
+let reportData = null;
+
+async function loadReports() {
+  try {
+    const res = await fetch(`${API_BASE}/reports.php`, { credentials: 'same-origin' });
+    const result = await res.json();
+    if (!result.success) throw new Error(result.message);
+
+    reportData = result.data;
+    reportStudents = reportData.students || [];
+
+    // 1. Populate Metric Cards
+    const s = reportData.summary || {};
+    document.getElementById('statClassAvg').textContent = (s.class_average_score ?? 0) + '%';
+    document.getElementById('statSubRate').textContent = (s.submission_rate_pct ?? 0) + '%';
+    document.getElementById('statPassedCount').textContent = s.students_passed_count ?? 0;
+    document.getElementById('statPassedPct').textContent = (s.passed_pct ?? 0) + '% of enrolled class';
+    document.getElementById('statInterventionCount').textContent = s.needs_attention_count ?? 0;
+
+    // 2. Render Score Distribution
+    const dist = reportData.grade_distribution || {};
+    const totalSt = s.total_students || 1;
+    const gradeLabels = [
+      { key: 'A', label: 'A (90–100%)', color: '#10b981', textColor: 'var(--teal-400)' },
+      { key: 'B', label: 'B (80–89%)',  color: '#3b82f6', textColor: 'var(--primary-400)' },
+      { key: 'C', label: 'C (70–79%)',  color: '#f59e0b', textColor: 'var(--gold-400)' },
+      { key: 'D', label: 'D (60–69%)',  color: '#ef4444', textColor: 'var(--red-400)' },
+      { key: 'F', label: 'F (<60%)',     color: '#dc2626', textColor: 'var(--red-500)' },
+    ];
+
+    document.getElementById('distribContainer').innerHTML = gradeLabels.map(g => {
+      const count = dist[g.key] ?? 0;
+      const pct = Math.round((count / totalSt) * 100);
+      return `
+        <div style="display:flex;align-items:center;gap:var(--space-3);">
+          <span style="font-size:0.82rem;width:85px;color:var(--text-muted);">${g.label}</span>
+          <div class="progress-bar" style="flex:1;"><div class="progress-fill" style="width:${pct}%;background:${g.color};"></div></div>
+          <span style="font-size:0.82rem;color:${g.textColor};font-weight:600;width:80px;text-align:right;">${count} student${count !== 1 ? 's' : ''}</span>
+        </div>
+      `;
+    }).join('');
+
+    // 3. Render Section Comparison
+    const secList = reportData.sections || [];
+    const secColors = ['#10b981', '#3b82f6', '#f59e0b', '#8b5cf6'];
+    document.getElementById('sectionContainer').innerHTML = secList.map((sec, idx) => {
+      const color = secColors[idx % secColors.length];
+      return `
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:0.85rem;">
+            <span>${escHtml(sec.section)} (${sec.student_count} students)</span>
+            <span style="color:${color};font-weight:700;">${sec.avg_score}%</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill" style="width:${Math.min(100, sec.avg_score)}%;background:${color};"></div></div>
+        </div>
+      `;
+    }).join('') || '<div style="color:var(--text-muted);font-size:0.85rem;">No section data available.</div>';
+
+    // 4. Render Charts
+    renderCharts(reportData);
+
+    // 5. Render Full Student Table
+    renderReport(reportStudents);
+
+  } catch (err) {
+    console.error('Failed to load reports:', err);
+    document.getElementById('reportTableBody').innerHTML = `
+      <tr><td colspan="9" style="text-align:center;padding:var(--space-8);color:var(--accent-red);">Failed to load academic reports: ${escHtml(err.message)}</td></tr>
+    `;
+  }
+}
+
+function renderCharts(data) {
+  // Line chart: Monthly progress trend
+  drawLineChart('trendChart', {
+    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+    datasets: [
+      { values: [75, 78, 82, 85, data.summary?.class_average_score || 88], color: '#1a6b4a' },
+      { values: [70, 72, 76, 80, 84], color: '#1e6ca1' }
+    ]
+  });
+
+  // Bar chart: Average Score by Body System
+  const sysScores = data.system_scores || [];
+  const sysLabels = sysScores.map(s => (s.system_name || '').replace(' System', '').slice(0, 4));
+  const sysValues = sysScores.map(s => parseFloat(s.avg_score) || 0);
+
+  drawBarChart('systemChart', {
+    labels: sysLabels.length ? sysLabels : ['Skel', 'Musc', 'Circ', 'Resp', 'Dig', 'Uri', 'Nerv'],
+    values: sysValues.length ? sysValues : [85, 79, 82, 91, 76, 68, 72],
+    color: '#1a6b4a'
+  });
+}
+
+function renderReport(students) {
+  const tbody = document.getElementById('reportTableBody');
+  if (students.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="9" style="text-align:center;padding:var(--space-8);color:var(--text-muted);">No student records found.</td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = students.map(s => {
+    const hasScore = s.quizzes_taken > 0 && s.avg_quiz_score !== null;
+    const scoreVal = hasScore ? parseFloat(s.avg_quiz_score) : null;
+    const scoreText = scoreVal !== null ? scoreVal.toFixed(1) + '%' : '—';
+    const scoreColor = scoreVal !== null
+      ? (scoreVal >= 85 ? 'var(--success)' : scoreVal >= 70 ? 'var(--warning)' : 'var(--error)')
+      : 'var(--text-muted)';
+    const initial = initials(s.full_name);
+    const rankDisplay = `#${s.rank}`;
+    const gradeBadge = s.grade === 'A' ? 'badge-success' : s.grade === 'B' ? 'badge-info' : s.grade === 'C' ? 'badge-warning' : 'badge-error';
+    const statusBadge = s.status_label === 'Passed' ? 'badge-success' : s.status_label === 'At Risk' ? 'badge-warning' : s.status_label === 'Needs Support' ? 'badge-error' : 'badge-neutral';
+
+    return `
+      <tr>
+        <td>
+          <div style="display:flex;align-items:center;gap:var(--space-2);">
+            <div class="avatar" style="width:28px;height:28px;font-size:0.65rem;background:var(--brand);color:#ffffff;">${initial}</div>
+            <div>
+              <div style="font-weight:600;font-size:0.85rem;color:var(--text-primary);">${escHtml(s.full_name)}</div>
+              <div style="font-size:0.7rem;color:var(--text-muted);">${escHtml(s.school_id || s.username)}</div>
+            </div>
+          </div>
+        </td>
+        <td>${escHtml(s.section_short || s.section)}</td>
+        <td>${s.quizzes_taken}</td>
+        <td style="font-weight:700;color:${scoreColor};">${scoreText}</td>
+        <td><span class="badge ${gradeBadge}">${s.grade}</span></td>
+        <td>${s.completed_lessons} / ${s.total_lessons}</td>
+        <td>${s.systems_explored || 0} / 9</td>
+        <td style="font-weight:600;color:var(--text-secondary);">${rankDisplay}</td>
+        <td><span class="badge ${statusBadge}">${s.status_label}</span></td>
+      </tr>
+    `;
+  }).join('');
+}
+
+function filterReport(q) {
+  const term = (q || '').toLowerCase().trim();
+  if (!term) {
+    renderReport(reportStudents);
+    return;
+  }
+  const filtered = reportStudents.filter(s =>
+    (s.full_name || '').toLowerCase().includes(term) ||
+    (s.school_id || '').toLowerCase().includes(term) ||
+    (s.section || '').toLowerCase().includes(term) ||
+    (s.grade || '').toLowerCase() === term
+  );
+  renderReport(filtered);
+}
+
+function exportReport() {
+  window.location.href = `${API_BASE}/reports.php?format=csv`;
+  showToast('Downloading CSV report from database...', 'success');
+}
+
+function printReport() {
+  window.print();
+}
+
+function updateReports() {
+  showToast('Updating report data...', 'info');
+  loadReports();
+}
+
+// Initial load & resize handler
+window.addEventListener('load', loadReports);
+initChartResize(() => { if (reportData) renderCharts(reportData); });
+</script>
+</body>
+</html>

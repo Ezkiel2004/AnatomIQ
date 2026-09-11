@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Teacher Dashboard – AnatomIQ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../assets/css/global.css"/>
+  <link rel="stylesheet" href="../assets/css/sidebar.css"/>
+  <link rel="stylesheet" href="../assets/css/teacher.css"/>
+</head>
+<body>
+
+<div class="app-layout">
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon">
+        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M30 12 C30 12, 22 18, 22 26 C22 30, 25 33, 30 33 C35 33, 38 30, 38 26 C38 18, 30 12, 30 12Z" fill="#ffffff" opacity="0.9"/>
+          <path d="M30 33 L30 48" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M22 40 L30 37 L38 40" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="sidebar-logo-text">
+        <div class="sidebar-logo-name">AnatomIQ</div>
+        <div class="sidebar-logo-sub">Teacher Portal</div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Main</div>
+      <a class="nav-item active" href="dashboard.html" data-tooltip="Dashboard">
+        <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></span>
+        <span class="nav-label">Dashboard</span>
+      </a>
+      <a class="nav-item" href="modules.html" data-tooltip="Modules">
+        <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
+        <span class="nav-label">Modules and Lessons</span>
+      </a>
+      <a class="nav-item" href="students.html" data-tooltip="Students">
+        <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+        <span class="nav-label">Students</span>
+        <span class="nav-badge">38</span>
+      </a>
+      <a class="nav-item" href="assessments.html" data-tooltip="Assessments">
+        <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span>
+        <span class="nav-label">Assessments</span>
+      </a>
+
+      <div class="nav-section-label">Management</div>
+      <a class="nav-item" href="monitoring.html" data-tooltip="Monitoring">
+        <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>
+        <span class="nav-label">Monitoring</span>
+      </a>
+      <a class="nav-item" href="reports.html" data-tooltip="Reports">
+        <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+        <span class="nav-label">Reports</span>
+      </a>
+      <a class="nav-item" href="announcements.html" data-tooltip="Announcements">
+        <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3zm-8.27 4a2 2 0 0 1-3.46 0"/></svg></span>
+        <span class="nav-label">Announcements</span>
+        <span class="nav-badge">2</span>
+      </a>
+      <a class="nav-item" href="media.html" data-tooltip="Media Library">
+        <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></span>
+        <span class="nav-label">Media Library</span>
+      </a>
+
+      <div class="nav-section-label">System</div>
+      <a class="nav-item" href="settings.html" data-tooltip="Settings">
+        <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg></span>
+        <span class="nav-label">Settings</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-card">
+        <div class="avatar">CR</div>
+        <div class="user-info">
+          <div class="user-name">Mrs. C. Reyes</div>
+          <div class="user-role">Science Teacher</div>
+        </div>
+        <button class="logout-btn" title="Sign Out" onclick="Auth.logout()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Sidebar Overlay -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- Main Content -->
+  <main class="main-content" id="mainContent">
+
+    <!-- Topbar -->
+    <header class="topbar">
+      <button class="topbar-toggle" id="sidebarToggle">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <div class="topbar-breadcrumb">
+        <span class="breadcrumb-item">Teacher Portal</span>
+        <span class="breadcrumb-sep">/</span>
+        <span class="breadcrumb-current">Dashboard</span>
+      </div>
+      <div class="topbar-actions">
+        <div style="position:relative;">
+          <button class="notif-btn" id="notifBtn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3zm-8.27 4a2 2 0 0 1-3.46 0"/></svg>
+            <span class="notif-dot"></span>
+          </button>
+          <div class="notif-dropdown" id="notifDropdown" style="display:none;">
+            <div class="notif-header">
+              <span>Notifications</span>
+              <a href="#" style="font-size:0.75rem;color:var(--brand);">Mark all read</a>
+            </div>
+            <div class="notif-list"></div>
+            <div class="notif-footer"><a href="announcements.html">View all notifications</a></div>
+          </div>
+        </div>
+        <div class="topbar-user">
+          <div class="avatar" style="width:32px;height:32px;font-size:0.7rem;">CR</div>
+          <div>
+            <div class="topbar-user-name">Mrs. C. Reyes</div>
+            <div class="topbar-user-role">Science Teacher</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Page Content -->
+    <div class="page-content">
+
+      <!-- Page Header -->
+      <div class="page-header">
+        <div class="page-header-left">
+          <h2><span class="greeting-text">Good Morning</span>, <span id="teacherHeaderName">Teacher</span></h2>
+          <p>Class activity and student progress overview.</p>
+        </div>
+        <div class="page-header-right">
+          <span style="font-size:0.8125rem;color:var(--text-muted);" id="currentDate"></span>
+          <a href="assessments.html" class="btn btn-primary btn-sm">
+            New Assessment
+          </a>
+        </div>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+          </div>
+          <div class="stat-info">
+            <div class="stat-value" id="statTotalStudents">0</div>
+            <div class="stat-label">Total Students</div>
+            <div class="stat-change up" id="statActiveStudentsSub">0 active accounts</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon green">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px;"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <div class="stat-info">
+            <div class="stat-value" id="statActiveStudents">0</div>
+            <div class="stat-label">Active Learners</div>
+            <div class="stat-change up">Enrolled Grade 10</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px;"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
+          <div class="stat-info">
+            <div class="stat-value" id="statClassAverage">0%</div>
+            <div class="stat-label">Class Average Score</div>
+            <div class="stat-change up">Across all quizzes</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon gold">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px;"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          </div>
+          <div class="stat-info">
+            <div class="stat-value" id="statActiveModules">0</div>
+            <div class="stat-label">Published Modules</div>
+            <div class="stat-change up" id="statTotalLessonsSub">0 lessons live</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon red">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          </div>
+          <div class="stat-info">
+            <div class="stat-value" id="statActiveAssessments">0</div>
+            <div class="stat-label">Active Assessments</div>
+            <div class="stat-change">Available to students</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 1: Progress Chart + Leaderboard -->
+      <div class="dashboard-row">
+        <div class="card">
+          <div class="section-title">Weekly Class Activity</div>
+          <div class="chart-container">
+            <canvas id="weeklyChart" style="width:100%;height:100%;"></canvas>
+          </div>
+        </div>
+        <div class="card">
+          <div class="section-title">Top Performers</div>
+          <div class="leaderboard-list" id="leaderboardList">
+            <div style="text-align:center;padding:2rem;color:var(--text-muted);">Loading leaderboard...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 2: Module Progress + At-Risk -->
+      <div class="dashboard-row">
+        <div class="card">
+          <div class="section-title">System Completion Overview</div>
+          <div id="moduleProgressList">
+            <div style="text-align:center;padding:2rem;color:var(--text-muted);">Loading system stats...</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="section-title">Students Needing Attention</div>
+          <div class="activity-feed" id="atRiskList">
+            <div style="text-align:center;padding:2rem;color:var(--text-muted);">Checking student progress...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 3: System Scores + Quick Actions -->
+      <div class="dashboard-row-equal">
+        <div class="card">
+          <div class="section-title">Class Performance by Body System</div>
+          <div class="chart-container" style="height:200px;">
+            <canvas id="systemScoreChart" style="width:100%;height:100%;"></canvas>
+          </div>
+        </div>
+        <div class="card">
+          <div class="section-title">Quick Actions</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3);">
+            <a href="modules.html" class="quick-action-link">
+              <div class="quick-action-title">Add Lesson</div>
+              <div class="quick-action-desc">Create new module</div>
+            </a>
+            <a href="assessments.html" class="quick-action-link">
+              <div class="quick-action-title">Create Quiz</div>
+              <div class="quick-action-desc">Build assessment</div>
+            </a>
+            <a href="students.html" class="quick-action-link">
+              <div class="quick-action-title">Student Roster</div>
+              <div class="quick-action-desc">Manage accounts</div>
+            </a>
+            <a href="announcements.html" class="quick-action-link">
+              <div class="quick-action-title">Announce</div>
+              <div class="quick-action-desc">Post updates</div>
+            </a>
+            <a href="monitoring.html" class="quick-action-link">
+              <div class="quick-action-title">Monitoring</div>
+              <div class="quick-action-desc">Track progress</div>
+            </a>
+            <a href="media.html" class="quick-action-link">
+              <div class="quick-action-title">Media Assets</div>
+              <div class="quick-action-desc">3D models and files</div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Student Submissions Table -->
+      <div class="card" style="margin-bottom:var(--space-6);">
+        <div class="monitoring-toolbar">
+          <div class="section-title" style="margin:0;">Recent Student Submissions</div>
+          <a href="students.html" class="btn btn-secondary btn-sm">View Directory</a>
+        </div>
+        <div class="table-wrapper">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Student</th>
+                <th>Assessment</th>
+                <th>Section</th>
+                <th>Score</th>
+                <th>Status</th>
+                <th>Submitted</th>
+              </tr>
+            </thead>
+            <tbody id="submissionsTable">
+              <tr><td colspan="6" style="text-align:center;padding:2rem;color:var(--text-muted);">Loading recent submissions...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="../assets/js/app.js?v=20260906b"></script>
+<script>
+'use strict';
+Auth.requireAuthSync('teacher');
+
+// Set current date
+document.getElementById('currentDate').textContent = new Date().toLocaleDateString('en-PH', {
+  weekday:'long', year:'numeric', month:'long', day:'numeric'
+});
+
+async function loadTeacherDashboard() {
+  try {
+    const [statsRes, studentsRes] = await Promise.all([
+      fetch(`${API_BASE}/dashboard/teacher-stats.php`, { credentials: 'same-origin' }),
+      fetch(`${API_BASE}/students.php`, { credentials: 'same-origin' })
+    ]);
+
+    const statsData    = await statsRes.json();
+    const studentsData = await studentsRes.json();
+
+    if (!statsData.success) return;
+
+    const { stats, recent_submissions, system_stats, at_risk_students } = statsData.data;
+
+    // Stat Cards
+    document.getElementById('statTotalStudents').textContent     = stats.total_students;
+    document.getElementById('statActiveStudentsSub').textContent = `${stats.active_students} active accounts`;
+    document.getElementById('statActiveStudents').textContent    = stats.active_students;
+    document.getElementById('statClassAverage').textContent     = `${stats.class_average_score}%`;
+    document.getElementById('statActiveModules').textContent     = stats.total_modules;
+    document.getElementById('statTotalLessonsSub').textContent   = `${stats.total_lessons} lessons live`;
+    document.getElementById('statActiveAssessments').textContent = stats.active_assessments;
+
+    // Leaderboard (Top 5 from students API)
+    const leaderContainer = document.getElementById('leaderboardList');
+    if (studentsData.success && studentsData.data.students) {
+      const topStudents = [...studentsData.data.students]
+        .filter(s => s.avg_quiz_score !== null)
+        .sort((a, b) => b.avg_quiz_score - a.avg_quiz_score)
+        .slice(0, 5);
+
+      if (topStudents.length) {
+        leaderContainer.innerHTML = topStudents.map((s, idx) => `
+          <div class="leaderboard-item">
+            <div class="leaderboard-rank ${idx <= 2 ? 'rank-' + (idx + 1) : 'rank-other'}">
+              ${idx + 1}
+            </div>
+            <div class="leaderboard-info">
+              <div class="leaderboard-name">${escHtml(s.full_name)}</div>
+              <div class="leaderboard-section">${escHtml(s.section)} · ${s.school_id}</div>
+            </div>
+            <div class="leaderboard-score">${s.avg_quiz_score}%</div>
+          </div>
+        `).join('');
+      } else {
+        leaderContainer.innerHTML = '<div style="text-align:center;padding:2rem;color:var(--text-muted);">No student quiz scores recorded yet.</div>';
+      }
+    }
+
+    // System Progress Overview
+    const moduleProgressList = document.getElementById('moduleProgressList');
+    if (system_stats && system_stats.length) {
+      moduleProgressList.innerHTML = system_stats.slice(0, 6).map(ss => `
+        <div style="margin-bottom:var(--space-3);">
+          <div style="display:flex;justify-content:space-between;margin-bottom:4px;font-size:0.8125rem;">
+            <span style="font-weight:500;color:var(--text-primary);">${escHtml(ss.system_name)}</span>
+            <span style="color:var(--text-muted);font-size:0.75rem;">${ss.avg_completion_pct}% completion</span>
+          </div>
+          <div class="progress-bar" style="height:6px;">
+            <div class="progress-fill" style="width:${ss.avg_completion_pct}%;"></div>
+          </div>
+        </div>
+      `).join('');
+    } else {
+      moduleProgressList.innerHTML = '<div style="color:var(--text-muted);padding:1rem;">No systems published yet.</div>';
+    }
+
+    // At-Risk / Attention Students
+    const atRiskContainer = document.getElementById('atRiskList');
+    if (at_risk_students && at_risk_students.length) {
+      atRiskContainer.innerHTML = at_risk_students.map(s => `
+        <div class="activity-item">
+          <div class="activity-dot" style="background:var(--error);"></div>
+          <div class="activity-content">
+            <div class="activity-text">
+              <strong>${escHtml(s.full_name)}</strong> (${escHtml(s.section)}) – Score: <span style="color:var(--error);font-weight:700;">${s.avg_score}%</span>
+            </div>
+            <div class="activity-time">${s.completed_lessons} lessons completed</div>
+          </div>
+        </div>
+      `).join('');
+    } else {
+      atRiskContainer.innerHTML = '<div style="text-align:center;padding:2rem;color:var(--text-muted);">All students are performing at or above passing standards.</div>';
+    }
+
+    // Recent Submissions Table
+    const subTable = document.getElementById('submissionsTable');
+    if (recent_submissions && recent_submissions.length) {
+      subTable.innerHTML = recent_submissions.map(sub => {
+        const score = Math.round(sub.score);
+        const pass = score >= sub.passing_score;
+        return `
+          <tr>
+            <td>
+              <div style="display:flex;align-items:center;gap:var(--space-2);">
+                <div class="avatar" style="width:28px;height:28px;font-size:0.65rem;">${initials(sub.student_name)}</div>
+                <div>
+                  <div style="font-weight:600;font-size:0.8125rem;">${escHtml(sub.student_name)}</div>
+                  <div style="font-size:0.6875rem;color:var(--text-muted);">${sub.school_id}</div>
+                </div>
+              </div>
+            </td>
+            <td>${escHtml(sub.assessment_title)}</td>
+            <td>${escHtml(sub.section)}</td>
+            <td style="font-weight:700;color:${pass ? 'var(--success)' : 'var(--error)'};">${score}%</td>
+            <td><span class="badge ${pass ? 'badge-green' : 'badge-red'}">${pass ? 'Passed' : 'Needs Review'}</span></td>
+            <td style="font-size:0.75rem;color:var(--text-muted);">${fmtDate(sub.submitted_at)}</td>
+          </tr>
+        `;
+      }).join('');
+    } else {
+      subTable.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:2rem;color:var(--text-muted);">No student submissions recorded yet.</td></tr>';
+    }
+
+    // Dynamic Greeting & Name
+    const cachedUser = Auth.getUser();
+    if (cachedUser && cachedUser.full_name) {
+      const headerName = document.getElementById('teacherHeaderName');
+      if (headerName) headerName.textContent = cachedUser.full_name;
+    }
+    const greetingEl = document.querySelector('.greeting-text');
+    if (greetingEl) greetingEl.textContent = getGreeting();
+
+    // Render Charts
+    _cachedSystemStats = system_stats;
+    renderTeacherCharts(system_stats);
+
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+let _cachedSystemStats = [];
+
+function renderTeacherCharts(systemStats) {
+  // Weekly Performance Activity
+  drawBarChart('weeklyChart', {
+    labels: ['Mon','Tue','Wed','Thu','Fri','Sat'],
+    values: [74, 82, 79, 88, 91, 85],
+    color: '#1a6b4a'
+  });
+
+  // System Completion Bar Chart
+  const stats = systemStats || _cachedSystemStats;
+  if (stats && stats.length) {
+    const labels = stats.slice(0, 6).map(s => s.system_code.slice(0, 4).toUpperCase());
+    const values = stats.slice(0, 6).map(s => Math.round(s.avg_completion_pct));
+    drawBarChart('systemScoreChart', {
+      labels: labels,
+      values: values,
+      color: '#1e6ca1'
+    });
+  }
+}
+
+// ── Init ────────────────────────────────────────────────────────
+loadTeacherDashboard();
+initChartResize(() => renderTeacherCharts(_cachedSystemStats));
+</script>
+</body>
+</html>

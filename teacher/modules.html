@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Modules & Lessons – AnatomIQ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../assets/css/global.css"/>
+  <link rel="stylesheet" href="../assets/css/sidebar.css"/>
+  <link rel="stylesheet" href="../assets/css/teacher.css"/>
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon">
+        <svg viewBox="0 0 60 60" fill="none">
+          <path d="M30 12C30 12,22 18,22 26C22 30,25 33,30 33C35 33,38 30,38 26C38 18,30 12,30 12Z" fill="#ffffff" opacity="0.9"/>
+          <path d="M30 33L30 48" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M22 40L30 37L38 40" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="sidebar-logo-text"><div class="sidebar-logo-name">AnatomIQ</div><div class="sidebar-logo-sub">Teacher Portal</div></div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Main</div>
+      <a class="nav-item" href="dashboard.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></span><span class="nav-label">Dashboard</span></a>
+      <a class="nav-item active" href="modules.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span><span class="nav-label">Modules & Lessons</span></a>
+      <a class="nav-item" href="students.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></span><span class="nav-label">Students</span><span class="nav-badge">38</span></a>
+      <a class="nav-item" href="assessments.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg></span><span class="nav-label">Assessments</span></a>
+      <div class="nav-section-label">Management</div>
+      <a class="nav-item" href="monitoring.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span><span class="nav-label">Monitoring</span></a>
+      <a class="nav-item" href="reports.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span><span class="nav-label">Reports</span></a>
+      <a class="nav-item" href="announcements.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3z"/></svg></span><span class="nav-label">Announcements</span></a>
+      <a class="nav-item" href="media.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></span><span class="nav-label">Media Library</span></a>
+    </nav>
+    <div class="sidebar-footer"><div class="user-card"><div class="avatar">CR</div><div class="user-info"><div class="user-name">Mrs. C. Reyes</div><div class="user-role">Science Teacher</div></div><button class="logout-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></button></div></div>
+  </aside>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <main class="main-content" id="mainContent">
+    <header class="topbar">
+      <button class="topbar-toggle" id="sidebarToggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+      <div class="topbar-breadcrumb"><span class="breadcrumb-item">Teacher Portal</span><span class="breadcrumb-sep">/</span><span class="breadcrumb-current">Modules & Lessons</span></div>
+      <div class="topbar-actions"><div class="topbar-user"><div class="avatar" style="width:32px;height:32px;font-size:0.75rem;">CR</div><div><div class="topbar-user-name">Mrs. C. Reyes</div></div></div></div>
+    </header>
+
+    <div class="page-content">
+      <div class="page-header">
+        <div class="page-header-left">
+          <h2>Modules & Lesson Management</h2>
+          <p>Create, edit, organize, and publish anatomy learning modules and lesson content.</p>
+        </div>
+        <div class="page-header-right">
+          <button class="btn btn-secondary btn-sm" onclick="openModal('addLessonModal')">+ Add Lesson</button>
+          <button class="btn btn-primary" onclick="openModal('addModuleModal')">+ New Module</button>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats-grid" style="margin-bottom:var(--space-6);">
+        <div class="stat-card">
+          <div class="stat-icon" style="background:var(--brand-light);color:var(--brand);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+          </div>
+          <div class="stat-info"><div class="stat-value">9</div><div class="stat-label">Total Modules</div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background:#e8f1fb;color:#1e6ca1;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          </div>
+          <div class="stat-info"><div class="stat-value">102</div><div class="stat-label">Total Lessons</div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background:var(--brand-light);color:var(--brand);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="9 12 12 15 16 10"/></svg>
+          </div>
+          <div class="stat-info"><div class="stat-value">8</div><div class="stat-label">Published</div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background:var(--bg-inset);color:var(--text-secondary);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          </div>
+          <div class="stat-info"><div class="stat-value">1</div><div class="stat-label">Draft</div></div>
+        </div>
+      </div>
+
+      <!-- Module Cards -->
+      <div class="module-grid" id="moduleGrid"></div>
+    </div>
+  </main>
+</div>
+
+<!-- Add Module Modal -->
+<div class="modal-overlay" id="addModuleModal" style="display:none;" onclick="if(event.target===this)closeModal('addModuleModal')">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Create New Module</h3><button class="modal-close" onclick="closeModal('addModuleModal')">&times;</button></div>
+    <form id="createModuleForm">
+      <div class="modal-body">
+        <div style="display:flex;flex-direction:column;gap:var(--space-4);">
+          <div class="form-group">
+            <label for="modTitle">Module Title</label>
+            <div class="input-wrapper"><input type="text" id="modTitle" placeholder="e.g. Introduction to the Skeletal System" required/></div>
+          </div>
+          <div class="form-group">
+            <label for="modSystemId">Body System</label>
+            <div class="input-wrapper">
+              <select id="modSystemId" class="anatomy-system-select" style="width:100%;background:transparent;" required>
+                <option value="">Select System…</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="modDesc">Module Description</label>
+            <div class="input-wrapper">
+              <textarea id="modDesc" rows="3" placeholder="Brief description of this module..." style="resize:vertical;width:100%;background:transparent;border:none;outline:none;color:var(--text-primary);font-family:var(--font-body);"></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Status</label>
+            <div style="display:flex;gap:var(--space-2);">
+              <label style="display:flex;align-items:center;gap:var(--space-2);padding:var(--space-3);background:var(--bg-inset);border:1px solid var(--border-light);border-radius:var(--radius-md);cursor:pointer;">
+                <input type="radio" name="modStatus" value="published" checked/> Published</label>
+              <label style="display:flex;align-items:center;gap:var(--space-2);padding:var(--space-3);background:var(--bg-inset);border:1px solid var(--border-light);border-radius:var(--radius-md);cursor:pointer;">
+                <input type="radio" name="modStatus" value="draft"/> Draft</label>
+            </div>
+          </div>
+          <div id="modFormError" style="display:none;color:var(--error);font-size:0.85rem;padding:0.5rem;border:1px solid var(--error);border-radius:6px;"></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal('addModuleModal')">Cancel</button>
+        <button type="submit" class="btn btn-primary" id="modSubmitBtn">Create Module</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Add Lesson Modal -->
+<div class="modal-overlay" id="addLessonModal" style="display:none;" onclick="if(event.target===this)closeModal('addLessonModal')">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Add New Lesson</h3><button class="modal-close" onclick="closeModal('addLessonModal')">&times;</button></div>
+    <form id="addLessonForm">
+      <div class="modal-body">
+        <div style="display:flex;flex-direction:column;gap:var(--space-4);">
+          <div class="form-group">
+            <label for="lesTitle">Lesson Title</label>
+            <div class="input-wrapper"><input type="text" id="lesTitle" placeholder="e.g. Structure of Long Bones" required/></div>
+          </div>
+          <div class="form-group">
+            <label for="lesModuleId">Parent Module</label>
+            <div class="input-wrapper">
+              <select id="lesModuleId" class="anatomy-system-select" style="width:100%;background:transparent;" required>
+                <option value="">Select Module…</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Lesson Type</label>
+            <div style="display:flex;gap:var(--space-2);flex-wrap:wrap;">
+              <label style="display:flex;align-items:center;gap:var(--space-2);padding:var(--space-2) var(--space-3);background:var(--bg-elevated);border:1px solid var(--border-default);border-radius:var(--radius-md);cursor:pointer;font-size:0.85rem;">
+                <input type="radio" name="lessonType" value="reading" checked/> 📖 Reading</label>
+              <label style="display:flex;align-items:center;gap:var(--space-2);padding:var(--space-2) var(--space-3);background:var(--bg-elevated);border:1px solid var(--border-default);border-radius:var(--radius-md);cursor:pointer;font-size:0.85rem;">
+                <input type="radio" name="lessonType" value="video"/> 🎬 Video</label>
+              <label style="display:flex;align-items:center;gap:var(--space-2);padding:var(--space-2) var(--space-3);background:var(--bg-elevated);border:1px solid var(--border-default);border-radius:var(--radius-md);cursor:pointer;font-size:0.85rem;">
+                <input type="radio" name="lessonType" value="3d_model"/> 🧬 3D Model</label>
+              <label style="display:flex;align-items:center;gap:var(--space-2);padding:var(--space-2) var(--space-3);background:var(--bg-elevated);border:1px solid var(--border-default);border-radius:var(--radius-md);cursor:pointer;font-size:0.85rem;">
+                <input type="radio" name="lessonType" value="interactive"/> 🎮 Interactive</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="lesContent">Lesson Content</label>
+            <div class="input-wrapper">
+              <textarea id="lesContent" rows="4" placeholder="Enter lesson content, HTML is supported..." style="resize:vertical;width:100%;background:transparent;border:none;outline:none;color:var(--text-primary);font-family:var(--font-body);"></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Upload Media File (optional)</label>
+            <div style="border:2px dashed var(--border-default);border-radius:var(--radius-md);padding:var(--space-6);text-align:center;cursor:pointer;"
+                 onclick="document.getElementById('lesFileInput').click()"
+                 onmouseenter="this.style.borderColor='var(--primary-500)'"
+                 onmouseleave="this.style.borderColor='var(--border-default)'">
+              <div style="font-size:2rem;margin-bottom:var(--space-2);">☁️</div>
+              <div style="font-size:0.875rem;font-weight:600;" id="lesFileLabel">Drop files here or click to upload</div>
+              <div style="font-size:0.75rem;color:var(--text-muted);margin-top:4px;">PDF, MP4, GLB, OBJ, Images (max 50MB)</div>
+              <input type="file" id="lesFileInput" style="display:none;" accept=".pdf,.mp4,.webm,.jpg,.jpeg,.png,.webp,.glb,.obj"
+                     onchange="document.getElementById('lesFileLabel').textContent = this.files[0]?.name || 'Drop files here or click to upload'"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="lesDuration">Estimated Duration (minutes)</label>
+            <div class="input-wrapper"><input type="number" id="lesDuration" placeholder="e.g. 15" min="1" max="999"/></div>
+          </div>
+          <div id="lesFormError" style="display:none;color:var(--error);font-size:0.85rem;padding:0.5rem;border:1px solid var(--error);border-radius:6px;"></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal('addLessonModal')">Cancel</button>
+        <button type="submit" class="btn btn-primary" id="lesSubmitBtn">Add Lesson</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="../assets/js/app.js"></script>
+<script>
+'use strict';
+
+const user = Auth.requireAuthSync('teacher');
+
+// ── Stats counters ────────────────────────────────────────────
+let allModules = [];
+
+// ── Load modules from API ─────────────────────────────────────
+async function loadModules() {
+  const grid = document.getElementById('moduleGrid');
+  grid.innerHTML = '<div style="padding:3rem;text-align:center;color:var(--text-muted);">Loading modules…</div>';
+
+  try {
+    const [modsRes, sysRes] = await Promise.all([
+      fetch(`${API_BASE}/modules.php`, { credentials: 'same-origin' }),
+      fetch(`${API_BASE}/body-systems.php?with_stats=1`, { credentials: 'same-origin' }),
+    ]);
+
+    const modsData = await modsRes.json();
+    const sysData  = await sysRes.json();
+
+    if (!modsData.success) { grid.innerHTML = `<p style="color:var(--error);">Failed to load modules.</p>`; return; }
+
+    allModules = modsData.data || [];
+
+    // Update stat cards
+    const published = allModules.filter(m => m.status === 'published').length;
+    const drafts    = allModules.filter(m => m.status === 'draft').length;
+    const lessons   = allModules.reduce((s, m) => s + (m.lesson_count || 0), 0);
+    document.querySelectorAll('.stat-value')[0].textContent = allModules.length;
+    document.querySelectorAll('.stat-value')[1].textContent = lessons;
+    document.querySelectorAll('.stat-value')[2].textContent = published;
+    document.querySelectorAll('.stat-value')[3].textContent = drafts;
+
+    // Populate system dropdown in "Create Module" form
+    const sysSelect = document.getElementById('modSystemId');
+    if (sysData.success && sysSelect) {
+      sysData.data.forEach(s => {
+        const opt = document.createElement('option');
+        opt.value       = s.system_id;
+        opt.textContent = `${s.icon_emoji} ${s.system_name}`;
+        sysSelect.appendChild(opt);
+      });
+    }
+
+    // Populate module dropdown in "Add Lesson" form
+    const modSelect = document.getElementById('lesModuleId');
+    if (modSelect && allModules.length) {
+      allModules.forEach(m => {
+        const opt = document.createElement('option');
+        opt.value       = m.module_id;
+        opt.textContent = `${m.icon_emoji} ${m.system_name} → ${m.title}`;
+        modSelect.appendChild(opt);
+      });
+    }
+
+    renderModules(allModules);
+
+  } catch (err) {
+    console.error(err);
+    grid.innerHTML = `<p style="color:var(--error);">Server error. Ensure XAMPP is running.</p>`;
+  }
+}
+
+// ── Render module cards ───────────────────────────────────────
+function renderModules(modules) {
+  const grid = document.getElementById('moduleGrid');
+  if (!modules.length) {
+    grid.innerHTML = `<div style="padding:3rem;text-align:center;color:var(--text-muted);">
+      <div style="font-size:3rem;margin-bottom:1rem;">📦</div>
+      <p>No modules yet. Click <strong>+ New Module</strong> to create one.</p>
+    </div>`;
+    return;
+  }
+
+  grid.innerHTML = modules.map(m => {
+    const statusBadge = m.status === 'published'
+      ? '<span class="badge badge-success">Published</span>'
+      : m.status === 'draft'
+        ? '<span class="badge badge-warning">Draft</span>'
+        : '<span class="badge badge-neutral">Archived</span>';
+
+    return `
+    <div class="module-card" id="mc-${m.module_id}">
+      <div class="module-card-header" style="background:var(--bg-inset);border-bottom:1px solid var(--border-light);font-size:2.25rem;">${m.icon_emoji || '📦'}</div>
+      <div class="module-card-body">
+        <div class="module-card-title">${escHtml(m.title)}</div>
+        <div class="module-card-desc">${escHtml((m.description || '').substring(0, 100))}${(m.description || '').length > 100 ? '…' : ''}</div>
+        <div class="module-card-meta">
+          ${statusBadge}
+          <span style="font-size:0.75rem;color:var(--text-muted);">${m.lesson_count} lesson${m.lesson_count !== 1 ? 's' : ''} · ${m.system_name}</span>
+        </div>
+      </div>
+      <div class="module-card-actions">
+        <button class="btn btn-secondary btn-sm" style="flex:1;" onclick="viewLessons(${m.module_id}, '${escHtml(m.title)}')">Lessons</button>
+        <button class="btn btn-primary btn-sm" style="flex:1;" onclick="editModule(${m.module_id})">Edit</button>
+        <button class="btn btn-secondary btn-sm" onclick="archiveModule(${m.module_id})" title="Archive">Archive</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ── View lessons (quick expand) ───────────────────────────────
+async function viewLessons(moduleId, moduleTitle) {
+  showToast(`Loading lessons for "${moduleTitle}"…`, 'info');
+  try {
+    const res    = await fetch(`${API_BASE}/lessons.php?module_id=${moduleId}`, { credentials: 'same-origin' });
+    const result = await res.json();
+    if (!result.success) { showToast('Failed to load lessons.', 'error'); return; }
+    const lessons = result.data;
+    const list    = lessons.length
+      ? lessons.map(l => `${l.sort_order}. ${l.title} (${l.lesson_type})`).join('\n')
+      : 'No lessons yet.';
+    alert(`📄 Lessons in "${moduleTitle}":\n\n${list}`);
+  } catch (e) {
+    showToast('Server error loading lessons.', 'error');
+  }
+}
+
+// ── Edit module (set status) ──────────────────────────────────
+async function editModule(moduleId) {
+  const newStatus = prompt('Set status (published / draft / archived):');
+  if (!newStatus || !['published','draft','archived'].includes(newStatus)) return;
+  try {
+    const res = await fetch(`${API_BASE}/modules.php?id=${moduleId}`, {
+      method:      'PUT',
+      headers:     { 'Content-Type': 'application/json' },
+      credentials: 'same-origin',
+      body:        JSON.stringify({ status: newStatus }),
+    });
+    const result = await res.json();
+    if (result.success) { showToast('Module updated!', 'success'); loadModules(); }
+    else showToast(result.message || 'Update failed.', 'error');
+  } catch (e) {
+    showToast('Server error.', 'error');
+  }
+}
+
+// ── Archive module ────────────────────────────────────────────
+async function archiveModule(moduleId) {
+  if (!confirm('Archive this module? Students will no longer see it.')) return;
+  try {
+    const res    = await fetch(`${API_BASE}/modules.php?id=${moduleId}`, {
+      method: 'DELETE', credentials: 'same-origin',
+    });
+    const result = await res.json();
+    if (result.success) { showToast('Module archived.', 'success'); loadModules(); }
+    else showToast(result.message, 'error');
+  } catch (e) { showToast('Server error.', 'error'); }
+}
+
+// ── Create Module Form ────────────────────────────────────────
+document.getElementById('createModuleForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const btn = document.getElementById('modSubmitBtn');
+  const err = document.getElementById('modFormError');
+  btn.disabled   = true;
+  btn.textContent = 'Creating…';
+  err.style.display = 'none';
+
+  const payload = {
+    title:       document.getElementById('modTitle').value.trim(),
+    system_id:   parseInt(document.getElementById('modSystemId').value),
+    description: document.getElementById('modDesc').value.trim(),
+    status:      document.querySelector('input[name="modStatus"]:checked')?.value || 'draft',
+  };
+
+  try {
+    const res    = await fetch(`${API_BASE}/modules.php`, {
+      method:      'POST',
+      headers:     { 'Content-Type': 'application/json' },
+      credentials: 'same-origin',
+      body:        JSON.stringify(payload),
+    });
+    const result = await res.json();
+    if (result.success) {
+      closeModal('addModuleModal');
+      document.getElementById('createModuleForm').reset();
+      showToast('Module created successfully!', 'success');
+      loadModules();
+    } else {
+      err.textContent  = result.message || 'Failed to create module.';
+      err.style.display = 'block';
+    }
+  } catch (ex) {
+    err.textContent  = 'Server error. Make sure XAMPP is running.';
+    err.style.display = 'block';
+  } finally {
+    btn.disabled    = false;
+    btn.textContent = 'Create Module';
+  }
+});
+
+// ── Add Lesson Form ───────────────────────────────────────────
+document.getElementById('addLessonForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const btn = document.getElementById('lesSubmitBtn');
+  const err = document.getElementById('lesFormError');
+  btn.disabled    = true;
+  btn.textContent = 'Saving…';
+  err.style.display = 'none';
+
+  const formData = new FormData();
+  formData.append('title',        document.getElementById('lesTitle').value.trim());
+  formData.append('module_id',    document.getElementById('lesModuleId').value);
+  formData.append('lesson_type',  document.querySelector('input[name="lessonType"]:checked')?.value || 'reading');
+  formData.append('content_text', document.getElementById('lesContent').value.trim());
+  formData.append('duration_mins',document.getElementById('lesDuration').value || '0');
+  formData.append('status',       'published');
+
+  const fileInput = document.getElementById('lesFileInput');
+  if (fileInput.files[0]) formData.append('lesson_file', fileInput.files[0]);
+
+  try {
+    const res    = await fetch(`${API_BASE}/lessons.php`, {
+      method: 'POST', credentials: 'same-origin', body: formData,
+    });
+    const result = await res.json();
+    if (result.success) {
+      closeModal('addLessonModal');
+      document.getElementById('addLessonForm').reset();
+      document.getElementById('lesFileLabel').textContent = 'Drop files here or click to upload';
+      showToast('Lesson added successfully!', 'success');
+      loadModules();
+    } else {
+      err.textContent   = result.message || 'Failed to add lesson.';
+      err.style.display = 'block';
+    }
+  } catch (ex) {
+    err.textContent   = 'Server error. Make sure XAMPP is running.';
+    err.style.display = 'block';
+  } finally {
+    btn.disabled    = false;
+    btn.textContent = 'Add Lesson';
+  }
+});
+
+// ── Init ──────────────────────────────────────────────────────
+loadModules();
+</script>
+</body>
+</html>
+

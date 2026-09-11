@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Lessons – AnatomIQ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../assets/css/global.css"/>
+  <link rel="stylesheet" href="../assets/css/sidebar.css"/>
+  <link rel="stylesheet" href="../assets/css/student.css"/>
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon">
+        <svg viewBox="0 0 60 60" fill="none">
+          <path d="M30 12C30 12,22 18,22 26C22 30,25 33,30 33C35 33,38 30,38 26C38 18,30 12,30 12Z" fill="#ffffff" opacity="0.9"/>
+          <path d="M30 33L30 48" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M22 40L30 37L38 40" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="sidebar-logo-text"><div class="sidebar-logo-name">AnatomIQ</div><div class="sidebar-logo-sub">Student Portal</div></div></div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Learning</div>
+      <a class="nav-item" href="dashboard.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></span><span class="nav-label">Dashboard</span></a>
+      <a class="nav-item" href="anatomy.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><line x1="2" y1="12" x2="22" y2="12"/></svg></span><span class="nav-label">3D Anatomy Explorer</span></a>
+      <a class="nav-item active" href="lessons.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span><span class="nav-label">My Lessons</span></a>
+      <a class="nav-item" href="quiz.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg></span><span class="nav-label">Quizzes & Activities</span><span class="nav-badge" style="display:none;">0</span></a>
+      <div class="nav-section-label">My Progress</div>
+      <a class="nav-item" href="progress.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span><span class="nav-label">My Progress</span></a>
+      <a class="nav-item" href="scores.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span><span class="nav-label">My Scores</span></a>
+      <a class="nav-item" href="notifications.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3z"/></svg></span><span class="nav-label">Notifications</span><span class="nav-badge" style="display:none;">0</span></a>
+      <div class="nav-section-label">Account</div>
+      <a class="nav-item" href="settings.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span><span class="nav-label">Settings and Profile</span></a>
+    </nav>
+    <div class="sidebar-footer"><div class="user-card" onclick="window.location.href='settings.html'" style="cursor:pointer;" title="Go to Settings"><div class="avatar">MS</div><div class="user-info"><div class="user-name">Maria Santos</div><div class="user-role">Grade 10 – Narra</div></div><button class="logout-btn" onclick="event.stopPropagation(); Auth.logout();" title="Log Out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></button></div></div>
+  </aside>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <main class="main-content" id="mainContent">
+    <header class="topbar">
+      <button class="topbar-toggle" id="sidebarToggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+      <div class="topbar-breadcrumb"><span class="breadcrumb-item">Student Portal</span><span class="breadcrumb-sep">/</span><span class="breadcrumb-current">My Lessons</span></div>
+      <div class="topbar-actions"><a href="settings.html" class="topbar-user" style="text-decoration:none;color:inherit;" title="Manage Account"><div class="avatar" style="width:32px;height:32px;font-size:0.75rem;">MS</div><div><div class="topbar-user-name">Maria Santos</div></div></a>
+      </div>
+    </header>
+
+    <div class="page-content">
+      <div class="page-header">
+        <div class="page-header-left">
+          <h2>My Lessons &amp; Modules</h2>
+          <p>Explore all 9 body system modules and study anatomical structures at your own pace.</p>
+        </div>
+      </div>
+
+      <!-- Top Summary Metrics Grid -->
+      <div class="stats-grid" style="margin-bottom:var(--space-6);">
+        <div class="stat-card">
+          <div class="stat-card-header" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-2);">
+            <div class="stat-icon" style="background:var(--brand-50);color:var(--brand);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            </div>
+            <span class="badge badge-brand">Curriculum</span>
+          </div>
+          <div class="stat-value" id="statTotalModules">18</div>
+          <div class="stat-label">Total Modules (36 Lessons)</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card-header" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-2);">
+            <div class="stat-icon" style="background:var(--success-light);color:var(--success);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <span class="badge badge-green">Mastered</span>
+          </div>
+          <div class="stat-value" id="statCompletedModules">0</div>
+          <div class="stat-label">Completed Modules</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card-header" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-2);">
+            <div class="stat-icon" style="background:var(--warning-light);color:var(--warning);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <span class="badge badge-amber">In Progress</span>
+          </div>
+          <div class="stat-value" id="statInProgressModules">0</div>
+          <div class="stat-label">In Progress Modules</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card-header" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-2);">
+            <div class="stat-icon" style="background:#eff6ff;color:#2563eb;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            </div>
+            <span class="badge badge-blue">Overall Progress</span>
+          </div>
+          <div class="stat-value" id="statOverallPct">0%</div>
+          <div class="stat-label" id="statCompletedLessonsLabel">0 of 36 Lessons Completed</div>
+        </div>
+      </div>
+
+      <!-- Filter & Search Toolbar -->
+      <div class="filter-toolbar">
+        <div class="filter-search-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input type="text" id="lessonSearchInput" class="filter-search-input" placeholder="Search by module title, body system, or topic..." oninput="handleLessonSearch(this.value)">
+        </div>
+
+        <div class="filter-controls-group">
+          <!-- Status Tabs -->
+          <div class="filter-chips-group" id="statusFilterChips">
+            <button type="button" class="filter-chip-btn active" data-status="all" onclick="setLessonStatusFilter('all')">
+              <span>All Modules</span> <span class="chip-count" id="countAll">0</span>
+            </button>
+            <button type="button" class="filter-chip-btn" data-status="completed" onclick="setLessonStatusFilter('completed')">
+              <span>Completed</span> <span class="chip-count" id="countCompleted">0</span>
+            </button>
+            <button type="button" class="filter-chip-btn" data-status="in-progress" onclick="setLessonStatusFilter('in-progress')">
+              <span>In Progress</span> <span class="chip-count" id="countInProgress">0</span>
+            </button>
+            <button type="button" class="filter-chip-btn" data-status="not-started" onclick="setLessonStatusFilter('not-started')">
+              <span>Not Started</span> <span class="chip-count" id="countNotStarted">0</span>
+            </button>
+          </div>
+
+          <!-- Body System Dropdown -->
+          <select id="lessonSystemFilter" class="form-control" style="height:34px;padding:0 10px;font-size:0.8125rem;max-width:180px;" onchange="handleLessonSystemFilter(this.value)">
+            <option value="all">All Body Systems (9)</option>
+            <option value="skeletal">Skeletal System</option>
+            <option value="muscular">Muscular System</option>
+            <option value="circulatory">Circulatory System</option>
+            <option value="respiratory">Respiratory System</option>
+            <option value="digestive">Digestive System</option>
+            <option value="urinary">Urinary System</option>
+            <option value="nervous">Nervous System</option>
+            <option value="reproductive">Reproductive System</option>
+            <option value="endocrine">Endocrine System</option>
+          </select>
+
+          <!-- Sort Dropdown -->
+          <select id="lessonSortFilter" class="form-control" style="height:34px;padding:0 10px;font-size:0.8125rem;max-width:160px;" onchange="handleLessonSort(this.value)">
+            <option value="curriculum">Curriculum Order</option>
+            <option value="progress-desc">Progress: High to Low</option>
+            <option value="progress-asc">Progress: Low to High</option>
+            <option value="alpha">Title (A–Z)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Section Title & Results Counter -->
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-2);padding:0 2px;">
+        <div style="font-size:1rem;font-weight:700;color:var(--text-primary);">
+          Available Modules
+        </div>
+        <div style="font-size:0.8125rem;color:var(--text-muted);" id="lessonResultsCount">
+          Loading curriculum modules…
+        </div>
+      </div>
+
+      <!-- Modules Grid -->
+      <div class="lesson-grid" id="lessonGrid"></div>
+    </div>
+  </main>
+</div>
+
+<!-- Lesson Detail Modal -->
+<div class="modal-overlay" id="lessonModal" style="display:none;" onclick="if(event.target===this)closeModal('lessonModal')">
+  <div class="modal-box" style="width:min(95%,680px);">
+    <div class="modal-header" style="align-items:center;">
+      <h3 id="lessonModalTitle" style="font-size:1.15rem;font-weight:700;">Module Details</h3>
+      <button class="modal-close" onclick="closeModal('lessonModal')">&times;</button>
+    </div>
+    <div class="modal-body" id="lessonModalBody" style="max-height:70vh;overflow-y:auto;"></div>
+    <div class="modal-footer" style="display:flex;justify-content:space-between;align-items:center;">
+      <button class="btn btn-secondary" onclick="closeModal('lessonModal')">Close</button>
+      <div style="display:flex;gap:var(--space-2);">
+        <a id="lessonModalExploreBtn" href="anatomy.html" class="btn btn-secondary" style="display:inline-flex;align-items:center;gap:6px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          View in 3D
+        </a>
+        <a id="lessonModalQuizBtn" href="quiz.html" class="btn btn-primary" style="display:inline-flex;align-items:center;gap:6px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Take Quiz
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../assets/js/app.js"></script>
+<script>
+'use strict';
+Auth.requireAuthSync('student');
+
+let allModules           = [];
+let currentStatusFilter  = 'all';
+let currentSystemFilter  = 'all';
+let currentSort          = 'curriculum';
+let searchTerm           = '';
+
+// ── Load modules from API ──────────────────────────────────────
+async function loadLessons() {
+  const grid = document.getElementById('lessonGrid');
+  grid.innerHTML = '<div style="grid-column:1/-1;padding:3rem;text-align:center;color:var(--text-muted);"><div class="spin" style="display:inline-block;width:28px;height:28px;border:3px solid var(--border);border-top-color:var(--brand);border-radius:50%;margin-bottom:8px;"></div><div>Loading curriculum modules…</div></div>';
+  try {
+    const res    = await fetch(`${API_BASE}/modules.php`, { credentials: 'same-origin' });
+    const result = await res.json();
+    if (!result.success) {
+      grid.innerHTML = '<div style="grid-column:1/-1;padding:2rem;text-align:center;color:var(--error);">Failed to load lessons.</div>';
+      return;
+    }
+    allModules = result.data || [];
+    updateSummaryMetrics();
+    renderLessons();
+  } catch (e) {
+    grid.innerHTML = '<div style="grid-column:1/-1;padding:2rem;text-align:center;color:var(--error);">Server error — make sure XAMPP is running.</div>';
+  }
+}
+
+// ── Update top summary stats and filter chip badges ────────────
+function updateSummaryMetrics() {
+  const totalModules = allModules.length;
+  let completedModules = 0;
+  let inProgressModules = 0;
+  let notStartedModules = 0;
+  let totalCompletedLessons = 0;
+  let totalLessons = 0;
+
+  allModules.forEach(m => {
+    const pct = parseFloat(m.completion_pct || 0);
+    const lCount = parseInt(m.lesson_count || 0);
+    const cCount = parseInt(m.completed_lessons || 0);
+
+    totalLessons += lCount;
+    totalCompletedLessons += cCount;
+
+    if (pct >= 100) {
+      completedModules++;
+    } else if (pct > 0) {
+      inProgressModules++;
+    } else {
+      notStartedModules++;
+    }
+  });
+
+  const overallPct = totalLessons > 0 ? Math.round((totalCompletedLessons / totalLessons) * 100) : 0;
+
+  // Stat cards
+  const elTotal = document.getElementById('statTotalModules');
+  const elCompleted = document.getElementById('statCompletedModules');
+  const elInProg = document.getElementById('statInProgressModules');
+  const elOverall = document.getElementById('statOverallPct');
+  const elLabel = document.getElementById('statCompletedLessonsLabel');
+
+  if (elTotal) elTotal.textContent = totalModules;
+  if (elCompleted) elCompleted.textContent = completedModules;
+  if (elInProg) elInProg.textContent = inProgressModules;
+  if (elOverall) elOverall.textContent = overallPct + '%';
+  if (elLabel) elLabel.textContent = `${totalCompletedLessons} of ${totalLessons} Lessons Completed`;
+
+  // Filter chip counts
+  const cAll = document.getElementById('countAll');
+  const cComp = document.getElementById('countCompleted');
+  const cInProg = document.getElementById('countInProgress');
+  const cNotStarted = document.getElementById('countNotStarted');
+
+  if (cAll) cAll.textContent = totalModules;
+  if (cComp) cComp.textContent = completedModules;
+  if (cInProg) cInProg.textContent = inProgressModules;
+  if (cNotStarted) cNotStarted.textContent = notStartedModules;
+}
+
+// ── Render module cards ────────────────────────────────────────
+function renderLessons() {
+  let data = [...allModules];
+
+  // 1. Text Search Filter
+  if (searchTerm) {
+    data = data.filter(m =>
+      (m.title && m.title.toLowerCase().includes(searchTerm)) ||
+      (m.system_name && m.system_name.toLowerCase().includes(searchTerm)) ||
+      (m.description && m.description.toLowerCase().includes(searchTerm))
+    );
+  }
+
+  // 2. Status Filter
+  if (currentStatusFilter === 'completed') {
+    data = data.filter(m => (m.completion_pct || 0) >= 100);
+  } else if (currentStatusFilter === 'in-progress') {
+    data = data.filter(m => (m.completion_pct || 0) > 0 && (m.completion_pct || 0) < 100);
+  } else if (currentStatusFilter === 'not-started') {
+    data = data.filter(m => !(m.completion_pct || 0));
+  }
+
+  // 3. Body System Filter
+  if (currentSystemFilter !== 'all') {
+    data = data.filter(m => m.system_code === currentSystemFilter);
+  }
+
+  // 4. Sorting
+  if (currentSort === 'progress-desc') {
+    data.sort((a, b) => (parseFloat(b.completion_pct || 0) - parseFloat(a.completion_pct || 0)));
+  } else if (currentSort === 'progress-asc') {
+    data.sort((a, b) => (parseFloat(a.completion_pct || 0) - parseFloat(b.completion_pct || 0)));
+  } else if (currentSort === 'alpha') {
+    data.sort((a, b) => a.title.localeCompare(b.title));
+  }
+
+  // Update results counter
+  const counter = document.getElementById('lessonResultsCount');
+  if (counter) {
+    counter.textContent = `Showing ${data.length} of ${allModules.length} modules`;
+  }
+
+  const grid = document.getElementById('lessonGrid');
+  if (!data.length) {
+    grid.innerHTML = `
+      <div style="grid-column:1/-1;text-align:center;padding:var(--space-10) var(--space-4);background:var(--bg-surface);border:1px dashed var(--border);border-radius:var(--radius-lg);">
+        <div style="font-size:1.1rem;font-weight:600;color:var(--text-primary);margin-bottom:var(--space-2);">No modules match your filter</div>
+        <p style="color:var(--text-secondary);font-size:0.875rem;margin-bottom:var(--space-4);">Try selecting a different system or clearing your search query.</p>
+        <button type="button" class="btn btn-secondary btn-sm" onclick="resetFilters()">Reset All Filters</button>
+      </div>`;
+    return;
+  }
+
+  grid.innerHTML = data.map(m => {
+    const color = m.color_hex || '#1a6b4a';
+    const pct = Math.round(parseFloat(m.completion_pct || 0));
+    const isCompleted = pct >= 100;
+    const isInProgress = pct > 0 && pct < 100;
+    const isNotStarted = pct === 0;
+
+    let statusBadge = '';
+    let ctaBtn = '';
+
+    if (isCompleted) {
+      statusBadge = `<span class="badge badge-green" style="font-weight:600;">Completed</span>`;
+      ctaBtn = `<button type="button" class="btn-lesson-cta btn-secondary" onclick="event.stopPropagation(); viewModule(${m.module_id});">Review Module ✓</button>`;
+    } else if (isInProgress) {
+      statusBadge = `<span class="badge badge-amber" style="font-weight:600;">In Progress · ${pct}%</span>`;
+      ctaBtn = `<button type="button" class="btn-lesson-cta btn-primary" style="background:${color};border-color:${color};" onclick="event.stopPropagation(); viewModule(${m.module_id});">Continue Module <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></button>`;
+    } else {
+      statusBadge = `<span class="badge" style="background:var(--bg-inset);color:var(--text-secondary);border:1px solid var(--border);">Not Started</span>`;
+      ctaBtn = `<button type="button" class="btn-lesson-cta btn-primary" onclick="event.stopPropagation(); viewModule(${m.module_id});">Start Module <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></button>`;
+    }
+
+    return `
+      <div class="lesson-card" onclick="viewModule(${m.module_id})">
+        <div class="lesson-card-header">
+          <span class="lesson-system-tag" style="background:${color}15;color:${color};border-color:${color}35;">
+            <span class="lesson-system-dot" style="background:${color};"></span>
+            ${escHtml(m.system_name)}
+          </span>
+          ${statusBadge}
+        </div>
+
+        <div class="lesson-card-body">
+          <div class="lesson-card-title">${escHtml(m.title)}</div>
+          <div class="lesson-card-desc">${escHtml(m.description || 'Comprehensive curriculum module exploring anatomical structures and physiological functions.')}</div>
+
+          <div class="lesson-specs-grid">
+            <div class="lesson-spec-item" title="${m.lesson_count || 2} Curriculum Lessons">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+              <span>${m.lesson_count || 2} Lessons</span>
+            </div>
+            <div class="lesson-spec-item" title="Self-paced lesson duration">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <span>~25–30 Mins</span>
+            </div>
+            <div class="lesson-spec-item" title="Interactive 3D WebGL model ready">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+              <span>3D Model Ready</span>
+            </div>
+            <div class="lesson-spec-item" title="Chapter assessment quiz available">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              <span>Quiz Ready</span>
+            </div>
+          </div>
+
+          <div class="lesson-progress-wrap">
+            <div class="lesson-progress-meta">
+              <span>Progress</span>
+              <span style="color:${color};font-weight:700;">${pct}%</span>
+            </div>
+            <div class="lesson-progress-track">
+              <div class="lesson-progress-fill" style="width:${pct}%;background:${color};"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lesson-card-footer">
+          <div class="lesson-status-info">
+            <span class="lesson-status-text" style="color:${isCompleted ? 'var(--success)' : isInProgress ? 'var(--warning)' : 'var(--text-secondary)'};">
+              ${m.completed_lessons || 0} of ${m.lesson_count || 2} Lessons Done
+            </span>
+            <span class="lesson-count-text">Grade 10 Curriculum</span>
+          </div>
+          ${ctaBtn}
+        </div>
+      </div>`;
+  }).join('');
+}
+
+// ── Filter & Search Handlers ───────────────────────────────────
+function handleLessonSearch(q) {
+  searchTerm = q.trim().toLowerCase();
+  renderLessons();
+}
+
+function setLessonStatusFilter(status) {
+  currentStatusFilter = status;
+  const chips = document.querySelectorAll('#statusFilterChips .filter-chip-btn');
+  chips.forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-status') === status);
+  });
+  renderLessons();
+}
+
+function handleLessonSystemFilter(system) {
+  currentSystemFilter = system;
+  renderLessons();
+}
+
+function handleLessonSort(sort) {
+  currentSort = sort;
+  renderLessons();
+}
+
+function resetFilters() {
+  searchTerm = '';
+  currentStatusFilter = 'all';
+  currentSystemFilter = 'all';
+  currentSort = 'curriculum';
+
+  const sInput = document.getElementById('lessonSearchInput');
+  if (sInput) sInput.value = '';
+
+  const sysSel = document.getElementById('lessonSystemFilter');
+  if (sysSel) sysSel.value = 'all';
+
+  const sortSel = document.getElementById('lessonSortFilter');
+  if (sortSel) sortSel.value = 'curriculum';
+
+  setLessonStatusFilter('all');
+}
+
+// ── View module detail + lessons modal ─────────────────────────
+async function viewModule(moduleId) {
+  const module = allModules.find(m => m.module_id === moduleId);
+  if (!module) return;
+
+  const title = document.getElementById('lessonModalTitle');
+  const body  = document.getElementById('lessonModalBody');
+  const quizBtn = document.getElementById('lessonModalQuizBtn');
+  const exploreBtn = document.getElementById('lessonModalExploreBtn');
+
+  const color = module.color_hex || 'var(--brand)';
+  title.innerHTML = `
+    <div style="display:flex;align-items:center;gap:10px;">
+      <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${color};"></span>
+      <span>${escHtml(module.title)}</span>
+    </div>
+  `;
+  body.innerHTML = `
+    <div style="padding:2.5rem;text-align:center;color:var(--text-muted);">
+      <div class="spin" style="display:inline-block;width:24px;height:24px;border:3px solid var(--border);border-top-color:var(--brand);border-radius:50%;margin-bottom:8px;"></div>
+      <div>Loading lesson curriculum…</div>
+    </div>`;
+
+  if (exploreBtn) exploreBtn.href = `anatomy.html?system=${module.system_code}`;
+  if (quizBtn) quizBtn.href = `quiz.html?system=${module.system_code}`;
+  openModal('lessonModal');
+
+  try {
+    const res    = await fetch(`${API_BASE}/lessons.php?module_id=${moduleId}`, { credentials: 'same-origin' });
+    const result = await res.json();
+    const lessons = result.success ? result.data : [];
+
+    const pct = Math.round(parseFloat(module.completion_pct || 0));
+    const completedCount = lessons.filter(l => l.progress_status === 'completed').length;
+
+    body.innerHTML = `
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:var(--space-3);padding-bottom:var(--space-3);border-bottom:1px solid var(--border-light);">
+        <span class="lesson-system-tag" style="background:${color}15;color:${color};border-color:${color}35;font-size:0.75rem;">
+          <span class="lesson-system-dot" style="background:${color};"></span>
+          ${escHtml(module.system_name)}
+        </span>
+        <span style="font-size:0.8rem;color:var(--text-muted);">${lessons.length} Lessons · Grade 10 Science</span>
+      </div>
+
+      <div style="font-size:0.875rem;color:var(--text-secondary);line-height:1.6;margin-bottom:var(--space-4);">
+        ${escHtml(module.description || 'Comprehensive learning content covering the anatomical structures, mechanical functions, and physiological regulation of this body system.')}
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-3);margin-bottom:var(--space-4);">
+        <div style="padding:var(--space-3);background:var(--bg-inset);border:1px solid var(--border-light);border-radius:var(--radius-md);text-align:center;">
+          <div style="font-size:1.25rem;font-weight:700;color:var(--text-primary);">${lessons.length}</div>
+          <div style="font-size:0.72rem;color:var(--text-muted);">Total Lessons</div>
+        </div>
+        <div style="padding:var(--space-3);background:var(--bg-inset);border:1px solid var(--border-light);border-radius:var(--radius-md);text-align:center;">
+          <div style="font-size:1.25rem;font-weight:700;color:var(--success);">${completedCount}</div>
+          <div style="font-size:0.72rem;color:var(--text-muted);">Completed</div>
+        </div>
+        <div style="padding:var(--space-3);background:var(--bg-inset);border:1px solid var(--border-light);border-radius:var(--radius-md);text-align:center;">
+          <div style="font-size:1.25rem;font-weight:700;color:${color};">${pct}%</div>
+          <div style="font-size:0.72rem;color:var(--text-muted);">Module Progress</div>
+        </div>
+      </div>
+
+      <div style="margin-bottom:var(--space-5);">
+        <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:0.8125rem;">
+          <span style="font-weight:600;color:var(--text-primary);">Overall Completion</span>
+          <span style="color:${color};font-weight:700;">${pct}%</span>
+        </div>
+        <div class="progress-bar" style="height:8px;background:var(--bg-inset);border-radius:4px;">
+          <div class="progress-fill" style="width:${pct}%;background:${color};border-radius:4px;transition:width 0.3s ease;"></div>
+        </div>
+      </div>
+
+      <div style="font-size:0.9rem;font-weight:700;color:var(--text-primary);margin-bottom:var(--space-3);">
+        Curriculum Lessons
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:var(--space-2);">
+        ${lessons.map((l, i) => {
+          const isDone = l.progress_status === 'completed';
+          const isInProg = l.progress_status === 'in_progress';
+          const badgeClass = isDone ? 'badge-green' : isInProg ? 'badge-amber' : 'badge-neutral';
+          const badgeLabel = isDone ? 'Completed' : isInProg ? 'In Progress' : 'Not Started';
+
+          return `
+            <div style="display:flex;align-items:center;gap:var(--space-3);padding:var(--space-3) var(--space-4);background:var(--bg-surface);border:1px solid var(--border);border-radius:var(--radius-md);transition:border-color 0.15s ease;cursor:pointer;"
+                 onmouseover="this.style.borderColor='var(--brand)'"
+                 onmouseout="this.style.borderColor='var(--border)'"
+                 onclick="startLesson(${l.lesson_id})">
+              <div style="width:28px;height:28px;border-radius:50%;background:${isDone ? 'var(--success-light)' : 'var(--bg-inset)'};color:${isDone ? 'var(--success)' : 'var(--text-muted)'};display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.78rem;flex-shrink:0;">
+                ${isDone ? '✓' : (i + 1)}
+              </div>
+              <div style="flex:1;min-width:0;">
+                <div style="font-size:0.875rem;font-weight:600;color:var(--text-primary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${escHtml(l.title)}</div>
+                <div style="font-size:0.72rem;color:var(--text-muted);margin-top:2px;display:flex;gap:8px;">
+                  <span>${l.duration_mins ? l.duration_mins + ' mins' : '15 mins'}</span>
+                  <span>·</span>
+                  <span style="text-transform:capitalize;">${escHtml(l.lesson_type ? l.lesson_type.replace('_', ' ') : 'Theory')}</span>
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;gap:var(--space-3);flex-shrink:0;">
+                <span class="badge ${badgeClass}">${badgeLabel}</span>
+                <button type="button" class="btn btn-sm ${isDone ? 'btn-secondary' : 'btn-primary'}" style="padding:4px 12px;font-size:0.75rem;">
+                  ${isDone ? 'Review' : 'Open'} →
+                </button>
+              </div>
+            </div>
+          `;
+        }).join('')}
+      </div>
+    `;
+  } catch (e) {
+    body.innerHTML = '<p style="color:var(--error);text-align:center;padding:2rem;">Failed to load module lessons.</p>';
+  }
+}
+
+// ── Start a lesson & open reader ───────────────────────────────
+async function startLesson(lessonId) {
+  showToast('Opening lesson…', 'info');
+  try {
+    const res    = await fetch(`${API_BASE}/lessons.php?id=${lessonId}`, { credentials: 'same-origin' });
+    const result = await res.json();
+    if (result.success && result.data) {
+      closeModal('lessonModal');
+      showLessonContent(result.data);
+    } else {
+      showToast('Lesson content not available.', 'warning');
+    }
+  } catch (e) {
+    showToast('Server connection error.', 'error');
+  }
+}
+
+// ── Interactive Lesson Content Viewer ──────────────────────────
+function showLessonContent(lesson) {
+  let viewer = document.getElementById('lessonContentViewer');
+  if (!viewer) {
+    viewer = document.createElement('div');
+    viewer.id = 'lessonContentViewer';
+    viewer.style.cssText = `
+      position:fixed;inset:0;z-index:9000;background:var(--bg-page);
+      display:flex;flex-direction:column;overflow:hidden;
+    `;
+    document.body.appendChild(viewer);
+  }
+
+  const isDone = lesson.progress && lesson.progress.status === 'completed';
+  const color = lesson.color_hex || 'var(--brand)';
+
+  viewer.innerHTML = `
+    <header style="height:60px;padding:0 var(--space-6);background:var(--bg-surface);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);z-index:10;box-shadow:var(--shadow-sm);">
+      <div style="display:flex;align-items:center;gap:var(--space-3);min-width:0;">
+        <button type="button" onclick="closeLessonViewer()" class="btn btn-secondary btn-sm" style="display:inline-flex;align-items:center;gap:6px;padding:6px 12px;font-size:0.8125rem;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          Back to Lessons
+        </button>
+        <span class="lesson-system-tag" style="background:${color}15;color:${color};border-color:${color}35;font-size:0.75rem;">
+          <span class="lesson-system-dot" style="background:${color};"></span>
+          ${escHtml(lesson.system_name || 'Anatomy')}
+        </span>
+        <div style="font-weight:700;font-size:1rem;color:var(--text-primary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
+          ${escHtml(lesson.title)}
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:var(--space-3);flex-shrink:0;">
+        <a href="anatomy.html?system=${lesson.system_code}" class="btn btn-secondary btn-sm" style="display:inline-flex;align-items:center;gap:6px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          View in 3D
+        </a>
+      </div>
+    </header>
+
+    <div style="flex:1;overflow-y:auto;padding:var(--space-8) var(--space-4);">
+      <div style="max-width:820px;margin:0 auto;background:var(--bg-surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:var(--space-8);box-shadow:var(--shadow-sm);">
+        <div style="display:flex;align-items:center;gap:8px;font-size:0.8125rem;color:var(--text-muted);margin-bottom:var(--space-2);">
+          <span>${escHtml(lesson.module_title || '')}</span>
+          <span>·</span>
+          <span>${lesson.duration_mins ? lesson.duration_mins + ' mins read' : 'Self-paced'}</span>
+        </div>
+        <h1 style="font-size:1.65rem;font-weight:800;color:var(--text-primary);line-height:1.3;margin-bottom:var(--space-6);border-bottom:1px solid var(--border-light);padding-bottom:var(--space-4);">
+          ${escHtml(lesson.title)}
+        </h1>
+
+        <div style="font-size:0.95rem;line-height:1.8;color:var(--text-secondary);">
+          ${lesson.content_text ? `
+            <div style="white-space:pre-line;">${escHtml(lesson.content_text)}</div>
+          ` : `
+            <p>Welcome to this curriculum module lesson for ${escHtml(lesson.system_name || 'Anatomy')}. Study the anatomical structures and function thoroughly.</p>
+          `}
+        </div>
+
+        <div style="margin-top:var(--space-8);padding:var(--space-4);background:var(--brand-50);border:1px solid rgba(26,107,74,0.2);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);flex-wrap:wrap;">
+          <div>
+            <div style="font-weight:700;font-size:0.875rem;color:var(--brand);">Interactive 3D Practice</div>
+            <div style="font-size:0.775rem;color:var(--text-secondary);margin-top:2px;">Explore this system's 3D anatomy model and quiz your structure identification skills.</div>
+          </div>
+          <a href="anatomy.html?system=${lesson.system_code}" class="btn btn-primary btn-sm">
+            Launch 3D Explorer →
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <footer style="height:64px;padding:0 var(--space-6);background:var(--bg-surface);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);">
+      <button type="button" onclick="closeLessonViewer()" class="btn btn-secondary">Close Reader</button>
+      <button type="button" id="btnMarkComplete" onclick="markLessonComplete(${lesson.lesson_id})" class="btn btn-primary" style="display:inline-flex;align-items:center;gap:6px;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:16px;height:16px;"><polyline points="20 6 9 17 4 12"/></svg>
+        ${isDone ? 'Marked as Completed ✓' : 'Mark Lesson as Complete'}
+      </button>
+    </footer>
+  `;
+  viewer.style.display = 'flex';
+}
+
+function closeLessonViewer() {
+  const v = document.getElementById('lessonContentViewer');
+  if (v) v.style.display = 'none';
+  loadLessons();
+}
+
+// ── Mark lesson complete ───────────────────────────────────────
+async function markLessonComplete(lessonId) {
+  const btn = document.getElementById('btnMarkComplete');
+  if (btn) {
+    btn.disabled = true;
+    btn.innerHTML = '<div class="spin" style="display:inline-block;width:14px;height:14px;border:2px solid #ffffff;border-top-color:transparent;border-radius:50%;margin-right:6px;"></div> Saving…';
+  }
+
+  try {
+    const res = await fetch(`${API_BASE}/progress.php`, {
+      method:      'POST',
+      headers:     { 'Content-Type': 'application/json' },
+      credentials: 'same-origin',
+      body:        JSON.stringify({ lesson_id: lessonId, status: 'completed', completion_pct: 100 }),
+    });
+    const result = await res.json();
+    if (result.success) {
+      showToast('Lesson marked as completed! Progress updated.', 'success');
+      if (btn) {
+        btn.innerHTML = 'Completed ✓';
+        btn.classList.remove('btn-primary');
+        btn.classList.add('btn-secondary');
+      }
+      setTimeout(() => {
+        closeLessonViewer();
+      }, 700);
+    } else {
+      showToast(result.message || 'Could not save progress.', 'warning');
+      if (btn) btn.disabled = false;
+    }
+  } catch (e) {
+    showToast('Could not save progress.', 'error');
+    if (btn) btn.disabled = false;
+  }
+}
+
+// ── Init ───────────────────────────────────────────────────────
+loadLessons();
+</script>
+</body>
+</html>
+

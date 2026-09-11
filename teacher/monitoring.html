@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Monitoring – AnatomIQ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../assets/css/global.css"/>
+  <link rel="stylesheet" href="../assets/css/sidebar.css"/>
+  <link rel="stylesheet" href="../assets/css/teacher.css"/>
+</head>
+<body>
+<div class="app-layout">
+
+  <!-- Sidebar (same as dashboard) -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon">
+        <svg viewBox="0 0 60 60" fill="none">
+          <path d="M30 12C30 12,22 18,22 26C22 30,25 33,30 33C35 33,38 30,38 26C38 18,30 12,30 12Z" fill="#ffffff" opacity="0.9"/>
+          <path d="M30 33L30 48" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M22 40L30 37L38 40" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="sidebar-logo-text"><div class="sidebar-logo-name">AnatomIQ</div><div class="sidebar-logo-sub">Teacher Portal</div></div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Main</div>
+      <a class="nav-item" href="dashboard.html" data-tooltip="Dashboard"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></span><span class="nav-label">Dashboard</span></a>
+      <a class="nav-item" href="modules.html" data-tooltip="Modules"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span><span class="nav-label">Modules & Lessons</span></a>
+      <a class="nav-item" href="students.html" data-tooltip="Students"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><span class="nav-label">Students</span><span class="nav-badge">38</span></a>
+      <a class="nav-item" href="assessments.html" data-tooltip="Assessments"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span><span class="nav-label">Assessments</span></a>
+      <div class="nav-section-label">Management</div>
+      <a class="nav-item active" href="monitoring.html" data-tooltip="Monitoring"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span><span class="nav-label">Monitoring</span></a>
+      <a class="nav-item" href="reports.html" data-tooltip="Reports"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span><span class="nav-label">Reports</span></a>
+      <a class="nav-item" href="announcements.html" data-tooltip="Announcements"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3zm-8.27 4a2 2 0 0 1-3.46 0"/></svg></span><span class="nav-label">Announcements</span></a>
+      <a class="nav-item" href="media.html" data-tooltip="Media"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></span><span class="nav-label">Media Library</span></a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="user-card"><div class="avatar">CR</div><div class="user-info"><div class="user-name">Mrs. C. Reyes</div><div class="user-role">Science Teacher</div></div><button class="logout-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></button></div>
+    </div>
+  </aside>
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <main class="main-content" id="mainContent">
+    <header class="topbar">
+      <button class="topbar-toggle" id="sidebarToggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+      <div class="topbar-breadcrumb">
+        <span class="breadcrumb-item">Teacher Portal</span><span class="breadcrumb-sep">/</span>
+        <span class="breadcrumb-current">Student Monitoring</span>
+      </div>
+      <div class="topbar-actions">
+        <div style="position:relative;"><button class="notif-btn" id="notifBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3zm-8.27 4a2 2 0 0 1-3.46 0"/></svg><span class="notif-dot"></span></button><div class="notif-dropdown" id="notifDropdown" style="display:none;"><div class="notif-header"><span>Notifications</span></div><div class="notif-list"></div></div></div>
+        <div class="topbar-user"><div class="avatar" style="width:32px;height:32px;font-size:0.75rem;">CR</div><div><div class="topbar-user-name">Mrs. C. Reyes</div><div class="topbar-user-role">Science Teacher</div></div></div>
+      </div>
+    </header>
+
+    <div class="page-content">
+      <div class="page-header">
+        <div class="page-header-left">
+          <h2>Student Monitoring</h2>
+          <p>Track individual learning progress, activity completion, and performance across all body system modules.</p>
+        </div>
+        <div class="page-header-right">
+          <div class="search-bar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="text" id="studentSearch" placeholder="Search students..." oninput="filterStudents()"/></div>
+          <button class="btn btn-secondary btn-sm" onclick="exportCSV()">Export CSV</button>
+        </div>
+      </div>
+
+      <!-- Summary Stats -->
+      <div class="stats-grid" style="margin-bottom:var(--space-6);">
+        <div class="stat-card">
+          <div class="stat-icon" style="background:var(--brand-light);color:var(--brand);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div class="stat-info"><div class="stat-value" id="statTotalEnrolled">—</div><div class="stat-label">Total Enrolled</div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background:#e8f1fb;color:#1e6ca1;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <div class="stat-info"><div class="stat-value" id="statActiveToday">—</div><div class="stat-label">Active Learners</div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background:var(--bg-inset);color:var(--text-secondary);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
+          <div class="stat-info"><div class="stat-value" id="statClassAvg">—</div><div class="stat-label">Class Average</div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background:var(--error-light);color:var(--error);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <div class="stat-info"><div class="stat-value" id="statNeedsAttention">—</div><div class="stat-label">Needs Attention</div></div>
+        </div>
+      </div>
+
+      <!-- Filter Chips -->
+      <div style="display:flex;gap:var(--space-2);margin-bottom:var(--space-5);flex-wrap:wrap;">
+        <div class="chip active" onclick="filterByStatus(this,'all')">All Students</div>
+        <div class="chip" onclick="filterByStatus(this,'active')">Active</div>
+        <div class="chip" onclick="filterByStatus(this,'at-risk')">At Risk</div>
+        <div class="chip" onclick="filterByStatus(this,'top')">Top Performers</div>
+        <div class="chip" onclick="filterByStatus(this,'inactive')">Inactive</div>
+      </div>
+
+      <!-- Student Table -->
+      <div class="card">
+        <div class="table-wrapper">
+          <table class="data-table" id="studentTable">
+            <thead>
+              <tr>
+                <th>Student</th>
+                <th>Section</th>
+                <th>Overall Progress</th>
+                <th>Avg Score</th>
+                <th>Lessons Done</th>
+                <th>3D Explored</th>
+                <th>Last Active</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="studentTableBody">
+              <tr><td colspan="9" style="text-align:center;padding:var(--space-8);color:var(--text-muted);">Loading student monitoring data...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- Student Detail Modal -->
+<div class="modal-overlay" id="studentModal" style="display:none;" onclick="if(event.target===this)closeModal('studentModal')">
+  <div class="modal-box" style="width:min(95%,680px);max-height:90vh;display:flex;flex-direction:column;">
+    <div class="modal-header">
+      <h3 id="modalStudentName">Student Profile</h3>
+      <button class="modal-close" onclick="closeModal('studentModal')">&times;</button>
+    </div>
+    <div class="modal-body" id="modalStudentBody" style="overflow-y:auto;padding:var(--space-5);">Loading...</div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('studentModal')">Close</button>
+      <button class="btn btn-primary" onclick="showToast('Reminder sent to student!','success')">Send Reminder</button>
+    </div>
+  </div>
+</div>
+
+<script src="../assets/js/app.js"></script>
+<script>
+Auth.requireAuthSync('teacher');
+
+let allStudents = [];
+let currentFilter = 'all';
+let searchTerm = '';
+
+async function loadMonitoringData() {
+  try {
+    const res = await fetch(`${API_BASE}/students.php`, { credentials: 'same-origin' });
+    const result = await res.json();
+    if (!result.success) throw new Error(result.message);
+
+    allStudents = result.data.students || [];
+    const stats = result.data.stats || {};
+
+    // Update Summary Stats
+    document.getElementById('statTotalEnrolled').textContent = stats.total_students ?? allStudents.length;
+    document.getElementById('statActiveToday').textContent = stats.active_students ?? allStudents.filter(s => s.is_active).length;
+    document.getElementById('statClassAvg').textContent = (stats.class_avg_score ?? 0) + '%';
+    document.getElementById('statNeedsAttention').textContent = stats.at_risk ?? allStudents.filter(s => s.performance === 'at-risk').length;
+
+    applyFilters();
+  } catch (err) {
+    console.error('Failed to load student monitoring data:', err);
+    document.getElementById('studentTableBody').innerHTML = `
+      <tr><td colspan="9" style="text-align:center;padding:var(--space-8);color:var(--accent-red);">Failed to load students: ${escHtml(err.message)}</td></tr>
+    `;
+  }
+}
+
+function renderTable(data) {
+  const tbody = document.getElementById('studentTableBody');
+  if (data.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="9" style="text-align:center;padding:var(--space-8);color:var(--text-muted);">No matching students found.</td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = data.map(s => {
+    const scoreVal = parseFloat(s.avg_quiz_score || 0);
+    const scoreColor = scoreVal >= 85 ? 'var(--success)' : scoreVal >= 70 ? 'var(--warning)' : 'var(--error)';
+    const avatarBg = s.performance === 'top' ? 'var(--warning)' : s.performance === 'at-risk' ? 'var(--error)' : 'var(--brand)';
+    const initial = initials(s.full_name);
+    const progressPct = Math.round(parseFloat(s.completion_pct || 0));
+    const secName = (s.section || '').replace('Grade 10 – ', '');
+
+    return `
+      <tr>
+        <td>
+          <div style="display:flex;align-items:center;gap:var(--space-2);">
+            <div class="avatar" style="width:32px;height:32px;font-size:0.7rem;background:${avatarBg};color:#ffffff;">${initial}</div>
+            <div>
+              <div style="font-weight:600;font-size:0.875rem;color:var(--text-primary);">${escHtml(s.full_name)}</div>
+              <div style="font-size:0.72rem;color:var(--text-muted);">${escHtml(s.school_id || s.username)}</div>
+            </div>
+          </div>
+        </td>
+        <td>${escHtml(secName)}</td>
+        <td>
+          <div class="student-progress-cell">
+            <div class="progress-bar" style="background:var(--bg-inset);"><div class="progress-fill" style="width:${progressPct}%;background:${progressPct>=80?'var(--success)':progressPct>=60?'var(--warning)':'var(--error)'};"></div></div>
+            <span>${progressPct}%</span>
+          </div>
+        </td>
+        <td style="font-weight:700;color:${scoreColor};">${scoreVal.toFixed(1)}%</td>
+        <td>${s.completed_lessons} / ${s.total_lessons}</td>
+        <td>${s.systems_explored} / 9</td>
+        <td style="font-size:0.8rem;color:var(--text-muted);">${escHtml(s.last_active_fmt || 'Never')}</td>
+        <td><span class="badge ${s.is_active ? 'badge-success' : 'badge-error'}">${s.is_active ? 'Active' : 'Inactive'}</span></td>
+        <td>
+          <button class="btn btn-secondary btn-sm" onclick="viewStudent(${s.user_id})">View</button>
+        </td>
+      </tr>
+    `;
+  }).join('');
+}
+
+function filterStudents() {
+  searchTerm = document.getElementById('studentSearch').value.toLowerCase().trim();
+  applyFilters();
+}
+
+function filterByStatus(el, filter) {
+  document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  currentFilter = filter;
+  applyFilters();
+}
+
+function applyFilters() {
+  let data = allStudents;
+
+  if (currentFilter !== 'all') {
+    data = data.filter(s => {
+      if (currentFilter === 'active')   return s.is_active;
+      if (currentFilter === 'inactive') return !s.is_active;
+      if (currentFilter === 'at-risk')  return s.performance === 'at-risk';
+      if (currentFilter === 'top')      return s.performance === 'top';
+      return true;
+    });
+  }
+
+  if (searchTerm) {
+    data = data.filter(s =>
+      s.full_name.toLowerCase().includes(searchTerm) ||
+      (s.section && s.section.toLowerCase().includes(searchTerm)) ||
+      (s.school_id && s.school_id.toLowerCase().includes(searchTerm))
+    );
+  }
+
+  renderTable(data);
+}
+
+async function viewStudent(userId) {
+  openModal('studentModal');
+  const modalBody = document.getElementById('modalStudentBody');
+  modalBody.innerHTML = '<div style="text-align:center;padding:2rem;color:var(--text-muted);">Loading student profile...</div>';
+
+  try {
+    const res = await fetch(`${API_BASE}/students.php?id=${userId}`, { credentials: 'same-origin' });
+    const result = await res.json();
+    if (!result.success) throw new Error(result.message);
+
+    const s = result.data.student || result.data;
+    const sysProgress = result.data.system_progress || s.system_progress || [];
+    const submissions = result.data.submissions || result.data.quiz_submissions || s.submissions || [];
+
+    document.getElementById('modalStudentName').textContent = s.full_name + ' – Academic Profile';
+
+    const initial = initials(s.full_name);
+    const scoreVal = parseFloat(s.avg_quiz_score || 0);
+    const progressPct = s.total_lessons > 0 ? Math.round((s.completed_lessons / s.total_lessons) * 100) : 0;
+
+    modalBody.innerHTML = `
+      <div style="display:flex;align-items:center;gap:var(--space-4);margin-bottom:var(--space-5);">
+        <div class="avatar avatar-xl">${initial}</div>
+        <div>
+          <div style="font-size:1.15rem;font-weight:700;color:var(--text-primary);">${escHtml(s.full_name)}</div>
+          <div style="color:var(--text-secondary);font-size:0.85rem;">${escHtml(s.school_id)} • ${escHtml(s.section)} (${escHtml(s.grade_level)})</div>
+          <div style="display:flex;gap:var(--space-2);margin-top:6px;">
+            <span class="badge ${s.is_active ? 'badge-success' : 'badge-error'}">${s.is_active ? 'Active' : 'Inactive'}</span>
+            <span class="badge badge-neutral">${escHtml(s.email || 'No email')}</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(4, 1fr);gap:var(--space-3);margin-bottom:var(--space-5);">
+        <div style="text-align:center;padding:var(--space-3);background:var(--bg-inset);border:1px solid var(--border-light);border-radius:var(--radius-md);">
+          <div style="font-size:1.25rem;font-weight:700;color:var(--text-primary);">${progressPct}%</div>
+          <div style="font-size:0.75rem;color:var(--text-secondary);margin-top:2px;">Overall Progress</div>
+        </div>
+        <div style="text-align:center;padding:var(--space-3);background:var(--bg-inset);border:1px solid var(--border-light);border-radius:var(--radius-md);">
+          <div style="font-size:1.25rem;font-weight:700;color:var(--brand);">${scoreVal.toFixed(1)}%</div>
+          <div style="font-size:0.75rem;color:var(--text-secondary);margin-top:2px;">Average Score</div>
+        </div>
+        <div style="text-align:center;padding:var(--space-3);background:var(--bg-inset);border:1px solid var(--border-light);border-radius:var(--radius-md);">
+          <div style="font-size:1.25rem;font-weight:700;color:var(--text-primary);">${s.completed_lessons} / ${s.total_lessons}</div>
+          <div style="font-size:0.75rem;color:var(--text-secondary);margin-top:2px;">Lessons Done</div>
+        </div>
+        <div style="text-align:center;padding:var(--space-3);background:var(--bg-inset);border:1px solid var(--border-light);border-radius:var(--radius-md);">
+          <div style="font-size:1.25rem;font-weight:700;color:var(--text-primary);">${s.systems_explored || 0} / 9</div>
+          <div style="font-size:0.75rem;color:var(--text-secondary);margin-top:2px;">3D Explored</div>
+        </div>
+      </div>
+
+      <div style="font-size:0.85rem;font-weight:600;color:var(--text-primary);margin-bottom:var(--space-3);">Body System Progress Breakdown</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3);margin-bottom:var(--space-5);">
+        ${sysProgress.map(sys => {
+          const tot = parseInt(sys.total_lessons, 10) || 0;
+          const comp = parseInt(sys.completed_lessons, 10) || 0;
+          const pct = tot > 0 ? Math.round((comp / tot) * 100) : 0;
+          return `
+            <div style="background:var(--bg-inset);border:1px solid var(--border-light);padding:var(--space-3);border-radius:var(--radius-md);">
+              <div style="display:flex;justify-content:space-between;margin-bottom:4px;font-size:0.78rem;">
+                <span style="font-weight:500;color:var(--text-primary);">${sys.icon_emoji} ${escHtml(sys.system_name)}</span>
+                <span style="font-weight:600;color:${pct>=80?'var(--success)':pct>0?'var(--warning)':'var(--text-muted)'};">${pct}%</span>
+              </div>
+              <div class="progress-bar" style="background:var(--bg-surface);"><div class="progress-fill" style="width:${pct}%;background:${sys.color_hex};"></div></div>
+            </div>
+          `;
+        }).join('')}
+      </div>
+
+      <div style="font-size:0.85rem;font-weight:600;color:var(--text-primary);margin-bottom:var(--space-3);">Recent Quiz Submissions</div>
+      ${submissions.length === 0 ? '<div style="color:var(--text-muted);font-size:0.8rem;padding:var(--space-3);">No quiz submissions yet.</div>' : `
+        <table class="data-table" style="font-size:0.8rem;">
+          <thead>
+            <tr><th>Assessment</th><th>Score</th><th>Date</th><th>Status</th></tr>
+          </thead>
+          <tbody>
+            ${submissions.map(sub => `
+              <tr>
+                <td style="color:var(--text-primary);">${escHtml(sub.assessment_title)}</td>
+                <td style="font-weight:700;color:${sub.score>=sub.passing_score?'var(--success)':'var(--error)'};">${Math.round(sub.score)}%</td>
+                <td style="color:var(--text-secondary);">${fmtDate(sub.submitted_at)}</td>
+                <td><span class="badge ${sub.score>=sub.passing_score?'badge-success':'badge-error'}">${sub.score>=sub.passing_score?'Passed':'Retake'}</span></td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      `}
+    `;
+  } catch (err) {
+    modalBody.innerHTML = `<div style="text-align:center;padding:2rem;color:var(--accent-red);">Failed to load details: ${escHtml(err.message)}</div>`;
+  }
+}
+
+function exportCSV() {
+  window.location.href = `${API_BASE}/reports.php?format=csv`;
+  showToast('Exporting student report from database...', 'success');
+}
+
+// Initial load
+loadMonitoringData();
+</script>
+</body>
+</html>

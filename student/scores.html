@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Scores – AnatomIQ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../assets/css/global.css"/>
+  <link rel="stylesheet" href="../assets/css/sidebar.css"/>
+  <link rel="stylesheet" href="../assets/css/student.css"/>
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon">
+        <svg viewBox="0 0 60 60" fill="none">
+          <path d="M30 12C30 12,22 18,22 26C22 30,25 33,30 33C35 33,38 30,38 26C38 18,30 12,30 12Z" fill="#ffffff" opacity="0.9"/>
+          <path d="M30 33L30 48" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M22 40L30 37L38 40" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="sidebar-logo-text">
+        <div class="sidebar-logo-name">AnatomIQ</div>
+        <div class="sidebar-logo-sub">Student Portal</div>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Learning</div>
+      <a class="nav-item" href="dashboard.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></span><span class="nav-label">Dashboard</span></a>
+      <a class="nav-item" href="anatomy.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><line x1="2" y1="12" x2="22" y2="12"/></svg></span><span class="nav-label">3D Anatomy Explorer</span></a>
+      <a class="nav-item" href="lessons.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span><span class="nav-label">My Lessons</span></a>
+      <a class="nav-item" href="quiz.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg></span><span class="nav-label">Quizzes & Activities</span><span class="nav-badge" style="display:none;">0</span></a>
+      <div class="nav-section-label">My Progress</div>
+      <a class="nav-item" href="progress.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span><span class="nav-label">My Progress</span></a>
+      <a class="nav-item active" href="scores.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span><span class="nav-label">My Scores</span></a>
+      <a class="nav-item" href="notifications.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3z"/></svg></span><span class="nav-label">Notifications</span><span class="nav-badge" style="display:none;">0</span></a>
+      <div class="nav-section-label">Account</div>
+      <a class="nav-item" href="settings.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span><span class="nav-label">Settings & Profile</span></a>
+    </nav>
+    <div class="sidebar-footer"><div class="user-card" onclick="window.location.href='settings.html'" style="cursor:pointer;" title="Go to Settings"><div class="avatar">MS</div><div class="user-info"><div class="user-name">Maria Santos</div><div class="user-role">Grade 10 – Narra</div></div><button class="logout-btn" onclick="event.stopPropagation(); Auth.logout();" title="Log Out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></button></div></div>
+  </aside>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <main class="main-content" id="mainContent">
+    <header class="topbar">
+      <button class="topbar-toggle" id="sidebarToggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+      <div class="topbar-breadcrumb"><span class="breadcrumb-item">Student Portal</span><span class="breadcrumb-sep">/</span><span class="breadcrumb-current">My Scores</span></div>
+      <div class="topbar-actions"><a href="settings.html" class="topbar-user" style="text-decoration:none;color:inherit;" title="Manage Account"><div class="avatar" style="width:32px;height:32px;font-size:0.75rem;">MS</div><div><div class="topbar-user-name">Maria Santos</div></div></a>
+      </div>
+    </header>
+
+    <div class="page-content">
+      <div class="page-header">
+        <div class="page-header-left"><h2>My Scores & Grades</h2><p>Review all your quiz scores, assessment results, and teacher feedback.</p></div>
+      </div>
+
+      <!-- Score Summary Cards -->
+      <div class="stats-grid" style="margin-bottom:var(--space-6);">
+        <div class="stat-card">
+          <div class="stat-icon" style="background:var(--brand-light);color:var(--brand);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+          </div>
+          <div class="stat-info"><div class="stat-value" id="scoreHighest">—</div><div class="stat-label">Highest Score</div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background:#e8f1fb;color:#1e6ca1;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
+          <div class="stat-info"><div class="stat-value" id="scoreAverage">—</div><div class="stat-label">Average Score</div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background:var(--bg-inset);color:var(--text-secondary);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <div class="stat-info"><div class="stat-value" id="scoreTotal">0</div><div class="stat-label">Quizzes Taken</div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background:var(--brand-light);color:var(--brand);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <div class="stat-info"><div class="stat-value" id="scorePassed">0</div><div class="stat-label">Assessments Passed</div></div>
+        </div>
+      </div>
+
+      <!-- Scores Table -->
+      <div class="card">
+        <div class="monitoring-toolbar">
+          <div class="section-title" style="margin:0;">All Assessment Results</div>
+          <div class="search-bar" style="width:240px;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" id="scoreSearchInput" placeholder="Search by title, system..." oninput="filterScores()"/>
+          </div>
+        </div>
+        <div class="table-wrapper">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Assessment</th>
+                <th>Type</th>
+                <th>System</th>
+                <th>Score</th>
+                <th>Status</th>
+                <th>Attempt</th>
+                <th>Date</th>
+                <th>Review</th>
+              </tr>
+            </thead>
+            <tbody id="scoresTableBody">
+              <tr><td colspan="8" style="text-align:center;padding:2rem;color:var(--text-muted);">Loading score records…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- Detailed Submission Review Modal -->
+<div class="modal-overlay" id="scoreReviewModal" style="display:none;" onclick="if(event.target===this)closeModal('scoreReviewModal')">
+  <div class="modal-box" style="width:min(95%,680px);max-height:90vh;display:flex;flex-direction:column;">
+    <div class="modal-header">
+      <h3 id="reviewModalTitle">Quiz Review</h3>
+      <button class="modal-close" onclick="closeModal('scoreReviewModal')">&times;</button>
+    </div>
+    <div class="modal-body" id="reviewModalBody" style="overflow-y:auto;flex:1;">
+      <div style="text-align:center;padding:2rem;color:var(--text-muted);">Loading review details…</div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-primary" onclick="closeModal('scoreReviewModal')">Close</button>
+    </div>
+  </div>
+</div>
+
+<script src="../assets/js/app.js"></script>
+<script>
+'use strict';
+Auth.requireAuthSync('student');
+
+let allSubmissions = [];
+
+async function loadScores() {
+  try {
+    const res = await fetch(`${API_BASE}/scores.php`, { credentials: 'same-origin' });
+    const result = await res.json();
+    if (!result.success) {
+      document.getElementById('scoresTableBody').innerHTML = '<tr><td colspan="8" style="text-align:center;color:var(--error);padding:2rem;">Failed to load scores.</td></tr>';
+      return;
+    }
+
+    const { summary, submissions } = result.data;
+    allSubmissions = submissions || [];
+
+    // Stats
+    document.getElementById('scoreHighest').textContent = (summary.highest_score !== null && summary.highest_score !== undefined) ? `${Math.round(summary.highest_score)}%` : '—';
+    document.getElementById('scoreAverage').textContent = (summary.average_score !== null && summary.average_score !== undefined) ? `${Math.round(summary.average_score)}%` : '—';
+    document.getElementById('scoreTotal').textContent   = summary.total_submissions;
+    document.getElementById('scorePassed').textContent  = summary.passed_count;
+
+    renderScoresTable(allSubmissions);
+
+  } catch (err) {
+    document.getElementById('scoresTableBody').innerHTML = '<tr><td colspan="8" style="text-align:center;color:var(--error);padding:2rem;">Server error loading scores.</td></tr>';
+  }
+}
+
+function renderScoresTable(subs) {
+  const tbody = document.getElementById('scoresTableBody');
+  if (!subs.length) {
+    tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;padding:3rem;color:var(--text-muted);">No assessment records found. Take a quiz to view your scores!</td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = subs.map(s => {
+    const scoreColor = s.passed ? 'var(--success)' : 'var(--error)';
+
+    return `
+      <tr>
+        <td style="font-weight:600;color:var(--text-primary);">${escHtml(s.assessment_title)}</td>
+        <td><span style="text-transform:capitalize;font-size:0.8125rem;">${s.assessment_type}</span></td>
+        <td><span class="badge badge-neutral">${escHtml(s.system_name || 'General')}</span></td>
+        <td style="color:${scoreColor};font-weight:700;">${Math.round(s.score)}%</td>
+        <td><span class="badge ${s.passed ? 'badge-success' : 'badge-error'}">${s.passed ? 'Passed' : 'Needs Review'}</span></td>
+        <td style="color:var(--text-muted);font-weight:500;">#${s.attempt_number}</td>
+        <td style="font-size:0.8125rem;color:var(--text-secondary);">${fmtDate(s.submitted_at)}</td>
+        <td>
+          <button class="btn btn-secondary btn-sm" onclick="viewSubmissionReview(${s.submission_id})">
+            Review
+          </button>
+        </td>
+      </tr>
+    `;
+  }).join('');
+}
+
+function filterScores() {
+  const term = document.getElementById('scoreSearchInput').value.toLowerCase();
+  const filtered = allSubmissions.filter(s =>
+    s.assessment_title.toLowerCase().includes(term) ||
+    (s.system_name && s.system_name.toLowerCase().includes(term)) ||
+    s.assessment_type.toLowerCase().includes(term)
+  );
+  renderScoresTable(filtered);
+}
+
+async function viewSubmissionReview(submissionId) {
+  openModal('scoreReviewModal');
+  const body = document.getElementById('reviewModalBody');
+  body.innerHTML = '<div style="text-align:center;padding:2rem;color:var(--text-muted);">Loading questions…</div>';
+
+  try {
+    const res = await fetch(`${API_BASE}/scores.php?id=${submissionId}`, { credentials: 'same-origin' });
+    const result = await res.json();
+    if (!result.success) {
+      body.innerHTML = `<div style="color:var(--error);">${escHtml(result.message)}</div>`;
+      return;
+    }
+
+    const sub = result.data;
+    document.getElementById('reviewModalTitle').textContent = `Review: ${sub.assessment_title}`;
+
+    const score = Math.round(sub.score);
+    const pass = sub.score >= sub.passing_score;
+
+    body.innerHTML = `
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:var(--space-4);background:var(--bg-inset);border:1px solid var(--border-light);border-radius:var(--radius-md);margin-bottom:var(--space-4);">
+        <div>
+          <div style="font-weight:600;font-size:1rem;color:var(--text-primary);">Attempt #${sub.attempt_number} Result</div>
+          <div style="font-size:0.75rem;color:var(--text-muted);margin-top:2px;">Submitted: ${fmtDate(sub.submitted_at)}</div>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-size:1.375rem;font-weight:700;color:${pass ? 'var(--success)' : 'var(--error)'};">${score}%</div>
+          <span class="badge ${pass ? 'badge-success' : 'badge-error'}" style="margin-top:2px;display:inline-block;">${pass ? 'Passed' : 'Failed'} (Pass: ${Math.round(sub.passing_score)}%)</span>
+        </div>
+      </div>
+
+      <div style="font-weight:600;font-size:0.8125rem;color:var(--text-secondary);margin-bottom:var(--space-2);">Question Breakdown</div>
+      <div style="display:flex;flex-direction:column;gap:var(--space-3);">
+        ${(sub.responses || []).map((r, i) => `
+          <div style="padding:var(--space-3) var(--space-4);background:var(--bg-surface);border:1px solid var(--border);border-left:3px solid ${r.is_correct ? 'var(--success)' : 'var(--error)'};border-radius:var(--radius-md);">
+            <div style="display:flex;justify-content:space-between;font-size:0.8125rem;font-weight:600;margin-bottom:4px;">
+              <span style="color:var(--text-primary);">Q${i + 1}. ${escHtml(r.question_text)}</span>
+              <span style="color:${r.is_correct ? 'var(--success)' : 'var(--error)'};font-weight:600;">${r.is_correct ? 'Correct' : '0 pts'}</span>
+            </div>
+            <div style="font-size:0.75rem;color:var(--text-secondary);margin-top:4px;">
+              ${r.selected_option_text ? `Your Answer: <strong style="color:var(--text-primary);">${escHtml(r.selected_option_text)}</strong>` : ''}
+              ${!r.is_correct && r.correct_option_text ? `<div style="color:var(--success);font-weight:500;margin-top:2px;">Correct Answer: ${escHtml(r.correct_option_text)}</div>` : ''}
+              ${r.response_text ? `<div style="margin-top:2px;">Submitted text: <em>${escHtml(r.response_text)}</em></div>` : ''}
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+
+  } catch (err) {
+    body.innerHTML = '<div style="color:var(--error);">Failed to load review.</div>';
+  }
+}
+
+// ── Init ────────────────────────────────────────────────────────
+loadScores();
+</script>
+</body>
+</html>
+
