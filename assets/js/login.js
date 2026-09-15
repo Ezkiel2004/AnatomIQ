@@ -35,6 +35,7 @@ function fieldError(input, message) {
 function validate(form) {
     let first;
     form.querySelectorAll('input, select').forEach(input => {
+        if (input.type === 'checkbox' && !input.required) return;
         let message = '';
         if (input.required && (input.type === 'checkbox' ? !input.checked : !input.value.trim())) message = input.type === 'checkbox' ? 'Please agree to the Terms and Conditions to register.' : 'Please complete this field.';
         else if (input.validity.typeMismatch) message = 'Enter a valid email address, such as name@example.com.';

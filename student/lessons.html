@@ -11,8 +11,9 @@
   <link rel="stylesheet" href="../assets/css/sidebar.css?v=20260914-bg1"/>
   <link rel="stylesheet" href="../assets/css/student.css"/>
   <link rel="stylesheet" href="../assets/css/teacher-dashboard.css?v=20260914-icons1"/>
+  <link rel="stylesheet" href="../assets/css/student-portal.css?v=20260915-consistency1"/>
 </head>
-<body class="teacher-dashboard student-dashboard">
+<body class="teacher-dashboard student-dashboard lessons-page">
 <div class="app-layout">
   <aside class="sidebar" id="sidebar" data-portal="student" aria-label="Student portal"><script src="../assets/js/sidebar.js?v=20260914-icons1"></script></aside>
   <div class="sidebar-overlay" id="sidebarOverlay"></div>
@@ -60,8 +61,8 @@
             </div>
             <span class="badge badge-brand">Curriculum</span>
           </div>
-          <div class="stat-value" id="statTotalModules">18</div>
-          <div class="stat-label">Total Modules (36 Lessons)</div>
+          <div class="stat-value" id="statTotalModules">&mdash;</div>
+          <div class="stat-label" id="statTotalLessonsLabel">Total Modules</div>
         </div>
 
         <div class="stat-card">
@@ -71,7 +72,7 @@
             </div>
             <span class="badge badge-green">Mastered</span>
           </div>
-          <div class="stat-value" id="statCompletedModules">0</div>
+          <div class="stat-value" id="statCompletedModules">&mdash;</div>
           <div class="stat-label">Completed Modules</div>
         </div>
 
@@ -82,7 +83,7 @@
             </div>
             <span class="badge badge-amber">In Progress</span>
           </div>
-          <div class="stat-value" id="statInProgressModules">0</div>
+          <div class="stat-value" id="statInProgressModules">&mdash;</div>
           <div class="stat-label">In Progress Modules</div>
         </div>
 
@@ -93,8 +94,8 @@
             </div>
             <span class="badge badge-blue">Overall Progress</span>
           </div>
-          <div class="stat-value" id="statOverallPct">0%</div>
-          <div class="stat-label" id="statCompletedLessonsLabel">0 of 36 Lessons Completed</div>
+          <div class="stat-value" id="statOverallPct">&mdash;</div>
+          <div class="stat-label" id="statCompletedLessonsLabel">Lessons Completed</div>
         </div>
       </div>
 
@@ -102,7 +103,7 @@
       <div class="filter-toolbar">
         <div class="filter-search-wrap">
           <svg class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#magnifying-glass"/></svg>
-          <input type="text" id="lessonSearchInput" class="filter-search-input" placeholder="Search by module title, body system, or topic..." oninput="handleLessonSearch(this.value)">
+          <input type="search" id="lessonSearchInput" class="filter-search-input" aria-label="Search modules by title, body system, or topic" placeholder="Search by module title, body system, or topic..." oninput="handleLessonSearch(this.value)">
         </div>
 
         <div class="filter-controls-group">
@@ -123,10 +124,10 @@
           </div>
 
           <!-- Body System Dropdown -->
-          <select id="lessonSystemFilter" class="form-control" style="height:34px;padding:0 10px;font-size:0.8125rem;max-width:180px;" onchange="handleLessonSystemFilter(this.value)"><option value="all">All Body Systems</option></select>
+          <select id="lessonSystemFilter" class="form-control" aria-label="Filter by body system" onchange="handleLessonSystemFilter(this.value)"><option value="all">All Body Systems</option></select>
 
           <!-- Sort Dropdown -->
-          <select id="lessonSortFilter" class="form-control" style="height:34px;padding:0 10px;font-size:0.8125rem;max-width:160px;" onchange="handleLessonSort(this.value)">
+          <select id="lessonSortFilter" class="form-control" aria-label="Sort modules" onchange="handleLessonSort(this.value)">
             <option value="curriculum">Curriculum Order</option>
             <option value="progress-desc">Progress: High to Low</option>
             <option value="progress-asc">Progress: Low to High</option>
@@ -136,11 +137,11 @@
       </div>
 
       <!-- Section Title & Results Counter -->
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-2);padding:0 2px;">
+      <div class="lesson-results-heading">
         <div style="font-size:1rem;font-weight:700;color:var(--text-primary);">
           Available Modules
         </div>
-        <div style="font-size:0.8125rem;color:var(--text-muted);" id="lessonResultsCount">
+        <div style="font-size:0.8125rem;color:var(--text-muted);" id="lessonResultsCount" role="status">
           Loading curriculum modules…
         </div>
       </div>
@@ -194,6 +195,7 @@ async function loadLessons() {
     const res    = await fetch(`${API_BASE}/modules.php`, { credentials: 'same-origin' });
     const result = await res.json();
     if (!result.success) {
+      document.getElementById('lessonResultsCount').textContent = 'Modules unavailable';
       grid.innerHTML = '<div style="grid-column:1/-1;padding:2rem;text-align:center;color:var(--error);">Failed to load lessons.</div>';
       return;
     }
@@ -201,6 +203,7 @@ async function loadLessons() {
     updateSummaryMetrics();
     renderLessons();
   } catch (e) {
+    document.getElementById('lessonResultsCount').textContent = 'Modules unavailable';
     grid.innerHTML = '<div style="grid-column:1/-1;padding:2rem;text-align:center;color:var(--error);">Server error — make sure XAMPP is running.</div>';
   }
 }
@@ -241,6 +244,7 @@ function updateSummaryMetrics() {
   const elLabel = document.getElementById('statCompletedLessonsLabel');
 
   if (elTotal) elTotal.textContent = totalModules;
+  document.getElementById('statTotalLessonsLabel').textContent = `Total Modules (${totalLessons} ${totalLessons === 1 ? 'Lesson' : 'Lessons'})`;
   if (elCompleted) elCompleted.textContent = completedModules;
   if (elInProg) elInProg.textContent = inProgressModules;
   if (elOverall) elOverall.textContent = overallPct + '%';

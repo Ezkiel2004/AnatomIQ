@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="../assets/css/sidebar.css?v=20260914-bg1"/>
   <link rel="stylesheet" href="../assets/css/student.css"/>
   <link rel="stylesheet" href="../assets/css/teacher-dashboard.css?v=20260914-icons1"/>
+  <link rel="stylesheet" href="../assets/css/student-portal.css?v=20260915-consistency1"/>
 </head>
 <body class="teacher-dashboard student-dashboard">
 <div class="app-layout">
@@ -105,17 +106,17 @@
         <div class="filter-toolbar-row">
           <div class="filter-search-wrap">
             <svg class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#magnifying-glass"/></svg>
-            <input type="text" id="assessmentSearchInput" class="filter-search-input" placeholder="Search by assessment title, body system, or topic..." oninput="handleAssessmentSearch(this.value)">
+            <input type="search" aria-label="Search assessments" id="assessmentSearchInput" class="filter-search-input" placeholder="Search by assessment title, body system, or topic..." oninput="handleAssessmentSearch(this.value)">
           </div>
 
           <div class="filter-selects-wrap">
             <!-- Body System Dropdown -->
-            <select id="assessmentSystemFilter" class="form-control filter-select" onchange="handleAssessmentSystemFilter(this.value)">
+            <select id="assessmentSystemFilter" aria-label="Filter by body system" class="form-control filter-select" onchange="handleAssessmentSystemFilter(this.value)">
               <option value="all">All Body Systems</option>
             </select>
 
             <!-- Status Dropdown -->
-            <select id="assessmentStatusFilter" class="form-control filter-select" onchange="handleAssessmentStatusFilter(this.value)">
+            <select id="assessmentStatusFilter" aria-label="Filter by status" class="form-control filter-select" onchange="handleAssessmentStatusFilter(this.value)">
               <option value="all">All Status</option>
               <option value="pending">Pending</option>
               <option value="completed">Completed</option>
@@ -146,7 +147,7 @@
       </div>
 
       <!-- Section Title & Results Counter -->
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-2);padding:0 2px;">
+      <div class="lesson-results-heading">
         <div style="font-size:1rem;font-weight:700;color:var(--text-primary);">
           Available Assessments
         </div>
@@ -488,8 +489,8 @@ function renderAssessmentCards() {
         <div style="width:48px;height:48px;border-radius:50%;background:var(--bg-inset);display:flex;align-items:center;justify-content:center;margin:0 auto var(--space-3);color:var(--text-muted);">
           <svg width="22" height="22" class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#magnifying-glass"/></svg>
         </div>
-        <div style="font-size:1rem;font-weight:600;color:var(--text-primary);margin-bottom:4px;">No assessments match your criteria</div>
-        <p style="font-size:0.8125rem;color:var(--text-secondary);max-width:380px;margin:0 auto var(--space-4);">Try adjusting your search query, selecting another category tab, or resetting your filter selections.</p>
+        <div style="font-size:1rem;font-weight:600;color:var(--text-primary);margin-bottom:4px;">${allAssessments.length ? 'No assessments match your criteria' : 'No assessments published yet'}</div>
+        <p style="font-size:0.8125rem;color:var(--text-secondary);max-width:380px;margin:0 auto var(--space-4);">${allAssessments.length ? 'Try another filter or clear your search.' : 'Your teacher will publish quizzes and activities here.'}</p>
         <button type="button" class="btn btn-secondary btn-sm" onclick="resetAssessmentFilters()">Reset All Filters</button>
       </div>
     `;
