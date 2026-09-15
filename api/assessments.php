@@ -89,7 +89,7 @@ if ($method === 'GET') {
         $assessment['time_limit_mins'] = $assessment['time_limit_mins'] ? (int) $assessment['time_limit_mins'] : null;
         $assessment['passing_score']   = (float) $assessment['passing_score'];
         $assessment['max_attempts']    = (int) $assessment['max_attempts'];
-        $assessment['questions']       = $questions;
+        $assessment['questions']       = $user['role'] === 'student' ? studentQuestions($questions) : $questions;
 
         // For student, check their submission count
         if ($user['role'] === 'student') {
@@ -102,7 +102,7 @@ if ($method === 'GET') {
             );
             $assessment['my_attempts'] = count($mySubs);
             $assessment['my_submissions'] = $mySubs;
-            $assessment['can_attempt'] = (count($mySubs) < $assessment['max_attempts']);
+            $assessment['can_attempt'] = count(array_filter($mySubs, fn($s) => $s['status'] !== 'in_progress')) < $assessment['max_attempts'];
         }
 
         jsonSuccess($assessment);
@@ -125,7 +125,7 @@ if ($method === 'GET') {
     }
 
     // Filter by status
-    if (!empty($_GET['status']) && $_GET['status'] !== 'all') {
+    if ($user['role'] !== 'student' && !empty($_GET['status']) && $_GET['status'] !== 'all') {
         $where[]  = 'a.status = ?';
         $params[] = $_GET['status'];
     } elseif ($user['role'] === 'student') {
@@ -139,7 +139,8 @@ if ($method === 'GET') {
     $studentJoin = "";
     $studentSelect = ", 0 AS my_attempts, NULL AS my_best_score, 0 AS my_passed, 'not_started' AS my_status";
     if ($studentId > 0) {
-        $studentJoin = "LEFT JOIN assessment_submissions mysub ON mysub.assessment_id = a.assessment_id AND mysub.student_id = {$studentId}";
+        $studentJoin = "LEFT JOIN assessment_submissions mysub ON mysub.assessment_id = a.assessment_id AND mysub.student_id = ?";
+        array_unshift($params, $studentId);
         $studentSelect = ",
             COUNT(DISTINCT mysub.submission_id) AS my_attempts,
             MAX(CASE WHEN mysub.status IN ('submitted','graded') THEN mysub.score END) AS my_best_score,
@@ -248,6 +249,11 @@ if ($method === 'PUT') {
         jsonError('Assessment not found.', 404);
     }
 
+    if ($db->fetchOne('SELECT submission_id FROM assessment_submissions WHERE assessment_id=? LIMIT 1', [$id])) {
+        foreach (['passing_score','time_limit_mins','max_attempts','assessment_type'] as $field) {
+            if (isset($body[$field]) && (string)$body[$field] !== (string)$existing[$field]) jsonError('Grading rules are locked after the first attempt. Create another assessment to change them.', 409);
+        }
+    }
     $title        = optionalField($body, 'title',           $existing['title']);
     $type         = optionalField($body, 'assessment_type', $existing['assessment_type']);
     $systemId     = optionalField($body, 'system_id',       $existing['system_id']);
@@ -281,19 +287,31 @@ if ($method === 'PUT') {
     jsonSuccess(null, 'Assessment updated successfully.');
 }
 
-// ── DELETE: Delete assessment ───────────────────────────────────
+// ── DELETE: Archive or delete assessment ────────────────────────
 if ($method === 'DELETE') {
     requireTeacher();
     $id = getIdParam();
 
-    $existing = $db->fetchOne("SELECT assessment_id FROM assessments WHERE assessment_id = ?", [$id]);
+    $existing = $db->fetchOne("SELECT assessment_id, status FROM assessments WHERE assessment_id = ?", [$id]);
     if (!$existing) {
         jsonError('Assessment not found.', 404);
     }
 
-    // Cascade deletes questions and answer options via schema foreign keys
-    $db->query("DELETE FROM assessments WHERE assessment_id = ?", [$id]);
-    jsonSuccess(null, 'Assessment deleted successfully.');
+    // Check if any student submissions exist — if so, soft-archive to preserve grade data
+    $submissionCount = $db->fetchOne(
+        "SELECT COUNT(*) AS c FROM assessment_submissions WHERE assessment_id = ?",
+        [$id]
+    );
+
+    if ((int)($submissionCount['c'] ?? 0) > 0) {
+        // Soft-archive: preserve all questions, submissions, and scores
+        $db->query("UPDATE assessments SET status = 'closed', updated_at = NOW() WHERE assessment_id = ?", [$id]);
+        jsonSuccess(null, 'Assessment archived (student submissions preserved).');
+    } else {
+        // No submissions — safe to hard delete
+        $db->query("DELETE FROM assessments WHERE assessment_id = ?", [$id]);
+        jsonSuccess(null, 'Assessment deleted permanently (no submissions existed).');
+    }
 }
 
 jsonError('Method not allowed.', 405);

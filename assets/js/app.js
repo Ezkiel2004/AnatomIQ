@@ -6,12 +6,7 @@
 
 // ── API Base Path ──────────────────────────────────────────────
 // Resolves correctly whether we're in /student/, /teacher/, or root.
-const API_BASE = (() => {
-    const parts = window.location.pathname.split('/');
-    const idx   = parts.findIndex(p => p.toLowerCase() === 'prototype2');
-    const base  = idx !== -1 ? parts.slice(0, idx + 1).join('/') : '';
-    return base + '/api';
-})();
+const API_BASE = new URL('../../api', document.currentScript.src).pathname;
 
 // ── Session Management ──────────────────────────────────────────
 const Auth = {
@@ -108,12 +103,7 @@ const Auth = {
 
     _redirectToLogin() {
         // Determine correct path depth
-        const parts = window.location.pathname.split('/');
-        const depth = parts.findIndex(p => p.toLowerCase() === 'prototype2');
-        const base  = depth !== -1
-            ? parts.slice(0, depth + 1).join('/')
-            : '';
-        window.location.href = base + '/index.html';
+        window.location.href = API_BASE.replace(/\/api$/, '') + '/index.html';
     },
 
     _populateUserUI(user) {
@@ -144,9 +134,17 @@ const Auth = {
 const Sidebar = {
     init() {
         const sidebar   = document.querySelector('.sidebar');
-        const toggleBtn = document.querySelector('.topbar-toggle');
+        const toggleBtn = document.querySelector('#sidebarToggle, .topbar-toggle');
         const overlay   = document.querySelector('.sidebar-overlay');
         if (!sidebar) return;
+        const syncToggle = () => {
+            const open = window.innerWidth > 1024 ? !sidebar.classList.contains('collapsed') : sidebar.classList.contains('mobile-open');
+            toggleBtn?.setAttribute('aria-expanded', String(open));
+            toggleBtn?.setAttribute('aria-controls', sidebar.id);
+            toggleBtn?.setAttribute('aria-label', open ? 'Close sidebar' : 'Open sidebar');
+        };
+        syncToggle();
+        window.addEventListener('resize', syncToggle);
 
         // Desktop collapse / Mobile drawer
         toggleBtn?.addEventListener('click', () => {
@@ -162,12 +160,22 @@ const Sidebar = {
                 sidebar.classList.toggle('mobile-open');
                 overlay?.classList.toggle('visible');
             }
+            syncToggle();
         });
 
         // Close on overlay click or swipe
         overlay?.addEventListener('click', () => {
             sidebar.classList.remove('mobile-open');
             overlay.classList.remove('visible');
+            syncToggle();
+        });
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape' && sidebar.classList.contains('mobile-open')) {
+                sidebar.classList.remove('mobile-open');
+                overlay?.classList.remove('visible');
+                syncToggle();
+                toggleBtn?.focus();
+            }
         });
 
         // Swipe left to close on mobile
@@ -178,6 +186,7 @@ const Sidebar = {
             if (delta > 60) {
                 sidebar.classList.remove('mobile-open');
                 overlay?.classList.remove('visible');
+                syncToggle();
             }
         }, { passive: true });
 
@@ -185,9 +194,10 @@ const Sidebar = {
         const currentFile = window.location.pathname.split('/').pop();
         document.querySelectorAll('.nav-item').forEach(link => {
             const href = link.getAttribute('href');
-            if (href && href.split('/').pop() === currentFile) {
-                link.classList.add('active');
-            }
+            const active = Boolean(href && new URL(href, location.href).pathname.split('/').pop() === currentFile);
+            link.classList.toggle('active', active);
+            if (active) link.setAttribute('aria-current', 'page');
+            else link.removeAttribute('aria-current');
         });
     }
 };
@@ -223,9 +233,9 @@ const Notifications = {
         }
 
         list.innerHTML = this.items.slice(0, 6).map(n => `
-            <div class="notif-item ${n.unread ? 'unread' : ''}" onclick="Notifications.markRead(${n.id})">
+            <div class="notif-item ${n.unread ? 'unread' : ''}" onclick="Notifications.markRead('${n.id}')">
                 <div class="notif-item-icon" style="background:${n.bg || 'rgba(59,130,246,0.15)'};display:flex;align-items:center;justify-content:center;color:var(--text-secondary);">
-                    ${n.icon || '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>'}
+                    ${n.icon || '<svg width="15" height="15" class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#bell"/></svg>'}
                 </div>
                 <div class="notif-item-content">
                     <div class="notif-item-title">${escHtml(n.title)}</div>

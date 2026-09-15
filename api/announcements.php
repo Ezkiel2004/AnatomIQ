@@ -22,11 +22,7 @@ if ($method === 'GET') {
 
     if ($user['role'] === 'student') {
         // Students see only published announcements intended for them
-        $studentSection = $db->fetchOne(
-            "SELECT LOWER(REPLACE(section, 'Grade 10 – ', '')) AS sec FROM student_profiles WHERE user_id = ?",
-            [$user['user_id']]
-        );
-        $secCode = $studentSection ? 'section_' . $studentSection['sec'] : '';
+        $secCode = studentAudience((int)$user['user_id']);
 
         $sql = "SELECT a.announcement_id, a.teacher_id, a.title, a.body, a.category, a.audience,
                        a.is_pinned, a.is_published, a.created_at, a.updated_at,
@@ -98,15 +94,11 @@ if ($method === 'GET') {
             if ($ann['audience'] === 'all') {
                 $ann['target_count'] = $totalStudents;
             } else {
-                $secName = match($ann['audience']) {
-                    'section_narra'  => 'Grade 10 – Narra',
-                    'section_molave' => 'Grade 10 – Molave',
-                    'section_dao'    => 'Grade 10 – Dao',
-                    default          => ''
-                };
+                // Match the exact section name stored in the audience key.
+                $secSuffix = str_starts_with($ann['audience'], 'section:') ? substr($ann['audience'], 8) : '';
                 $ann['target_count'] = (int)($db->fetchOne(
                     "SELECT COUNT(*) AS c FROM student_profiles WHERE section = ?",
-                    [$secName]
+                    [$secSuffix]
                 )['c'] ?? 0);
             }
 
@@ -145,8 +137,8 @@ if ($method === 'POST') {
     $validCats = ['general', 'lesson', 'quiz', 'urgent', 'event'];
     if (!in_array($category, $validCats)) $category = 'general';
 
-    $validAud = ['all', 'section_narra', 'section_molave', 'section_dao'];
-    if (!in_array($audience, $validAud)) $audience = 'all';
+    // Audience: 'all' or 'section_<name>' (dynamically generated from student sections in DB)
+    validateAudience($audience);
 
     $db->query(
         "INSERT INTO announcements (teacher_id, title, body, category, audience, is_pinned, is_published, created_at)
@@ -182,6 +174,7 @@ if ($method === 'PUT') {
     $bodyText = isset($body['body']) ? trim($body['body']) : $existing['body'];
     $category = $body['category'] ?? $existing['category'];
     $audience = $body['audience'] ?? $existing['audience'];
+    if (isset($body['audience']) && $body['audience'] !== $existing['audience']) validateAudience($audience);
     $isPinned = isset($body['is_pinned']) ? (int)(bool)$body['is_pinned'] : (int)$existing['is_pinned'];
     $isPub    = isset($body['is_published']) ? (int)(bool)$body['is_published'] : (int)$existing['is_published'];
 

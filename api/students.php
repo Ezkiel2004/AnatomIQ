@@ -13,6 +13,7 @@ require_once __DIR__ . '/helpers.php';
 requireTeacher();
 
 $db     = Database::getInstance();
+foreach ($db->fetchAll("SELECT user_id FROM users WHERE role='student'") as $studentRow) _updateProgressSummary((int)$studentRow['user_id'], $db);
 $method = $_SERVER['REQUEST_METHOD'];
 
 // ── GET ─────────────────────────────────────────────────────────
@@ -117,6 +118,7 @@ if ($method === 'GET') {
         $params
     );
 
+    $policy = gradingPolicy();
     // Calculate percentage and status for each student
     foreach ($students as &$s) {
         $s['user_id']           = (int) $s['user_id'];
@@ -131,9 +133,9 @@ if ($method === 'GET') {
         // Determine risk / performance status
         if (!$s['is_active']) {
             $s['performance_status'] = 'inactive';
-        } elseif ($s['avg_quiz_score'] !== null && $s['avg_quiz_score'] >= 90) {
+        } elseif ($s['avg_quiz_score'] !== null && $policy['grade_a'] !== null && $s['avg_quiz_score'] >= $policy['grade_a']) {
             $s['performance_status'] = 'top';
-        } elseif ($s['avg_quiz_score'] !== null && $s['avg_quiz_score'] < 70) {
+        } elseif ($s['avg_quiz_score'] !== null && $policy['passing_score'] !== null && $s['avg_quiz_score'] < $policy['passing_score']) {
             $s['performance_status'] = 'at-risk';
         } else {
             $s['performance_status'] = 'normal';
@@ -159,11 +161,15 @@ if ($method === 'POST') {
     $fullName  = requireField($body, 'full_name', 'Full name');
     $schoolId  = requireField($body, 'school_id', 'Student ID number');
     $section   = requireField($body, 'section', 'Section');
-    $password  = optionalField($body, 'password', 'student123');
+    $password  = requireField($body, 'password', 'Password');
     $email     = optionalField($body, 'email', null);
-    $grade     = optionalField($body, 'grade_level', 'Grade 10');
+    $grade     = requireField($body, 'grade_level', 'Grade level');
     $guardian  = optionalField($body, 'guardian_name', null);
     $contact   = optionalField($body, 'contact_no', null);
+
+    if (!is_string($password) || strlen($password) < 8) jsonError('Password must contain at least 8 characters.', 422);
+    $schoolYear = requireField($body, 'school_year', 'School year');
+    if ($email && !filter_var($email, FILTER_VALIDATE_EMAIL)) jsonError('Enter a valid email address.', 422);
 
     // Check unique username and student_id
     $exist = $db->fetchOne("SELECT user_id FROM users WHERE username = ?", [$username]);
@@ -185,9 +191,9 @@ if ($method === 'POST') {
         $userId = (int) $pdo->lastInsertId();
 
         $db->query(
-            "INSERT INTO student_profiles (user_id, student_id, section, grade_level, guardian_name, contact_no)
-             VALUES (?, ?, ?, ?, ?, ?)",
-            [$userId, $schoolId, $section, $grade, $guardian, $contact]
+            "INSERT INTO student_profiles (user_id, student_id, section, grade_level, guardian_name, contact_no, school_year)
+             VALUES (?, ?, ?, ?, ?, ?, ?)",
+            [$userId, $schoolId, $section, $grade, $guardian, $contact, $schoolYear]
         );
 
         // Initialize progress summary record dynamically

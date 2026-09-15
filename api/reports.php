@@ -10,6 +10,7 @@ require_once __DIR__ . '/helpers.php';
 requireTeacher();
 
 $db = Database::getInstance();
+foreach ($db->fetchAll("SELECT user_id FROM users WHERE role='student'") as $studentRow) _updateProgressSummary((int)$studentRow['user_id'], $db);
 
 // ── 1. Fetch Students with Cached & Computed Stats ──────────────────
 $students = $db->fetchAll(
@@ -30,6 +31,7 @@ $students = $db->fetchAll(
 );
 
 $totalStudents = count($students);
+$policy = gradingPolicy();
 
 // Assign ranks, letter grades, and academic statuses
 $rank = 1;
@@ -42,29 +44,33 @@ foreach ($students as &$s) {
     if ($score === null) {
         $s['grade'] = '—';
         $s['status_label'] = 'Not Started';
-    } elseif ($score >= 90) {
+    } elseif ($policy['grade_a'] === null || $policy['grade_b'] === null || $policy['grade_c'] === null || $policy['grade_d'] === null) {
+        $s['grade'] = '—';
+    } elseif ($score >= $policy['grade_a']) {
         $s['grade'] = 'A';
-    } elseif ($score >= 80) {
+    } elseif ($score >= $policy['grade_b']) {
         $s['grade'] = 'B';
-    } elseif ($score >= 70) {
+    } elseif ($score >= $policy['grade_c']) {
         $s['grade'] = 'C';
-    } elseif ($score >= 60) {
+    } elseif ($score >= $policy['grade_d']) {
         $s['grade'] = 'D';
     } else {
         $s['grade'] = 'F';
     }
 
     if ($score !== null) {
-        if ($score >= 75) {
+        if ($policy['passing_score'] === null || $policy['support_score'] === null) {
+            $s['status_label'] = 'Policy not configured';
+        } elseif ($score >= $policy['passing_score']) {
             $s['status_label'] = 'Passed';
-        } elseif ($score >= 60) {
+        } elseif ($score >= $policy['support_score']) {
             $s['status_label'] = 'At Risk';
         } else {
             $s['status_label'] = 'Needs Support';
         }
     }
 
-    $s['section_short'] = trim(str_replace('Grade 10 – ', '', $s['section']));
+    $s['section_short'] = $s['section'];
 }
 unset($s);
 
@@ -128,12 +134,12 @@ if (isset($_GET['format']) && strtolower($_GET['format']) === 'csv') {
 
 // 1. Overall Metrics
 $totalQuizzes = (int)($db->fetchOne("SELECT COUNT(*) AS c FROM assessments WHERE status = 'active'")['c'] ?? 0);
-$totalSubmissions = (int)($db->fetchOne("SELECT COUNT(*) AS c FROM assessment_submissions WHERE status IN ('submitted','graded')")['c'] ?? 0);
+$totalSubmissions = (int)($db->fetchOne("SELECT COUNT(DISTINCT sub.student_id, sub.assessment_id) AS c FROM assessment_submissions sub JOIN assessments a ON a.assessment_id=sub.assessment_id JOIN users u ON u.user_id=sub.student_id WHERE sub.status IN ('submitted','graded') AND a.status='active' AND u.is_active=1")['c'] ?? 0);
 $possibleSubmissions = max(1, $totalQuizzes * max(1, $totalStudents));
 $submissionRate = round(($totalSubmissions / $possibleSubmissions) * 100, 1);
 
 $avgScoreRow = $db->fetchOne("SELECT AVG(avg_quiz_score) AS avg_s FROM student_progress_summary WHERE avg_quiz_score IS NOT NULL");
-$classAvgScore = $avgScoreRow['avg_s'] !== null ? round((float)$avgScoreRow['avg_s'], 1) : 0.0;
+$classAvgScore = $avgScoreRow['avg_s'] !== null ? round((float)$avgScoreRow['avg_s'], 1) : null;
 
 $passedCount = 0;
 $atRiskCount = 0;
@@ -165,7 +171,7 @@ $sections = $db->fetchAll(
 foreach ($sections as $sec) {
     $sectionStats[] = [
         'section'       => $sec['section'],
-        'short_name'    => trim(str_replace('Grade 10 – ', '', $sec['section'])),
+        'short_name'    => $sec['section'],
         'student_count' => (int)$sec['student_count'],
         'avg_score'     => round((float)$sec['avg_score'], 1),
         'avg_lessons'   => round((float)$sec['avg_lessons'], 1)
@@ -185,7 +191,11 @@ $systemScores = $db->fetchAll(
      ORDER BY bs.sort_order ASC"
 );
 
+$scoreTrend = $db->fetchAll("SELECT DATE(submitted_at) AS day, ROUND(AVG(score),1) AS score FROM assessment_submissions WHERE status IN ('submitted','graded') GROUP BY DATE(submitted_at) ORDER BY day DESC LIMIT 14");
+$scoreTrend = array_reverse($scoreTrend);
 jsonSuccess([
+    'score_trend' => $scoreTrend,
+    'grading_policy' => $policy,
     'summary' => [
         'class_average_score'    => $classAvgScore,
         'submission_rate_pct'    => min(100.0, $submissionRate),

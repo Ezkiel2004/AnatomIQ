@@ -3,10 +3,10 @@
  * AnatomIQ – Database Connection Configuration
  */
 
-define('DB_HOST',     'localhost');
-define('DB_NAME',     'anatomiq_db');
-define('DB_USER',     'root');       // Change to your MySQL username
-define('DB_PASS',     '');           // Change to your MySQL password
+define('DB_HOST', getenv('ANATOMIQ_DB_HOST') ?: '127.0.0.1');
+define('DB_NAME', getenv('ANATOMIQ_DB_NAME') ?: 'anatomiq_db');
+define('DB_USER', getenv('ANATOMIQ_DB_USER') ?: 'root');       // Change to your MySQL username
+define('DB_PASS', getenv('ANATOMIQ_DB_PASS') ?: '');           // Change to your MySQL password
 define('DB_CHARSET',  'utf8mb4');
 
 class Database {
@@ -23,7 +23,7 @@ class Database {
         try {
             $this->pdo = new PDO($dsn, DB_USER, DB_PASS, $options);
         } catch (PDOException $e) {
-            die(json_encode(['error' => 'Database connection failed: ' . $e->getMessage()]));
+            throw new RuntimeException('Database unavailable. Check the database service and configuration.', 0, $e);
         }
     }
 
@@ -70,8 +70,9 @@ class Database {
         return (int) $this->pdo->lastInsertId();
     }
 
-    public function lastInsertId(): string {
-        return $this->pdo->lastInsertId();
+    /** Returns the ID of the last inserted row. */
+    public function lastInsertId(): int {
+        return (int) $this->pdo->lastInsertId();
     }
 }
 
@@ -82,7 +83,7 @@ class Auth {
             session_set_cookie_params([
                 'lifetime' => 0,
                 'path'     => '/',
-                'secure'   => false, // Set true in production with HTTPS
+                'secure'   => !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off', // Set true in production with HTTPS
                 'httponly' => true,
                 'samesite' => 'Lax',
             ]);
@@ -100,12 +101,15 @@ class Auth {
              FROM users u
              LEFT JOIN student_profiles sp ON u.user_id = sp.user_id
              LEFT JOIN teacher_profiles tp ON u.user_id = tp.user_id
-             WHERE u.username = ? AND u.is_active = 1",
-            [$username]
+             WHERE (u.username = ? OR (u.role = 'student' AND sp.student_id = ?)) AND u.is_active = 1
+             ORDER BY (u.username = ?) DESC LIMIT 1",
+            [$username, $username, $username]
         );
 
         if ($user && password_verify($password, $user['password_hash'])) {
+            session_regenerate_id(true);
             $_SESSION['user_id']   = $user['user_id'];
+            $_SESSION['credential_stamp'] = hash('sha256', $user['password_hash']);
             $_SESSION['username']  = $user['username'];
             $_SESSION['role']      = $user['role'];
             $_SESSION['full_name'] = $user['full_name'];

@@ -7,87 +7,23 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="../assets/css/global.css"/>
-  <link rel="stylesheet" href="../assets/css/sidebar.css"/>
+  <link rel="stylesheet" href="../assets/css/global.css?v=20260914-icons1"/>
+  <link rel="stylesheet" href="../assets/css/sidebar.css?v=20260914-bg1"/>
   <link rel="stylesheet" href="../assets/css/student.css"/>
+  <link rel="stylesheet" href="../assets/css/teacher-dashboard.css?v=20260914-icons1"/>
 </head>
-<body>
+<body class="teacher-dashboard student-dashboard">
 <div class="app-layout">
 
   <!-- Student Sidebar -->
-  <aside class="sidebar" id="sidebar">
-    <div class="sidebar-logo">
-      <div class="sidebar-logo-icon">
-        <svg viewBox="0 0 60 60" fill="none">
-          <path d="M30 12C30 12,22 18,22 26C22 30,25 33,30 33C35 33,38 30,38 26C38 18,30 12,30 12Z" fill="#ffffff" opacity="0.9"/>
-          <path d="M30 33L30 48" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
-          <path d="M22 40L30 37L38 40" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-      </div>
-      <div class="sidebar-logo-text">
-        <div class="sidebar-logo-name">AnatomIQ</div>
-        <div class="sidebar-logo-sub">Student Portal</div>
-      </div>
-    </div>
-    <nav class="sidebar-nav">
-      <div class="nav-section-label">Learning</div>
-      <a class="nav-item active" href="dashboard.html" data-tooltip="Dashboard">
-        <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></span>
-        <span class="nav-label">Dashboard</span>
-      </a>
-      <a class="nav-item" href="anatomy.html" data-tooltip="3D Anatomy">
-        <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><line x1="2" y1="12" x2="22" y2="12"/></svg></span>
-        <span class="nav-label">3D Anatomy Explorer</span>
-      </a>
-      <a class="nav-item" href="lessons.html" data-tooltip="Lessons">
-        <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
-        <span class="nav-label">My Lessons</span>
-      </a>
-      <a class="nav-item" href="quiz.html" data-tooltip="Quizzes">
-        <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span>
-        <span class="nav-label">Quizzes and Activities</span>
-        <span class="nav-badge" style="display:none;">0</span>
-      </a>
-      <div class="nav-section-label">My Progress</div>
-      <a class="nav-item" href="progress.html" data-tooltip="Progress">
-        <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>
-        <span class="nav-label">My Progress</span>
-      </a>
-      <a class="nav-item" href="scores.html" data-tooltip="Scores">
-        <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
-        <span class="nav-label">My Scores</span>
-      </a>
-      <a class="nav-item" href="notifications.html" data-tooltip="Notifications">
-        <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3z"/></svg></span>
-        <span class="nav-label">Notifications</span>
-        <span class="nav-badge" style="display:none;">0</span>
-      </a>
-      <div class="nav-section-label">Account</div>
-      <a class="nav-item" href="settings.html">
-        <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span>
-        <span class="nav-label">Settings and Profile</span>
-      </a>
-    </nav>
-    <div class="sidebar-footer">
-      <div class="user-card" onclick="window.location.href='settings.html'" style="cursor:pointer;" title="Go to Settings">
-        <div class="avatar">MS</div>
-        <div class="user-info">
-          <div class="user-name">Maria Santos</div>
-          <div class="user-role">Grade 10 – Narra</div>
-        </div>
-        <button class="logout-btn" onclick="event.stopPropagation(); Auth.logout();" title="Log Out">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
-        </button>
-      </div>
-    </div>
-  </aside>
+  <aside class="sidebar" id="sidebar" data-portal="student" aria-label="Student portal"><script src="../assets/js/sidebar.js?v=20260914-icons1"></script></aside>
 
   <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
   <main class="main-content" id="mainContent">
     <header class="topbar">
       <button class="topbar-toggle" id="sidebarToggle">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        <svg class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#list"/></svg>
       </button>
       <div class="topbar-breadcrumb">
         <span class="breadcrumb-item">Student Portal</span>
@@ -96,8 +32,8 @@
       </div>
       <div class="topbar-actions">
         <div style="position:relative;">
-          <button class="notif-btn" id="notifBtn">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3zm-8.27 4a2 2 0 0 1-3.46 0"/></svg>
+          <button class="notif-btn" id="notifBtn" aria-label="Notifications">
+            <svg class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#bell"/></svg>
             <span class="notif-dot"></span>
           </button>
           <div class="notif-dropdown" id="notifDropdown" style="display:none;">
@@ -109,8 +45,8 @@
         <a href="settings.html" class="topbar-user" style="text-decoration:none;color:inherit;" title="Manage Account">
           <div class="avatar" style="width:32px;height:32px;font-size:0.7rem;">MS</div>
           <div>
-            <div class="topbar-user-name">Maria Santos</div>
-            <div class="topbar-user-role">Grade 10 – Narra</div>
+            <div class="topbar-user-name">Student</div>
+            <div class="topbar-user-role">Student</div>
           </div>
         </a>
       </div>
@@ -121,21 +57,29 @@
       <!-- Welcome -->
       <div class="page-header">
         <div class="page-header-left">
-          <h2 id="welcomeGreeting">Welcome back</h2>
+          <h1 id="welcomeGreeting">Welcome back</h1>
           <p>Track your learning progress, scores, and upcoming activities.</p>
         </div>
         <div class="page-header-right">
-          <a href="anatomy.html" class="btn btn-primary">
+          <div class="dashboard-date"><svg class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#calendar"/></svg><span id="currentDate"></span></div>
+          <a href="anatomy.html" class="btn btn-primary btn-sm">
+            <svg class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#cube"/></svg>
             Explore 3D Anatomy
           </a>
         </div>
       </div>
 
+      <section class="card anatomy-shortcut" aria-labelledby="anatomyShortcutTitle">
+        <span class="anatomy-shortcut-icon"><svg class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#stack"/></svg></span>
+        <div class="anatomy-shortcut-copy"><h2 id="anatomyShortcutTitle">3D Anatomy Explorer</h2><p>Interact with 3D human body models, explore structures, and practice anatomical identification.</p></div>
+        <a href="anatomy.html" class="btn btn-primary">Explore 3D Anatomy <svg class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#arrow-right"/></svg></a>
+      </section>
+
       <!-- Progress Overview -->
       <div class="stats-grid">
         <div class="stat-card">
           <div class="stat-icon blue">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px;"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            <svg style="width:20px;height:20px;" class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#book-open"/></svg>
           </div>
           <div class="stat-info">
             <div class="stat-value" id="dashOverallProgress">0%</div>
@@ -145,17 +89,17 @@
         </div>
         <div class="stat-card">
           <div class="stat-icon green">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px;"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <svg style="width:20px;height:20px;" class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#cube"/></svg>
           </div>
           <div class="stat-info">
-            <div class="stat-value" id="dashSystemsExplored">0/9</div>
+            <div class="stat-value" id="dashSystemsExplored">?</div>
             <div class="stat-label">Systems Explored</div>
             <div class="stat-change up">3D viewer sessions</div>
           </div>
         </div>
         <div class="stat-card">
           <div class="stat-icon gold">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px;"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            <svg style="width:20px;height:20px;" class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#chart-bar"/></svg>
           </div>
           <div class="stat-info">
             <div class="stat-value" id="dashAvgScore">—</div>
@@ -165,7 +109,7 @@
         </div>
         <div class="stat-card">
           <div class="stat-icon red">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <svg style="width:20px;height:20px;" class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#file-text"/></svg>
           </div>
           <div class="stat-info">
             <div class="stat-value" id="dashPendingCount">0</div>
@@ -235,7 +179,7 @@
   </main>
 </div>
 
-<script src="../assets/js/app.js?v=20260906b"></script>
+<script src="../assets/js/app.js?v=20260914-icons1"></script>
 <script>
 'use strict';
 Auth.requireAuthSync('student');
@@ -256,7 +200,7 @@ async function loadStudentDashboard() {
     // Overview Stats
     document.getElementById('dashOverallProgress').textContent = `${p.overall_progress}%`;
     document.getElementById('dashCompletedCount').textContent = `${p.completed_lessons} of ${p.total_lessons} lessons`;
-    document.getElementById('dashSystemsExplored').textContent = `${p.systems_explored}/9`;
+    document.getElementById('dashSystemsExplored').textContent = `${p.systems_explored}/${result.data.systems.length}`;
     document.getElementById('dashAvgScore').textContent = p.avg_quiz_score !== null ? `${Math.round(p.avg_quiz_score)}%` : '—';
     document.getElementById('dashQuizzesTaken').textContent = `${p.quizzes_taken} taken (${p.quizzes_passed} passed)`;
     const pendingCount = (data.pending_assessments_count !== undefined) ? data.pending_assessments_count : (data.upcoming_assessments || []).length;
@@ -326,7 +270,7 @@ async function loadStudentDashboard() {
     `).join('');
 
     // Dynamic Achievements
-    renderDynamicAchievements(p);
+    renderDynamicAchievements(result.data.achievements || []);
 
     // Score Chart and Recent Table
     loadRecentScoresAndChart();
@@ -336,22 +280,11 @@ async function loadStudentDashboard() {
   }
 }
 
-function renderDynamicAchievements(p) {
-  const achs = [
-    { name:'Top Scorer',    earned: p.avg_quiz_score !== null && p.avg_quiz_score >= 90 },
-    { name:'Active Streak', earned: p.completed_lessons >= 3 },
-    { name:'3D Explorer',   earned: p.systems_explored >= 3 },
-    { name:'Mastery Pass',  earned: p.quizzes_passed >= 1 },
-    { name:'Bookworm',      earned: p.completed_lessons >= 6 },
-    { name:'Dedicated',     earned: p.total_time_hours >= 2 },
-    { name:'All Systems',   earned: p.systems_explored >= 9 },
-    { name:'Quiz Veteran',  earned: p.quizzes_taken >= 5 },
-    { name:'Champion',      earned: p.overall_progress >= 90 },
-  ];
-
+function renderDynamicAchievements(achs) {
+  if (!achs.length) { document.getElementById('achievementList').textContent = 'No achievement goals configured yet.'; return; }
   document.getElementById('achievementList').innerHTML = achs.map(a => `
     <div style="text-align:center;padding:var(--space-2) var(--space-3);border-radius:var(--radius-md);background:${a.earned ? 'var(--brand-light)' : 'var(--bg-inset)'};border:1px solid ${a.earned ? 'var(--brand)' : 'var(--border-light)'};opacity:${a.earned ? 1 : 0.4};">
-      <div style="font-size:0.75rem;font-weight:600;color:${a.earned ? 'var(--brand)' : 'var(--text-muted)'};">${a.name}</div>
+      <div style="font-size:0.75rem;font-weight:600;color:${a.earned ? 'var(--brand)' : 'var(--text-muted)'};">${escHtml(a.name)}</div>
     </div>
   `).join('');
 }
@@ -368,8 +301,8 @@ async function loadRecentScoresAndChart() {
     if (!subs.length) {
       tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;padding:2rem;color:var(--text-muted);">No quiz submissions yet. Take your first quiz today.</td></tr>';
       drawLineChart('scoreChart', {
-        labels: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5'],
-        datasets: [{ values: [0, 0, 0, 0, 0], color: '#1a6b4a' }]
+        labels: [],
+        datasets: [{ values: [], color: '#1a6b4a' }]
       });
       return;
     }
@@ -407,10 +340,13 @@ async function loadRecentScoresAndChart() {
 let _cachedScoreData = null;
 
 // ── Init ────────────────────────────────────────────────────────
+const dEl = document.getElementById('currentDate');
+if (dEl) dEl.textContent = new Date().toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
 loadStudentDashboard();
 initChartResize(() => {
   if (_cachedScoreData) drawLineChart('scoreChart', _cachedScoreData);
 });
 </script>
+<script src="../assets/js/site-config.js"></script>
 </body>
 </html>

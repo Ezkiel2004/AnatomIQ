@@ -33,11 +33,12 @@ if ($method === 'GET') {
         'media'       => (int) ($db->fetchOne("SELECT COUNT(*) AS c FROM media_files")['c'] ?? 0),
     ];
 
+    $settings = schoolSettings();
     $systemInfo = [
         'php_version'   => PHP_VERSION,
         'server_time'   => date('Y-m-d H:i:s'),
-        'school_name'   => 'Lubang National High School',
-        'academic_year' => '2024-2025',
+        'school_name'   => $settings['school_name'] ?? '',
+        'academic_year' => $settings['academic_year'] ?? '',
         'database'      => 'MySQL / MariaDB (Connected)',
         'counts'        => $counts,
     ];
@@ -66,12 +67,14 @@ if ($method === 'PUT') {
         if (!password_verify($curPass, $currentUser['password_hash'])) {
             jsonError('Current password does not match.', 422);
         }
-        if (strlen($newPass) < 6) {
-            jsonError('New password must be at least 6 characters long.', 422);
+        if (strlen($newPass) < 8) {
+            jsonError('New password must be at least 8 characters long.', 422);
         }
 
         $newHash = password_hash($newPass, PASSWORD_BCRYPT, ['cost' => 12]);
         $db->query("UPDATE users SET password_hash = ? WHERE user_id = ?", [$newHash, $user['user_id']]);
+        $_SESSION['credential_stamp'] = hash('sha256', $newHash);
+        session_regenerate_id(true);
     }
 
     // Update basic info

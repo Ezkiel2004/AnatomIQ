@@ -16,15 +16,18 @@ $db   = Database::getInstance();
 $body = getJsonBody();
 
 $submissionId  = (int) requireField($body, 'submission_id', 'Submission ID');
-$timeTakenSecs = (int) optionalField($body, 'time_taken_secs', 0);
+
 $answers       = optionalField($body, 'answers', []);
 
+if (!is_array($answers)) jsonError('Invalid answers.', 422);
+$pdo = $db->getConnection();
+$pdo->beginTransaction();
 // Verify submission belongs to this student and is in_progress
 $submission = $db->fetchOne(
-    "SELECT sub.*, a.passing_score, a.assessment_id, a.title AS assessment_title
+    "SELECT sub.*, TIMESTAMPDIFF(SECOND, sub.started_at, NOW()) AS elapsed_seconds, sub.deadline_at IS NOT NULL AND sub.deadline_at <= NOW() AS expired, a.passing_score, a.assessment_id, a.title AS assessment_title
      FROM assessment_submissions sub
      JOIN assessments a ON a.assessment_id = sub.assessment_id
-     WHERE sub.submission_id = ? AND sub.student_id = ?",
+     WHERE sub.submission_id = ? AND sub.student_id = ? FOR UPDATE",
     [$submissionId, $user['user_id']]
 );
 
@@ -33,9 +36,14 @@ if (!$submission) {
 }
 
 if ($submission['status'] !== 'in_progress') {
-    jsonError('This assessment attempt has already been submitted and graded.', 400);
+    $pdo->commit();
+    $rows = $db->fetchAll('SELECT ar.question_id, q.question_text, q.question_type, ar.is_correct, ar.points_earned, q.points AS points_max FROM answer_responses ar JOIN questions q ON q.question_id=ar.question_id WHERE ar.submission_id=? ORDER BY q.sort_order,q.question_id', [$submissionId]);
+    jsonSuccess(['submission_id'=>$submissionId,'assessment_title'=>$submission['assessment_title'],'score'=>(float)$submission['score'],'raw_score'=>(float)$submission['raw_score'],'max_score'=>(float)$submission['max_score'],'passing_score'=>(float)$submission['passing_score'],'passed'=>$submission['score'] >= $submission['passing_score'],'time_taken_secs'=>(int)$submission['time_taken_secs'],'breakdown'=>$rows], 'This attempt was already graded.');
 }
 
+$timeTakenSecs = max(0, (int)$submission['elapsed_seconds']);
+// After the deadline, only answers saved before it are graded.
+if ($submission['expired']) $answers = json_decode($submission['draft_answers'] ?? '[]', true) ?: [];
 $assessmentId = (int) $submission['assessment_id'];
 
 // Load all questions for this assessment
@@ -79,9 +87,6 @@ $totalMaxPoints = 0.00;
 $totalEarned    = 0.00;
 $breakdown      = [];
 
-$pdo = $db->getConnection();
-$pdo->beginTransaction();
-
 try {
     foreach ($questions as $q) {
         $qid        = (int) $q['question_id'];
@@ -111,11 +116,11 @@ try {
                 $target = is_string($q['hotspot_data']) ? json_decode($q['hotspot_data'], true) : $q['hotspot_data'];
                 $targetLabel = strtolower(trim($target['target_label'] ?? ''));
 
-                if ($clicked && !empty($targetLabel)) {
-                    $clickedLabel = strtolower(trim($clicked['label'] ?? $clicked['id'] ?? ''));
-                    if ($clickedLabel === $targetLabel || str_contains($clickedLabel, $targetLabel) || str_contains($targetLabel, $clickedLabel)) {
-                        $isCorrect = true;
-                        $earned    = $pointsMax;
+                if (is_array($clicked) && isset($clicked['x'], $clicked['y'], $target['x'], $target['y'], $target['radius'])) {
+                    $x = (float)$clicked['x']; $y = (float)$clicked['y'];
+                    $distance = sqrt(($x-(float)$target['x'])**2 + ($y-(float)$target['y'])**2);
+                    if ($x >= 0 && $x <= 1 && $y >= 0 && $y <= 1 && $distance <= (float)$target['radius']) {
+                        $isCorrect = true; $earned = $pointsMax;
                     }
                 }
             } elseif ($qType === 'identification' || $qType === 'fill_blank') {

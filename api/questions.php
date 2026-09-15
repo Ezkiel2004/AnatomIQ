@@ -19,6 +19,7 @@ $user   = Auth::getCurrentUser();
 if ($method === 'GET') {
     $assessmentId = getIdParam('assessment_id');
 
+    if ($user['role'] === 'student' && !$db->fetchOne("SELECT assessment_id FROM assessments WHERE assessment_id = ? AND status = 'active'", [$assessmentId])) jsonError('Assessment unavailable.', 403);
     $questions = $db->fetchAll(
         "SELECT question_id, assessment_id, question_text, question_type,
                 image_url, hotspot_data, points, sort_order
@@ -60,7 +61,7 @@ if ($method === 'GET') {
         }
     }
 
-    jsonSuccess($questions);
+    jsonSuccess($user['role'] === 'student' ? studentQuestions($questions) : $questions);
 }
 
 // ── POST: Create question ───────────────────────────────────────
@@ -69,6 +70,7 @@ if ($method === 'POST') {
     $body = getJsonBody();
 
     $assessmentId = (int) requireField($body, 'assessment_id', 'Assessment ID');
+    assertAssessmentEditable($assessmentId);
     $questionText = requireField($body, 'question_text', 'Question text');
     $questionType = optionalField($body, 'question_type', 'multiple_choice');
     $imageUrl     = optionalField($body, 'image_url', null);
@@ -77,6 +79,8 @@ if ($method === 'POST') {
     $sortOrder    = (int) optionalField($body, 'sort_order', 0);
     $options      = optionalField($body, 'options', []);
 
+    validateQuestion($questionType, $hotspotData, $options, $points);
+    if ($imageUrl && !safeMediaUrl($imageUrl)) jsonError('Invalid image URL.', 422);
     if (is_array($hotspotData)) {
         $hotspotData = json_encode($hotspotData, JSON_UNESCAPED_UNICODE);
     }
@@ -128,6 +132,7 @@ if ($method === 'PUT') {
         jsonError('Question not found.', 404);
     }
 
+    assertAssessmentEditable((int)$existing['assessment_id']);
     $questionText = optionalField($body, 'question_text', $existing['question_text']);
     $questionType = optionalField($body, 'question_type', $existing['question_type']);
     $imageUrl     = optionalField($body, 'image_url',     $existing['image_url']);
@@ -136,6 +141,8 @@ if ($method === 'PUT') {
     $sortOrder    = (int) optionalField($body, 'sort_order', $existing['sort_order']);
     $options      = optionalField($body, 'options', null);
 
+    validateQuestion($questionType, $hotspotData, $options, $points);
+    if ($imageUrl && !safeMediaUrl($imageUrl)) jsonError('Invalid image URL.', 422);
     if (is_array($hotspotData)) {
         $hotspotData = json_encode($hotspotData, JSON_UNESCAPED_UNICODE);
     }
@@ -183,11 +190,12 @@ if ($method === 'DELETE') {
     requireTeacher();
     $id = getIdParam();
 
-    $existing = $db->fetchOne("SELECT question_id FROM questions WHERE question_id = ?", [$id]);
+    $existing = $db->fetchOne("SELECT question_id, assessment_id FROM questions WHERE question_id = ?", [$id]);
     if (!$existing) {
         jsonError('Question not found.', 404);
     }
 
+    assertAssessmentEditable((int)$existing['assessment_id']);
     $db->query("DELETE FROM questions WHERE question_id = ?", [$id]);
     jsonSuccess(null, 'Question deleted successfully.');
 }

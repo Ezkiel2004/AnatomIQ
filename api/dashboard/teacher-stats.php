@@ -16,13 +16,14 @@ requireMethod('GET');
 $user = requireTeacher();
 
 $db = Database::getInstance();
+foreach ($db->fetchAll("SELECT user_id FROM users WHERE role='student'") as $studentRow) _updateProgressSummary((int)$studentRow['user_id'], $db);
 
 // 1. Core summary stats
 $totalStudents = (int) ($db->fetchOne("SELECT COUNT(*) AS c FROM users WHERE role = 'student'")['c'] ?? 0);
 $activeStudents = (int) ($db->fetchOne("SELECT COUNT(*) AS c FROM users WHERE role = 'student' AND is_active = 1")['c'] ?? 0);
 
-$classAvg = $db->fetchOne("SELECT ROUND(AVG(score), 1) AS avg_score FROM assessment_submissions WHERE status IN ('submitted', 'graded')");
-$classAverageScore = $classAvg['avg_score'] !== null ? (float) $classAvg['avg_score'] : 0.0;
+$classAvg = $db->fetchOne("SELECT ROUND(AVG(avg_quiz_score), 1) AS avg_score FROM student_progress_summary WHERE avg_quiz_score IS NOT NULL");
+$classAverageScore = $classAvg['avg_score'] !== null ? (float) $classAvg['avg_score'] : null;
 
 $totalModules = (int) ($db->fetchOne("SELECT COUNT(*) AS c FROM modules WHERE status = 'published'")['c'] ?? 0);
 $totalLessons = (int) ($db->fetchOne("SELECT COUNT(*) AS c FROM lessons WHERE status = 'published'")['c'] ?? 0);
@@ -63,6 +64,7 @@ foreach ($systemStats as &$ss) {
 }
 
 // 4. Students needing attention (average quiz < 75% or inactive)
+$policy = gradingPolicy();
 $atRiskStudents = $db->fetchAll(
     "SELECT u.user_id, u.full_name, sp.student_id AS school_id, sp.section,
             COALESCE(sps.avg_quiz_score, 0) AS avg_score,
@@ -70,12 +72,16 @@ $atRiskStudents = $db->fetchAll(
      FROM users u
      JOIN student_profiles sp ON sp.user_id = u.user_id
      LEFT JOIN student_progress_summary sps ON sps.student_id = u.user_id
-     WHERE u.role = 'student' AND (sps.avg_quiz_score < 75 OR u.is_active = 0)
+     WHERE u.role = 'student' AND (sps.avg_quiz_score < ? OR u.is_active = 0)
      ORDER BY sps.avg_quiz_score ASC, u.full_name ASC
-     LIMIT 5"
+     LIMIT 5",
+    [$policy['passing_score']]
 );
 
+$scoreTrend = $db->fetchAll("SELECT DATE(submitted_at) AS day, ROUND(AVG(score),1) AS score FROM assessment_submissions WHERE status IN ('submitted','graded') GROUP BY DATE(submitted_at) ORDER BY day DESC LIMIT 14");
+$scoreTrend = array_reverse($scoreTrend);
 jsonSuccess([
+    'score_trend' => $scoreTrend,
     'stats' => [
         'total_students'      => $totalStudents,
         'active_students'     => $activeStudents,

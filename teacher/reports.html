@@ -7,87 +7,80 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="../assets/css/global.css"/>
-  <link rel="stylesheet" href="../assets/css/sidebar.css"/>
+  <link rel="stylesheet" href="../assets/css/global.css?v=20260914-icons1"/>
+  <link rel="stylesheet" href="../assets/css/sidebar.css?v=20260914-bg1"/>
   <link rel="stylesheet" href="../assets/css/teacher.css"/>
+  <link rel="stylesheet" href="../assets/css/teacher-dashboard.css?v=20260914-icons1"/>
 </head>
-<body>
+<body class="teacher-dashboard">
 <div class="app-layout">
-  <aside class="sidebar" id="sidebar">
-    <div class="sidebar-logo">
-      <div class="sidebar-logo-icon">
-        <svg viewBox="0 0 60 60" fill="none">
-          <path d="M30 12C30 12,22 18,22 26C22 30,25 33,30 33C35 33,38 30,38 26C38 18,30 12,30 12Z" fill="#ffffff" opacity="0.9"/>
-          <path d="M30 33L30 48" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
-          <path d="M22 40L30 37L38 40" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-      </div>
-      <div class="sidebar-logo-text"><div class="sidebar-logo-name">AnatomIQ</div><div class="sidebar-logo-sub">Teacher Portal</div></div>
-    </div>
-    <nav class="sidebar-nav">
-      <div class="nav-section-label">Main</div>
-      <a class="nav-item" href="dashboard.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></span><span class="nav-label">Dashboard</span></a>
-      <a class="nav-item" href="modules.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span><span class="nav-label">Modules & Lessons</span></a>
-      <a class="nav-item" href="students.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></span><span class="nav-label">Students</span><span class="nav-badge">38</span></a>
-      <a class="nav-item" href="assessments.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg></span><span class="nav-label">Assessments</span></a>
-      <div class="nav-section-label">Management</div>
-      <a class="nav-item" href="monitoring.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span><span class="nav-label">Monitoring</span></a>
-      <a class="nav-item active" href="reports.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span><span class="nav-label">Reports</span></a>
-      <a class="nav-item" href="announcements.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3z"/></svg></span><span class="nav-label">Announcements</span></a>
-      <a class="nav-item" href="media.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></span><span class="nav-label">Media Library</span></a>
-    </nav>
-    <div class="sidebar-footer"><div class="user-card"><div class="avatar">CR</div><div class="user-info"><div class="user-name">Mrs. C. Reyes</div><div class="user-role">Science Teacher</div></div><button class="logout-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></button></div></div>
-  </aside>
+  <aside class="sidebar" id="sidebar" data-portal="teacher" aria-label="Teacher portal"><script src="../assets/js/sidebar.js?v=20260914-icons1"></script></aside>
   <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
   <main class="main-content" id="mainContent">
     <header class="topbar">
-      <button class="topbar-toggle" id="sidebarToggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+      <button class="topbar-toggle" id="sidebarToggle"><svg class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#list"/></svg></button>
       <div class="topbar-breadcrumb"><span class="breadcrumb-item">Teacher Portal</span><span class="breadcrumb-sep">/</span><span class="breadcrumb-current">Reports</span></div>
-      <div class="topbar-actions"><div class="topbar-user"><div class="avatar" style="width:32px;height:32px;font-size:0.75rem;">CR</div><div><div class="topbar-user-name">Mrs. C. Reyes</div></div></div></div>
+      <div class="topbar-actions">
+        <div style="position:relative;">
+          <button class="notif-btn" id="notifBtn" aria-label="Notifications">
+            <svg class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#bell"/></svg>
+            <span class="notif-dot"></span>
+          </button>
+          <div class="notif-dropdown" id="notifDropdown" style="display:none;">
+            <div class="notif-header"><span>Notifications</span><a href="#" style="font-size:0.75rem;color:var(--brand);">Mark all read</a></div>
+            <div class="notif-list"></div>
+            <div class="notif-footer"><a href="announcements.html">View all notifications</a></div>
+          </div>
+        </div>
+        <div class="topbar-user">
+          <div class="avatar" style="width:32px;height:32px;font-size:0.7rem;">CR</div>
+          <div>
+            <div class="topbar-user-name">Teacher</div>
+            <div class="topbar-user-role">Science Teacher</div>
+          </div>
+        </div>
+      </div>
     </header>
 
     <div class="page-content">
       <div class="page-header">
         <div class="page-header-left">
-          <h2>Reports & Analytics</h2>
+          <h1>Reports &amp; Analytics</h1>
           <p>Comprehensive performance summaries, class analytics, and exportable academic reports.</p>
         </div>
         <div class="page-header-right">
-          <select class="anatomy-system-select" id="reportPeriod" onchange="updateReports()">
-            <option value="week">This Week</option>
-            <option value="month" selected>This Month</option>
-            <option value="quarter">This Quarter</option>
-            <option value="year">This School Year</option>
-          </select>
           <button class="btn btn-secondary btn-sm" onclick="printReport()">Print / Save PDF</button>
-          <button class="btn btn-primary btn-sm" onclick="exportReport()">Export CSV</button>
+          <button class="btn btn-primary btn-sm" onclick="exportReport()">
+            <svg class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#download-simple"/></svg>
+            Export CSV
+          </button>
         </div>
       </div>
 
       <!-- Key Metrics -->
-      <div class="stats-grid" style="margin-bottom:var(--space-6);">
+      <div class="stats-grid">
         <div class="stat-card">
-          <div class="stat-icon" style="background:#e8f1fb;color:#1e6ca1;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          <div class="stat-icon blue">
+            <svg style="width:20px;height:20px;" class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#chart-bar"/></svg>
           </div>
           <div class="stat-info"><div class="stat-value" id="statClassAvg">—</div><div class="stat-label">Class Average Score</div><div class="stat-change up" id="statClassSub">Overall performance</div></div>
         </div>
         <div class="stat-card">
-          <div class="stat-icon" style="background:var(--brand-light);color:var(--brand);">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <div class="stat-icon green">
+            <svg style="width:20px;height:20px;" class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#check-circle"/></svg>
           </div>
           <div class="stat-info"><div class="stat-value" id="statSubRate">—</div><div class="stat-label">Quiz Submission Rate</div><div class="stat-change up">Active participation</div></div>
         </div>
         <div class="stat-card">
-          <div class="stat-icon" style="background:var(--brand-light);color:var(--brand);">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+          <div class="stat-icon gold">
+            <svg style="width:20px;height:20px;" class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#medal"/></svg>
           </div>
           <div class="stat-info"><div class="stat-value" id="statPassedCount">—</div><div class="stat-label">Students Passed (75%+)</div><div class="stat-change up" id="statPassedPct">Passing cohort</div></div>
         </div>
         <div class="stat-card">
-          <div class="stat-icon" style="background:var(--error-light);color:var(--error);">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <div class="stat-icon red">
+            <svg style="width:20px;height:20px;" class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#warning-circle"/></svg>
           </div>
           <div class="stat-info"><div class="stat-value" id="statInterventionCount">—</div><div class="stat-label">Needs Intervention</div><div class="stat-change down">Below 60% or inactive</div></div>
         </div>
@@ -96,7 +89,7 @@
       <!-- Charts Row -->
       <div class="report-grid">
         <div class="report-chart-card">
-          <div class="report-chart-title">Monthly Score Trend (Class Average)</div>
+          <div class="report-chart-title">Recent Quiz Score Trend (Class Average)</div>
           <div style="height:220px;"><canvas id="trendChart" style="width:100%;height:100%;"></canvas></div>
         </div>
         <div class="report-chart-card">
@@ -126,8 +119,8 @@
         <div class="monitoring-toolbar">
           <div class="section-title" style="margin:0;">Full Class Academic Report</div>
           <div style="display:flex;gap:var(--space-2);">
-            <div class="search-bar" style="width:220px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="text" id="reportSearch" placeholder="Search report..." oninput="filterReport(this.value)"/></div>
-            <button class="btn btn-secondary btn-sm" onclick="exportReport()">Export CSV</button>
+            <div class="search-bar" style="width:220px;"><svg style="width:16px;height:16px;" class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#magnifying-glass"/></svg><input type="text" id="reportSearch" placeholder="Search report..." oninput="filterReport(this.value)"/></div>
+            <button class="btn btn-secondary btn-sm" onclick="exportReport()"><svg class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#download-simple"/></svg> Export CSV</button>
           </div>
         </div>
         <div class="table-wrapper">
@@ -155,7 +148,7 @@
   </main>
 </div>
 
-<script src="../assets/js/app.js"></script>
+<script src="../assets/js/app.js?v=20260914-icons1"></script>
 <script>
 Auth.requireAuthSync('teacher');
 
@@ -173,7 +166,7 @@ async function loadReports() {
 
     // 1. Populate Metric Cards
     const s = reportData.summary || {};
-    document.getElementById('statClassAvg').textContent = (s.class_average_score ?? 0) + '%';
+    document.getElementById('statClassAvg').textContent = s.class_average_score === null ? '—' : s.class_average_score + '%';
     document.getElementById('statSubRate').textContent = (s.submission_rate_pct ?? 0) + '%';
     document.getElementById('statPassedCount').textContent = s.students_passed_count ?? 0;
     document.getElementById('statPassedPct').textContent = (s.passed_pct ?? 0) + '% of enrolled class';
@@ -182,13 +175,8 @@ async function loadReports() {
     // 2. Render Score Distribution
     const dist = reportData.grade_distribution || {};
     const totalSt = s.total_students || 1;
-    const gradeLabels = [
-      { key: 'A', label: 'A (90–100%)', color: '#10b981', textColor: 'var(--teal-400)' },
-      { key: 'B', label: 'B (80–89%)',  color: '#3b82f6', textColor: 'var(--primary-400)' },
-      { key: 'C', label: 'C (70–79%)',  color: '#f59e0b', textColor: 'var(--gold-400)' },
-      { key: 'D', label: 'D (60–69%)',  color: '#ef4444', textColor: 'var(--red-400)' },
-      { key: 'F', label: 'F (<60%)',     color: '#dc2626', textColor: 'var(--red-500)' },
-    ];
+    const policy = reportData.grading_policy || {};
+    const gradeLabels = ['A','B','C','D','F'].map((key,index) => ({key,label: key === 'F' ? (policy.grade_d === null ? 'F (not configured)' : 'F (<'+policy.grade_d+'%)') : (policy['grade_'+key.toLowerCase()] === null ? key+' (not configured)' : key+' (≥'+policy['grade_'+key.toLowerCase()]+'%)'),color:['#10b981','#3b82f6','#f59e0b','#ef4444','#dc2626'][index],textColor:'var(--text-primary)'}));
 
     document.getElementById('distribContainer').innerHTML = gradeLabels.map(g => {
       const count = dist[g.key] ?? 0;
@@ -233,12 +221,11 @@ async function loadReports() {
 }
 
 function renderCharts(data) {
-  // Line chart: Monthly progress trend
+  // Line chart: Progress by recorded submission date
   drawLineChart('trendChart', {
-    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+    labels: (data.score_trend || []).map(p => p.day),
     datasets: [
-      { values: [75, 78, 82, 85, data.summary?.class_average_score || 88], color: '#1a6b4a' },
-      { values: [70, 72, 76, 80, 84], color: '#1e6ca1' }
+      { values: (data.score_trend || []).map(p => Number(p.score)), color: '#1a6b4a' }
     ]
   });
 
@@ -330,5 +317,6 @@ function updateReports() {
 window.addEventListener('load', loadReports);
 initChartResize(() => { if (reportData) renderCharts(reportData); });
 </script>
+<script src="../assets/js/site-config.js"></script>
 </body>
 </html>

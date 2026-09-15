@@ -16,6 +16,15 @@
   transition: width 0.3s ease, transform 0.3s ease;
   overflow: hidden;
 }
+.sidebar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: url('../../uploads/images/sidebar_bg.png') center bottom / var(--sidebar-width, 240px) auto no-repeat;
+  opacity: 0.32;
+  pointer-events: none;
+}
 .sidebar.collapsed { width: var(--sidebar-collapsed, 64px); }
 
 /* Sidebar Logo */
@@ -57,6 +66,7 @@
 /* Sidebar Nav */
 .sidebar-nav {
   flex: 1;
+  min-height: 0;
   padding: var(--space-4) var(--space-3);
   overflow-y: auto;
   overflow-x: hidden;
@@ -155,6 +165,7 @@
 
 /* Sidebar Footer */
 .sidebar-footer {
+  flex-shrink: 0;
   padding: var(--space-4);
   border-top: 1px solid rgba(255,255,255,0.08);
 }
@@ -174,6 +185,8 @@
   border-color: rgba(255,255,255,0.12); 
 }
 .user-info { flex: 1; overflow: hidden; transition: opacity 0.2s ease; }
+.sidebar-profile { display:flex; align-items:center; gap:var(--space-3); flex:1; min-width:0; color:inherit; text-decoration:none; }
+.sidebar-profile:focus-visible { outline:2px solid white; outline-offset:4px; }
 .user-name {
   font-size: 0.85rem;
   font-weight: 600;

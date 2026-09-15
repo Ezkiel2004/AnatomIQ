@@ -31,9 +31,17 @@ if ($method === 'POST') {
         jsonError('Valid system_id or system_code is required.', 422);
     }
 
-    $durationSecs     = max(1, (int)($body['duration_secs'] ?? 0));
-    $interactions     = max(0, (int)($body['interactions'] ?? 0));
-    $structuresViewed = isset($body['structures_viewed']) ? json_encode($body['structures_viewed']) : null;
+    if (!$db->fetchOne('SELECT system_id FROM body_systems WHERE system_id=? AND is_active=1', [$systemId])) jsonError('System unavailable.', 403);
+    $elapsed = max(0, time() - ($_SESSION['exploration_checkpoint'] ?? time()));
+    $durationSecs = min(max(0, (int)($body['duration_secs'] ?? 0)), $elapsed, 3600);
+    $_SESSION['exploration_checkpoint'] = time();
+    if ($durationSecs < 1) jsonSuccess(['duration_secs'=>0], 'No additional study time to record.');
+    $interactions = min(max(0, (int)($body['interactions'] ?? 0)), $durationSecs * 20);
+    $content = $db->fetchOne('SELECT structures FROM anatomy_content WHERE system_id=?', [$systemId]);
+    $allowedStructures = array_column(json_decode($content['structures'] ?? '[]', true) ?: [], 'name');
+    $requestedStructures = $body['structures_viewed'] ?? [];
+    if (!is_array($requestedStructures)) jsonError('Invalid structure list.', 422);
+    $structuresViewed = json_encode(array_values(array_intersect(array_filter($requestedStructures, 'is_string'), $allowedStructures)), JSON_UNESCAPED_UNICODE);
 
     $db->query(
         "INSERT INTO system_exploration_log (student_id, system_id, session_start, session_end, duration_secs, interactions, structures_viewed)

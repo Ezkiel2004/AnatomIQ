@@ -16,7 +16,7 @@
 require_once __DIR__ . '/../helpers.php';
 requireMethod('GET');
 
-$user = Auth::getCurrentUser();
+$user = requireLogin();
 
 if (!$user) {
     jsonError('Not authenticated. Please log in.', 401);

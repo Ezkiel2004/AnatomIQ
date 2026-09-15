@@ -23,25 +23,15 @@ $body = getJsonBody();
 
 $username = requireField($body, 'username', 'Username');
 $password = requireField($body, 'password', 'Password');
+if (!is_string($username) || !is_string($password) || mb_strlen($username) > 50 || strlen($password) > 4096) {
+    jsonError('Enter a valid student ID or username and password.', 422);
+}
 
 // Attempt authentication via the Auth class (uses bcrypt + PDO)
 $user = Auth::login($username, $password);
 
 if (!$user) {
-    // Determine the specific error for better UX
-    $db = Database::getInstance();
-    $existing = $db->fetchOne(
-        "SELECT user_id, role, is_active FROM users WHERE username = ?",
-        [$username]
-    );
-
-    if (!$existing) {
-        jsonError('Username not found. Check your credentials and try again.', 401);
-    } elseif (!$existing['is_active']) {
-        jsonError('This account has been deactivated. Please contact your teacher.', 401);
-    } else {
-        jsonError('Incorrect password. Please try again.', 401);
-    }
+    jsonError('Invalid username or password.', 401);
 }
 
 // Build the response data (exclude sensitive fields)

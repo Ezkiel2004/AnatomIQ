@@ -36,7 +36,9 @@ if ($method === 'GET') {
             [$id]
         );
         if (!$lesson) jsonError('Lesson not found.', 404);
+        if (Auth::getCurrentUser()['role'] === 'student' && (!$db->fetchOne("SELECT l.lesson_id FROM lessons l JOIN modules m ON m.module_id=l.module_id WHERE l.lesson_id=? AND l.status='published' AND m.status='published'", [$id]))) jsonError('Lesson unavailable.', 403);
 
+        if (Auth::getCurrentUser()['role'] === 'student') $_SESSION['lesson_checkpoints'][$id] = time();
         // Track progress for students
         $user = Auth::getCurrentUser();
         if ($user && $user['role'] === 'student') {
@@ -68,6 +70,7 @@ if ($method === 'GET') {
         jsonError('module_id parameter is required.', 400);
     }
     $moduleId = (int) $_GET['module_id'];
+    if (Auth::getCurrentUser()['role'] === 'student' && !$db->fetchOne("SELECT module_id FROM modules WHERE module_id=? AND status='published'", [$moduleId])) jsonError('Module unavailable.', 403);
 
     $user   = Auth::getCurrentUser();
     $statusFilter = ($user && in_array($user['role'], ['teacher', 'admin']))
@@ -203,7 +206,7 @@ function _handleFileUpload(array $file, int $userId): string {
     $ext = $allowedTypes[$mimeType] ?? null;
     // Also check extension for .glb and .obj since MIME can be unreliable
     $origExt = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
-    if (!$ext && in_array($origExt, ['glb', 'obj', 'fbx'])) {
+    if (!$ext && $origExt === 'glb') {
         $ext = $origExt;
     }
 
@@ -211,6 +214,7 @@ function _handleFileUpload(array $file, int $userId): string {
         jsonError('Unsupported file type: ' . $mimeType, 422);
     }
 
+    if ($ext === 'glb' && file_get_contents($file['tmp_name'], false, null, 0, 4) !== 'glTF') jsonError('Upload a valid GLB model.', 422);
     // Max 50 MB
     if ($file['size'] > 50 * 1024 * 1024) {
         jsonError('File too large. Maximum size is 50 MB.', 422);
@@ -229,6 +233,6 @@ function _handleFileUpload(array $file, int $userId): string {
     }
 
     // Return web-accessible URL (relative to project root)
-    return '/Prototype2/uploads/lessons/' . $filename;
+    return rtrim(dirname(dirname($_SERVER['SCRIPT_NAME'])), '/') . '/uploads/lessons/' . $filename;
 }
 ?>

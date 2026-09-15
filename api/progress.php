@@ -27,6 +27,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         jsonError('Invalid status. Use: not_started, in_progress, completed.', 422);
     }
 
+    if (!$db->fetchOne("SELECT l.lesson_id FROM lessons l JOIN modules m ON m.module_id=l.module_id WHERE l.lesson_id=? AND l.status='published' AND m.status='published'", [$lessonId])) jsonError('Lesson unavailable.', 403);
+    if ($completionPct < 0 || $completionPct > 100 || $timeSpent < 0) jsonError('Progress values are outside the allowed range.', 422);
+    if ($status === 'completed') $completionPct = 100;
+    $elapsed = max(0, time() - ($_SESSION['lesson_checkpoints'][$lessonId] ?? time()));
+    $timeSpent = min($timeSpent, $elapsed, 3600);
+    $_SESSION['lesson_checkpoints'][$lessonId] = time();
     $completedAt = $status === 'completed' ? date('Y-m-d H:i:s') : null;
 
     $db->query(

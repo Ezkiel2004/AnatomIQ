@@ -72,17 +72,20 @@ $upcomingAssessments = $db->fetchAll(
 );
 
 // Total pending assessments count (all active assessments student has not passed yet)
-$pendingAssessmentsCount = (int) $db->fetchValue(
-    "SELECT COUNT(*)
-     FROM (
-         SELECT a.assessment_id,
-                (SELECT COUNT(*) FROM assessment_submissions sub WHERE sub.assessment_id = a.assessment_id AND sub.student_id = ? AND sub.status IN ('submitted','graded') AND sub.score >= a.passing_score) AS is_passed
-         FROM assessments a
-         WHERE a.status = 'active'
-         HAVING is_passed = 0
-     ) AS pending_tbl",
+$pendingRow = $db->fetchOne(
+    "SELECT COUNT(*) AS c
+     FROM assessments a
+     WHERE a.status = 'active'
+       AND NOT EXISTS (
+           SELECT 1 FROM assessment_submissions sub
+           WHERE sub.assessment_id = a.assessment_id
+             AND sub.student_id = ?
+             AND sub.status IN ('submitted','graded')
+             AND sub.score >= a.passing_score
+       )",
     [$user['user_id']]
 );
+$pendingAssessmentsCount = (int) ($pendingRow['c'] ?? 0);
 
 // 4. Recent learning activity (last 5 actions: completed lessons or quizzes)
 $recentLessons = $db->fetchAll(
@@ -131,7 +134,13 @@ foreach ($systems as &$sys) {
     $sys['pct'] = $tot > 0 ? round(($cmp / $tot) * 100) : 0;
 }
 
+$achievements = [];
+foreach ($db->fetchAll('SELECT title, metric, threshold FROM achievement_rules WHERE is_active=1 ORDER BY achievement_id') as $rule) {
+    $value = $rule['metric'] === 'overall_progress' ? $overallProgress : ($profile[$rule['metric']] ?? null);
+    $achievements[] = ['name'=>$rule['title'], 'earned'=>$value !== null && (float)$value >= (float)$rule['threshold']];
+}
 jsonSuccess([
+    'achievements' => $achievements,
     'profile' => [
         'full_name'         => $profile['full_name'],
         'school_id'         => $profile['school_id'],

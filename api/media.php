@@ -19,7 +19,7 @@ $db     = Database::getInstance();
 $method = $_SERVER['REQUEST_METHOD'];
 
 define('MEDIA_UPLOAD_DIR', __DIR__ . '/../uploads/media/');
-define('MEDIA_URL_BASE',   '/Prototype2/uploads/media/');
+define('MEDIA_URL_BASE',   rtrim(dirname(dirname($_SERVER['SCRIPT_NAME'])), '/') . '/uploads/media/');
 
 // ── GET ─────────────────────────────────────────────────────────
 if ($method === 'GET') {
@@ -114,7 +114,7 @@ if ($method === 'POST') {
 
     // Extension fallback for 3D models
     $origExt = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
-    if (!$fileType && in_array($origExt, ['glb', 'obj', 'fbx', 'gltf'])) {
+    if (!$fileType && $origExt === 'glb') {
         $fileType = 'model_3d';
     }
 
@@ -122,6 +122,7 @@ if ($method === 'POST') {
         jsonError('Unsupported file type: ' . $mimeType . '. Allowed: images, PDF, MP4, WebM, GLB, OBJ.', 422);
     }
 
+    if ($fileType === 'model_3d' && ($origExt !== 'glb' || file_get_contents($file['tmp_name'], false, null, 0, 4) !== 'glTF')) jsonError('Upload a valid GLB model.', 422);
     // Size limit: 100 MB for 3D models, 50 MB otherwise
     $maxSize = $fileType === 'model_3d' ? 100 * 1024 * 1024 : 50 * 1024 * 1024;
     if ($file['size'] > $maxSize) {
@@ -134,7 +135,8 @@ if ($method === 'POST') {
     }
 
     // Safe filename
-    $ext      = $origExt ?: explode('/', $mimeType)[1];
+    $extensions = ['image/jpeg'=>'jpg','image/png'=>'png','image/gif'=>'gif','image/webp'=>'webp','application/pdf'=>'pdf','video/mp4'=>'mp4','video/webm'=>'webm','audio/mpeg'=>'mp3','audio/ogg'=>'ogg'];
+    $ext = $fileType === 'model_3d' ? 'glb' : $extensions[$mimeType];
     $filename = 'media_' . $user['user_id'] . '_' . time() . '_' . bin2hex(random_bytes(4)) . '.' . $ext;
     $destPath = MEDIA_UPLOAD_DIR . $filename;
 

@@ -7,61 +7,56 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="../assets/css/global.css"/>
-  <link rel="stylesheet" href="../assets/css/sidebar.css"/>
+  <link rel="stylesheet" href="../assets/css/global.css?v=20260914-icons1"/>
+  <link rel="stylesheet" href="../assets/css/sidebar.css?v=20260914-bg1"/>
   <link rel="stylesheet" href="../assets/css/student.css"/>
+  <link rel="stylesheet" href="../assets/css/teacher-dashboard.css?v=20260914-icons1"/>
 </head>
-<body>
+<body class="teacher-dashboard student-dashboard">
 <div class="app-layout">
-  <aside class="sidebar" id="sidebar">
-    <div class="sidebar-logo">
-      <div class="sidebar-logo-icon">
-        <svg viewBox="0 0 60 60" fill="none">
-          <path d="M30 12C30 12,22 18,22 26C22 30,25 33,30 33C35 33,38 30,38 26C38 18,30 12,30 12Z" fill="#ffffff" opacity="0.9"/>
-          <path d="M30 33L30 48" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
-          <path d="M22 40L30 37L38 40" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-      </div>
-      <div class="sidebar-logo-text"><div class="sidebar-logo-name">AnatomIQ</div><div class="sidebar-logo-sub">Student Portal</div></div></div>
-    <nav class="sidebar-nav">
-      <div class="nav-section-label">Learning</div>
-      <a class="nav-item" href="dashboard.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></span><span class="nav-label">Dashboard</span></a>
-      <a class="nav-item" href="anatomy.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><line x1="2" y1="12" x2="22" y2="12"/></svg></span><span class="nav-label">3D Anatomy Explorer</span></a>
-      <a class="nav-item active" href="lessons.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span><span class="nav-label">My Lessons</span></a>
-      <a class="nav-item" href="quiz.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg></span><span class="nav-label">Quizzes & Activities</span><span class="nav-badge" style="display:none;">0</span></a>
-      <div class="nav-section-label">My Progress</div>
-      <a class="nav-item" href="progress.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span><span class="nav-label">My Progress</span></a>
-      <a class="nav-item" href="scores.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span><span class="nav-label">My Scores</span></a>
-      <a class="nav-item" href="notifications.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3z"/></svg></span><span class="nav-label">Notifications</span><span class="nav-badge" style="display:none;">0</span></a>
-      <div class="nav-section-label">Account</div>
-      <a class="nav-item" href="settings.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span><span class="nav-label">Settings and Profile</span></a>
-    </nav>
-    <div class="sidebar-footer"><div class="user-card" onclick="window.location.href='settings.html'" style="cursor:pointer;" title="Go to Settings"><div class="avatar">MS</div><div class="user-info"><div class="user-name">Maria Santos</div><div class="user-role">Grade 10 – Narra</div></div><button class="logout-btn" onclick="event.stopPropagation(); Auth.logout();" title="Log Out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></button></div></div>
-  </aside>
+  <aside class="sidebar" id="sidebar" data-portal="student" aria-label="Student portal"><script src="../assets/js/sidebar.js?v=20260914-icons1"></script></aside>
   <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
   <main class="main-content" id="mainContent">
     <header class="topbar">
-      <button class="topbar-toggle" id="sidebarToggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+      <button class="topbar-toggle" id="sidebarToggle"><svg class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#list"/></svg></button>
       <div class="topbar-breadcrumb"><span class="breadcrumb-item">Student Portal</span><span class="breadcrumb-sep">/</span><span class="breadcrumb-current">My Lessons</span></div>
-      <div class="topbar-actions"><a href="settings.html" class="topbar-user" style="text-decoration:none;color:inherit;" title="Manage Account"><div class="avatar" style="width:32px;height:32px;font-size:0.75rem;">MS</div><div><div class="topbar-user-name">Maria Santos</div></div></a>
+      <div class="topbar-actions">
+        <div style="position:relative;">
+          <button class="notif-btn" id="notifBtn" aria-label="Notifications">
+            <svg class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#bell"/></svg>
+            <span class="notif-dot"></span>
+          </button>
+          <div class="notif-dropdown" id="notifDropdown" style="display:none;">
+            <div class="notif-header"><span>Notifications</span><a href="notifications.html" style="font-size:0.75rem;color:var(--brand);">Mark all read</a></div>
+            <div class="notif-list"></div>
+            <div class="notif-footer"><a href="notifications.html">View all</a></div>
+          </div>
+        </div>
+        <a href="settings.html" class="topbar-user" style="text-decoration:none;color:inherit;" title="Manage Account">
+          <div class="avatar" style="width:32px;height:32px;font-size:0.7rem;">MS</div>
+          <div>
+            <div class="topbar-user-name">Student</div>
+            <div class="topbar-user-role">Student</div>
+          </div>
+        </a>
       </div>
     </header>
 
     <div class="page-content">
       <div class="page-header">
         <div class="page-header-left">
-          <h2>My Lessons &amp; Modules</h2>
-          <p>Explore all 9 body system modules and study anatomical structures at your own pace.</p>
+          <h1>My Lessons &amp; Modules</h1>
+          <p>Explore the published body system modules and study anatomical structures at your own pace.</p>
         </div>
       </div>
 
       <!-- Top Summary Metrics Grid -->
-      <div class="stats-grid" style="margin-bottom:var(--space-6);">
+      <div class="stats-grid">
         <div class="stat-card">
           <div class="stat-card-header" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-2);">
-            <div class="stat-icon" style="background:var(--brand-50);color:var(--brand);">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            <div class="stat-icon green">
+              <svg width="20" height="20" class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#book-open"/></svg>
             </div>
             <span class="badge badge-brand">Curriculum</span>
           </div>
@@ -71,8 +66,8 @@
 
         <div class="stat-card">
           <div class="stat-card-header" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-2);">
-            <div class="stat-icon" style="background:var(--success-light);color:var(--success);">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <div class="stat-icon blue">
+              <svg width="20" height="20" class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#check-circle"/></svg>
             </div>
             <span class="badge badge-green">Mastered</span>
           </div>
@@ -82,8 +77,8 @@
 
         <div class="stat-card">
           <div class="stat-card-header" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-2);">
-            <div class="stat-icon" style="background:var(--warning-light);color:var(--warning);">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <div class="stat-icon gold">
+              <svg width="20" height="20" class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#clock"/></svg>
             </div>
             <span class="badge badge-amber">In Progress</span>
           </div>
@@ -93,8 +88,8 @@
 
         <div class="stat-card">
           <div class="stat-card-header" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-2);">
-            <div class="stat-icon" style="background:#eff6ff;color:#2563eb;">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            <div class="stat-icon red">
+              <svg width="20" height="20" class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#chart-bar"/></svg>
             </div>
             <span class="badge badge-blue">Overall Progress</span>
           </div>
@@ -106,9 +101,7 @@
       <!-- Filter & Search Toolbar -->
       <div class="filter-toolbar">
         <div class="filter-search-wrap">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-          </svg>
+          <svg class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#magnifying-glass"/></svg>
           <input type="text" id="lessonSearchInput" class="filter-search-input" placeholder="Search by module title, body system, or topic..." oninput="handleLessonSearch(this.value)">
         </div>
 
@@ -130,18 +123,7 @@
           </div>
 
           <!-- Body System Dropdown -->
-          <select id="lessonSystemFilter" class="form-control" style="height:34px;padding:0 10px;font-size:0.8125rem;max-width:180px;" onchange="handleLessonSystemFilter(this.value)">
-            <option value="all">All Body Systems (9)</option>
-            <option value="skeletal">Skeletal System</option>
-            <option value="muscular">Muscular System</option>
-            <option value="circulatory">Circulatory System</option>
-            <option value="respiratory">Respiratory System</option>
-            <option value="digestive">Digestive System</option>
-            <option value="urinary">Urinary System</option>
-            <option value="nervous">Nervous System</option>
-            <option value="reproductive">Reproductive System</option>
-            <option value="endocrine">Endocrine System</option>
-          </select>
+          <select id="lessonSystemFilter" class="form-control" style="height:34px;padding:0 10px;font-size:0.8125rem;max-width:180px;" onchange="handleLessonSystemFilter(this.value)"><option value="all">All Body Systems</option></select>
 
           <!-- Sort Dropdown -->
           <select id="lessonSortFilter" class="form-control" style="height:34px;padding:0 10px;font-size:0.8125rem;max-width:160px;" onchange="handleLessonSort(this.value)">
@@ -174,18 +156,18 @@
   <div class="modal-box" style="width:min(95%,680px);">
     <div class="modal-header" style="align-items:center;">
       <h3 id="lessonModalTitle" style="font-size:1.15rem;font-weight:700;">Module Details</h3>
-      <button class="modal-close" onclick="closeModal('lessonModal')">&times;</button>
+      <button class="modal-close" onclick="closeModal('lessonModal')" aria-label="Close dialog"><svg class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#x-circle"/></svg></button>
     </div>
     <div class="modal-body" id="lessonModalBody" style="max-height:70vh;overflow-y:auto;"></div>
     <div class="modal-footer" style="display:flex;justify-content:space-between;align-items:center;">
       <button class="btn btn-secondary" onclick="closeModal('lessonModal')">Close</button>
       <div style="display:flex;gap:var(--space-2);">
         <a id="lessonModalExploreBtn" href="anatomy.html" class="btn btn-secondary" style="display:inline-flex;align-items:center;gap:6px;">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <svg style="width:14px;height:14px;" class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#cube"/></svg>
           View in 3D
         </a>
         <a id="lessonModalQuizBtn" href="quiz.html" class="btn btn-primary" style="display:inline-flex;align-items:center;gap:6px;">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          <svg style="width:14px;height:14px;" class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#file-text"/></svg>
           Take Quiz
         </a>
       </div>
@@ -193,7 +175,7 @@
   </div>
 </div>
 
-<script src="../assets/js/app.js"></script>
+<script src="../assets/js/app.js?v=20260914-icons1"></script>
 <script>
 'use strict';
 Auth.requireAuthSync('student');
@@ -322,8 +304,8 @@ function renderLessons() {
   if (!data.length) {
     grid.innerHTML = `
       <div style="grid-column:1/-1;text-align:center;padding:var(--space-10) var(--space-4);background:var(--bg-surface);border:1px dashed var(--border);border-radius:var(--radius-lg);">
-        <div style="font-size:1.1rem;font-weight:600;color:var(--text-primary);margin-bottom:var(--space-2);">No modules match your filter</div>
-        <p style="color:var(--text-secondary);font-size:0.875rem;margin-bottom:var(--space-4);">Try selecting a different system or clearing your search query.</p>
+        <div style="font-size:1.1rem;font-weight:600;color:var(--text-primary);margin-bottom:var(--space-2);">${allModules.length ? 'No modules match your filter' : 'No lessons published yet'}</div>
+        <p style="color:var(--text-secondary);font-size:0.875rem;margin-bottom:var(--space-4);">${allModules.length ? 'Try another filter or clear your search.' : 'Your teacher will publish learning modules here.'}</p>
         <button type="button" class="btn btn-secondary btn-sm" onclick="resetFilters()">Reset All Filters</button>
       </div>`;
     return;
@@ -344,10 +326,10 @@ function renderLessons() {
       ctaBtn = `<button type="button" class="btn-lesson-cta btn-secondary" onclick="event.stopPropagation(); viewModule(${m.module_id});">Review Module ✓</button>`;
     } else if (isInProgress) {
       statusBadge = `<span class="badge badge-amber" style="font-weight:600;">In Progress · ${pct}%</span>`;
-      ctaBtn = `<button type="button" class="btn-lesson-cta btn-primary" style="background:${color};border-color:${color};" onclick="event.stopPropagation(); viewModule(${m.module_id});">Continue Module <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></button>`;
+      ctaBtn = `<button type="button" class="btn-lesson-cta btn-primary" style="background:${color};border-color:${color};" onclick="event.stopPropagation(); viewModule(${m.module_id});">Continue Module <svg class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#caret-right"/></svg></button>`;
     } else {
       statusBadge = `<span class="badge" style="background:var(--bg-inset);color:var(--text-secondary);border:1px solid var(--border);">Not Started</span>`;
-      ctaBtn = `<button type="button" class="btn-lesson-cta btn-primary" onclick="event.stopPropagation(); viewModule(${m.module_id});">Start Module <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></button>`;
+      ctaBtn = `<button type="button" class="btn-lesson-cta btn-primary" onclick="event.stopPropagation(); viewModule(${m.module_id});">Start Module <svg class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#caret-right"/></svg></button>`;
     }
 
     return `
@@ -366,19 +348,19 @@ function renderLessons() {
 
           <div class="lesson-specs-grid">
             <div class="lesson-spec-item" title="${m.lesson_count || 2} Curriculum Lessons">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+              <svg class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#book-open"/></svg>
               <span>${m.lesson_count || 2} Lessons</span>
             </div>
             <div class="lesson-spec-item" title="Self-paced lesson duration">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <svg class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#clock"/></svg>
               <span>~25–30 Mins</span>
             </div>
             <div class="lesson-spec-item" title="Interactive 3D WebGL model ready">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+              <svg class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#cube"/></svg>
               <span>3D Model Ready</span>
             </div>
             <div class="lesson-spec-item" title="Chapter assessment quiz available">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              <svg class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#file-text"/></svg>
               <span>Quiz Ready</span>
             </div>
           </div>
@@ -399,7 +381,7 @@ function renderLessons() {
             <span class="lesson-status-text" style="color:${isCompleted ? 'var(--success)' : isInProgress ? 'var(--warning)' : 'var(--text-secondary)'};">
               ${m.completed_lessons || 0} of ${m.lesson_count || 2} Lessons Done
             </span>
-            <span class="lesson-count-text">Grade 10 Curriculum</span>
+            <span class="lesson-count-text">Learning module</span>
           </div>
           ${ctaBtn}
         </div>
@@ -491,7 +473,7 @@ async function viewModule(moduleId) {
           <span class="lesson-system-dot" style="background:${color};"></span>
           ${escHtml(module.system_name)}
         </span>
-        <span style="font-size:0.8rem;color:var(--text-muted);">${lessons.length} Lessons · Grade 10 Science</span>
+        <span style="font-size:0.8rem;color:var(--text-muted);">${lessons.length} Lessons</span>
       </div>
 
       <div style="font-size:0.875rem;color:var(--text-secondary);line-height:1.6;margin-bottom:var(--space-4);">
@@ -567,7 +549,22 @@ async function viewModule(moduleId) {
 }
 
 // ── Start a lesson & open reader ───────────────────────────────
+function renderLessonMedia(lesson) {
+ if (!lesson.media_url) return '';
+ const url=escHtml(lesson.media_url);const ext=lesson.media_url.split('?')[0].split('.').pop().toLowerCase();
+ if (['mp4','webm'].includes(ext)) return '<video controls preload="metadata" style="width:100%;margin-bottom:1rem" src="'+url+'">Video playback is unavailable.</video>';
+ if (['jpg','jpeg','png','gif','webp'].includes(ext)) return '<img style="max-width:100%;height:auto;margin-bottom:1rem" src="'+url+'" alt="'+escHtml(lesson.title)+'"/>';
+ if (ext==='pdf') return '<iframe style="width:100%;height:65vh;border:0" title="Lesson document" src="'+url+'"></iframe><p><a href="'+url+'" target="_blank" rel="noopener">Open document</a></p>';
+ if (ext==='glb') return '<p><a class="btn btn-primary" href="anatomy.html?system='+encodeURIComponent(lesson.system_code)+'&lesson_id='+Number(lesson.lesson_id)+'">Open lesson model in 3D</a></p>';
+ return '<p><a href="'+url+'" target="_blank" rel="noopener">Open lesson attachment</a></p>';
+}
+let readingLessonId = null, readingSeconds = 0, readingTick = Date.now();
+setInterval(()=>{const now=Date.now();if(readingLessonId && !document.hidden)readingSeconds+=Math.min((now-readingTick)/1000,2);readingTick=now;},1000);
+async function saveReadingTime(){if(!readingLessonId||readingSeconds<1)return;const payload={lesson_id:readingLessonId,status:'in_progress',time_spent_secs:Math.floor(readingSeconds)};readingSeconds=0;try{await fetch(API_BASE+'/progress.php',{method:'POST',headers:{'Content-Type':'application/json'},credentials:'same-origin',body:JSON.stringify(payload),keepalive:true});}catch(e){console.warn('Reading time could not be saved.');}}
+setInterval(saveReadingTime,30000);window.addEventListener('pagehide',saveReadingTime);document.addEventListener('visibilitychange',()=>{if(document.hidden)saveReadingTime();});
 async function startLesson(lessonId) {
+  await saveReadingTime();
+  readingLessonId=lessonId;readingSeconds=0;readingTick=Date.now();
   showToast('Opening lesson…', 'info');
   try {
     const res    = await fetch(`${API_BASE}/lessons.php?id=${lessonId}`, { credentials: 'same-origin' });
@@ -603,7 +600,7 @@ function showLessonContent(lesson) {
     <header style="height:60px;padding:0 var(--space-6);background:var(--bg-surface);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);z-index:10;box-shadow:var(--shadow-sm);">
       <div style="display:flex;align-items:center;gap:var(--space-3);min-width:0;">
         <button type="button" onclick="closeLessonViewer()" class="btn btn-secondary btn-sm" style="display:inline-flex;align-items:center;gap:6px;padding:6px 12px;font-size:0.8125rem;">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          <svg style="width:14px;height:14px;" class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#arrow-left"/></svg>
           Back to Lessons
         </button>
         <span class="lesson-system-tag" style="background:${color}15;color:${color};border-color:${color}35;font-size:0.75rem;">
@@ -616,7 +613,7 @@ function showLessonContent(lesson) {
       </div>
       <div style="display:flex;align-items:center;gap:var(--space-3);flex-shrink:0;">
         <a href="anatomy.html?system=${lesson.system_code}" class="btn btn-secondary btn-sm" style="display:inline-flex;align-items:center;gap:6px;">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <svg style="width:14px;height:14px;" class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#cube"/></svg>
           View in 3D
         </a>
       </div>
@@ -629,15 +626,16 @@ function showLessonContent(lesson) {
           <span>·</span>
           <span>${lesson.duration_mins ? lesson.duration_mins + ' mins read' : 'Self-paced'}</span>
         </div>
-        <h1 style="font-size:1.65rem;font-weight:800;color:var(--text-primary);line-height:1.3;margin-bottom:var(--space-6);border-bottom:1px solid var(--border-light);padding-bottom:var(--space-4);">
+        <h2 style="font-size:1.65rem;font-weight:800;color:var(--text-primary);line-height:1.3;margin-bottom:var(--space-6);border-bottom:1px solid var(--border-light);padding-bottom:var(--space-4);">
           ${escHtml(lesson.title)}
-        </h1>
+        </h2>
 
         <div style="font-size:0.95rem;line-height:1.8;color:var(--text-secondary);">
+          ${renderLessonMedia(lesson)}
           ${lesson.content_text ? `
             <div style="white-space:pre-line;">${escHtml(lesson.content_text)}</div>
           ` : `
-            <p>Welcome to this curriculum module lesson for ${escHtml(lesson.system_name || 'Anatomy')}. Study the anatomical structures and function thoroughly.</p>
+            <p>No lesson text has been provided.</p>
           `}
         </div>
 
@@ -656,7 +654,7 @@ function showLessonContent(lesson) {
     <footer style="height:64px;padding:0 var(--space-6);background:var(--bg-surface);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);">
       <button type="button" onclick="closeLessonViewer()" class="btn btn-secondary">Close Reader</button>
       <button type="button" id="btnMarkComplete" onclick="markLessonComplete(${lesson.lesson_id})" class="btn btn-primary" style="display:inline-flex;align-items:center;gap:6px;">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:16px;height:16px;"><polyline points="20 6 9 17 4 12"/></svg>
+        <svg style="width:16px;height:16px;" class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#check"/></svg>
         ${isDone ? 'Marked as Completed ✓' : 'Mark Lesson as Complete'}
       </button>
     </footer>
@@ -665,6 +663,7 @@ function showLessonContent(lesson) {
 }
 
 function closeLessonViewer() {
+  saveReadingTime(); readingLessonId=null;
   const v = document.getElementById('lessonContentViewer');
   if (v) v.style.display = 'none';
   loadLessons();
@@ -683,10 +682,11 @@ async function markLessonComplete(lessonId) {
       method:      'POST',
       headers:     { 'Content-Type': 'application/json' },
       credentials: 'same-origin',
-      body:        JSON.stringify({ lesson_id: lessonId, status: 'completed', completion_pct: 100 }),
+      body:        JSON.stringify({ lesson_id: lessonId, status: 'completed', completion_pct: 100, time_spent_secs: Math.floor(readingSeconds) }),
     });
     const result = await res.json();
     if (result.success) {
+      readingSeconds=0;
       showToast('Lesson marked as completed! Progress updated.', 'success');
       if (btn) {
         btn.innerHTML = 'Completed ✓';
@@ -708,7 +708,9 @@ async function markLessonComplete(lessonId) {
 
 // ── Init ───────────────────────────────────────────────────────
 loadLessons();
+fetch(API_BASE+'/body-systems.php').then(r=>r.json()).then(result=>{if(!result.success)return;const select=document.getElementById('lessonSystemFilter');select.replaceChildren(new Option('All Body Systems','all'));result.data.forEach(s=>select.add(new Option(s.system_name,s.system_code)));}).catch(()=>{});
 </script>
+<script src="../assets/js/site-config.js"></script>
 </body>
 </html>
 

@@ -7,86 +7,24 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="../assets/css/global.css"/>
-  <link rel="stylesheet" href="../assets/css/sidebar.css"/>
+  <link rel="stylesheet" href="../assets/css/global.css?v=20260914-icons1"/>
+  <link rel="stylesheet" href="../assets/css/sidebar.css?v=20260914-bg1"/>
   <link rel="stylesheet" href="../assets/css/student.css"/>
+  <link rel="stylesheet" href="../assets/css/teacher-dashboard.css"/>
 </head>
-<body>
+<body class="teacher-dashboard student-dashboard">
 <div class="app-layout">
 
   <!-- Sidebar -->
-  <aside class="sidebar" id="sidebar">
-    <div class="sidebar-logo">
-      <div class="sidebar-logo-icon">
-        <svg viewBox="0 0 60 60" fill="none">
-          <path d="M30 12C30 12,22 18,22 26C22 30,25 33,30 33C35 33,38 30,38 26C38 18,30 12,30 12Z" fill="#ffffff" opacity="0.9"/>
-          <path d="M30 33L30 48" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
-          <path d="M22 40L30 37L38 40" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-      </div>
-      <div class="sidebar-logo-text">
-        <div class="sidebar-logo-name">AnatomIQ</div>
-        <div class="sidebar-logo-sub">Student Portal</div>
-      </div>
-    </div>
-    <nav class="sidebar-nav">
-      <div class="nav-section-label">Learning</div>
-      <a class="nav-item" href="dashboard.html">
-        <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></span>
-        <span class="nav-label">Dashboard</span>
-      </a>
-      <a class="nav-item" href="anatomy.html">
-        <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><line x1="2" y1="12" x2="22" y2="12"/></svg></span>
-        <span class="nav-label">3D Anatomy Explorer</span>
-      </a>
-      <a class="nav-item" href="lessons.html">
-        <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
-        <span class="nav-label">My Lessons</span>
-      </a>
-      <a class="nav-item" href="quiz.html">
-        <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span>
-        <span class="nav-label">Quizzes & Activities</span>
-      </a>
-      <div class="nav-section-label">My Progress</div>
-      <a class="nav-item" href="progress.html">
-        <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>
-        <span class="nav-label">My Progress</span>
-      </a>
-      <a class="nav-item" href="scores.html">
-        <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
-        <span class="nav-label">My Scores</span>
-      </a>
-      <a class="nav-item" href="notifications.html">
-        <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3z"/></svg></span>
-        <span class="nav-label">Notifications</span>
-      </a>
-      <div class="nav-section-label">Account</div>
-      <a class="nav-item active" href="settings.html">
-        <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span>
-        <span class="nav-label">Settings & Profile</span>
-      </a>
-    </nav>
-    <div class="sidebar-footer">
-      <div class="user-card" onclick="window.location.href='settings.html'" style="cursor:pointer;" title="Go to Settings">
-        <div class="avatar" id="sidebarAvatar">ST</div>
-        <div class="user-info">
-          <div class="user-name" id="sidebarUserName">Student</div>
-          <div class="user-role" id="sidebarUserRole">Grade 10</div>
-        </div>
-        <button class="logout-btn" onclick="event.stopPropagation(); Auth.logout();" title="Log Out">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
-        </button>
-      </div>
-    </div>
-  </aside>
+  <aside class="sidebar" id="sidebar" data-portal="student" aria-label="Student portal"><script src="../assets/js/sidebar.js?v=20260914-icons1"></script></aside>
 
   <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
   <!-- Main Content -->
   <main class="main-content" id="mainContent">
     <header class="topbar">
-      <button class="topbar-toggle" id="sidebarToggle">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      <button class="topbar-toggle" id="sidebarToggle" aria-label="Toggle navigation">
+        <svg class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#list"/></svg>
       </button>
       <div class="topbar-breadcrumb">
         <span class="breadcrumb-item">Student Portal</span>
@@ -95,8 +33,8 @@
       </div>
       <div class="topbar-actions">
         <div style="position:relative;">
-          <button class="notif-btn" id="notifBtn">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3z"/></svg>
+          <button class="notif-btn" id="notifBtn" aria-label="View notifications">
+            <svg class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#bell"/></svg>
             <span class="notif-dot"></span>
           </button>
           <div class="notif-dropdown" id="notifDropdown" style="display:none;">
@@ -105,7 +43,7 @@
           </div>
         </div>
         <a href="settings.html" class="topbar-user" style="text-decoration:none;color:inherit;" title="Manage Account">
-          <div class="avatar" id="topbarAvatar" style="width:32px;height:32px;font-size:0.75rem;">ST</div>
+          <div class="avatar" id="topbarAvatar" style="width:32px;height:32px;font-size:0.75rem;">MS</div>
           <div><div class="topbar-user-name" id="topbarUserName">Student</div></div>
         </a>
       </div>
@@ -114,8 +52,8 @@
     <div class="page-content">
       <div class="page-header">
         <div class="page-header-left">
-          <h2>Student Profile & Account Settings</h2>
-          <p>Manage your student credentials, update contact information, change your password, and review academic status.</p>
+          <h1 style="font-size:clamp(1.25rem,2.5vw,1.75rem);font-weight:700;color:var(--text-primary);letter-spacing:-0.02em;margin:0 0 4px 0;">Student Profile &amp; Account Settings</h1>
+          <p style="margin:0;font-size:0.875rem;color:var(--text-secondary);">Manage your student credentials, update contact information, change your password, and review academic status.</p>
         </div>
       </div>
 
@@ -124,8 +62,8 @@
 
         <!-- Personal Info & Academic Card -->
         <div class="card">
-          <h3 style="margin-bottom:var(--space-4);display:flex;align-items:center;gap:var(--space-2);">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;color:var(--brand);"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <h3 style="margin-bottom:var(--space-4);display:flex;align-items:center;gap:var(--space-2);font-size:1.125rem;font-weight:700;color:var(--text-primary);">
+            <svg style="width:18px;height:18px;color:var(--brand);" class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#user-circle"/></svg>
             <span>Student Information</span>
           </h3>
           <form id="profileForm" onsubmit="handleProfileUpdate(event)">
@@ -163,14 +101,14 @@
               <div class="form-group">
                 <label>Full Name *</label>
                 <div class="input-wrapper">
-                  <input type="text" id="settingFullName" required placeholder="e.g. Maria Santos"/>
+                  <input type="text" id="settingFullName" required placeholder="Your full name"/>
                 </div>
               </div>
 
               <div class="form-group">
                 <label>Email Address</label>
                 <div class="input-wrapper">
-                  <input type="email" id="settingEmail" placeholder="e.g. maria.santos@lubangnhs.edu.ph"/>
+                  <input type="email" id="settingEmail" placeholder="Your email address"/>
                 </div>
               </div>
 
@@ -192,7 +130,7 @@
 
         <!-- Security & Password Card -->
         <div class="card">
-          <h3 style="margin-bottom:var(--space-4);">Security & Password</h3>
+          <h3 style="margin-bottom:var(--space-4);font-size:1.125rem;font-weight:700;color:var(--text-primary);">Security &amp; Password</h3>
           <form id="passwordForm" onsubmit="handlePasswordChange(event)">
             <div style="display:flex;flex-direction:column;gap:var(--space-4);">
               <div class="form-group">
@@ -205,14 +143,14 @@
               <div class="form-group">
                 <label>New Password *</label>
                 <div class="input-wrapper">
-                  <input type="password" id="newPassword" required minlength="6" placeholder="At least 6 characters"/>
+                  <input type="password" id="newPassword" required minlength="8" placeholder="At least 8 characters"/>
                 </div>
               </div>
 
               <div class="form-group">
                 <label>Confirm New Password *</label>
                 <div class="input-wrapper">
-                  <input type="password" id="confirmNewPassword" required minlength="6" placeholder="Repeat new password"/>
+                  <input type="password" id="confirmNewPassword" required minlength="8" placeholder="Repeat new password"/>
                 </div>
               </div>
 
@@ -231,12 +169,12 @@
           <!-- School Information Banner -->
           <div style="display:flex;align-items:flex-start;gap:var(--space-3);background:var(--bg-inset);border:1px solid var(--border-light);border-radius:var(--radius-md);padding:var(--space-3);">
             <div style="width:32px;height:32px;border-radius:var(--radius-sm);background:var(--brand-light);color:var(--brand);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+              <svg style="width:18px;height:18px;" class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#graduation-cap"/></svg>
             </div>
             <div style="font-size:0.8125rem;color:var(--text-secondary);line-height:1.5;">
-              <strong style="color:var(--text-primary);display:block;">Lubang National High School</strong>
+              <strong style="color:var(--text-primary);display:block;"><span data-setting="school_name">Loading…</span></strong>
               Department of Education • Division of Occidental Mindoro<br/>
-              Grade 10 Science — Human Biology & Anatomical Systems
+              <span data-setting="subject"></span>
             </div>
           </div>
         </div>
@@ -246,7 +184,7 @@
       <!-- Academic Learning Summary Card -->
       <div class="card" style="margin-top:var(--space-6);">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-4);flex-wrap:wrap;gap:var(--space-3);">
-          <h3 style="margin:0;">Academic Learning Summary</h3>
+          <h3 style="margin:0;font-size:1.125rem;font-weight:700;color:var(--text-primary);">Academic Learning Summary</h3>
           <div style="display:flex;gap:var(--space-2);">
             <a href="progress.html" class="btn btn-secondary btn-sm">Full Progress Report</a>
             <a href="scores.html" class="btn btn-secondary btn-sm">Assessment History</a>
@@ -281,7 +219,7 @@
   </main>
 </div>
 
-<script src="../assets/js/app.js"></script>
+<script src="../assets/js/app.js?v=20260914-icons1"></script>
 <script>
 Auth.requireAuthSync('student');
 
@@ -298,23 +236,26 @@ async function loadStudentProfile() {
     const p = json.data.profile;
 
     document.getElementById('settingUsername').value   = p.username || '';
-    document.getElementById('settingStudentId').value  = p.student_id || 'STU-001';
+    document.getElementById('settingStudentId').value  = p.student_id || '';
     document.getElementById('settingFullName').value   = p.full_name || '';
     document.getElementById('settingEmail').value      = p.email || '';
-    document.getElementById('settingGradeLevel').value = p.grade_level ? `Grade ${p.grade_level}` : 'Grade 10';
-    document.getElementById('settingSection').value    = p.section || 'Narra';
-    document.getElementById('settingSchoolYear').value = p.school_year || '2024-2025';
+    document.getElementById('settingGradeLevel').value = p.grade_level || '';
+    document.getElementById('settingSection').value    = p.section || '';
+    document.getElementById('settingSchoolYear').value = p.school_year || '';
 
     // Update avatar text and names
     const initials = p.full_name
       ? p.full_name.split(' ').map(n => n[0]).slice(0, 2).join('').toUpperCase()
-      : 'ST';
+      : 'MS';
     
     document.getElementById('topbarAvatar').textContent = initials;
-    document.getElementById('sidebarAvatar').textContent = initials;
+    const sa = document.getElementById('sidebarAvatar');
+    if (sa) sa.textContent = initials;
     document.getElementById('topbarUserName').textContent = p.full_name || p.username;
-    document.getElementById('sidebarUserName').textContent = p.full_name || p.username;
-    document.getElementById('sidebarUserRole').textContent = `${p.grade_level ? 'Grade ' + p.grade_level : 'Grade 10'} – ${p.section || 'Narra'}`;
+    const su = document.getElementById('sidebarUserName');
+    if (su) su.textContent = p.full_name || p.username;
+    const sr = document.getElementById('sidebarUserRole');
+    if (sr) sr.textContent = [p.grade_level, p.section].filter(Boolean).join(' — ');
 
   } catch (err) {
     console.error('Profile fetch error:', err);
@@ -395,7 +336,7 @@ async function handlePasswordChange(e) {
   }
 
   if (newPass.length < 6) {
-    errBox.textContent = 'New password must be at least 6 characters.';
+    errBox.textContent = 'New password must be at least 8 characters.';
     errBox.style.display = 'block';
     return;
   }
@@ -432,10 +373,26 @@ async function handlePasswordChange(e) {
   }
 }
 
+// Dropdown toggle
+const notifBtn = document.getElementById('notifBtn');
+const notifDropdown = document.getElementById('notifDropdown');
+if (notifBtn && notifDropdown) {
+  notifBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    notifDropdown.style.display = notifDropdown.style.display === 'none' ? 'block' : 'none';
+  });
+  document.addEventListener('click', (e) => {
+    if (!notifDropdown.contains(e.target) && e.target !== notifBtn) {
+      notifDropdown.style.display = 'none';
+    }
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   loadStudentProfile();
   loadStudentSummary();
 });
 </script>
+<script src="../assets/js/site-config.js"></script>
 </body>
 </html>

@@ -3,70 +3,61 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Quiz & Activities – AnatomIQ</title>
+  <title>Quiz &amp; Activities – AnatomIQ</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="../assets/css/global.css"/>
-  <link rel="stylesheet" href="../assets/css/sidebar.css"/>
+  <link rel="stylesheet" href="../assets/css/global.css?v=20260914-icons1"/>
+  <link rel="stylesheet" href="../assets/css/sidebar.css?v=20260914-bg1"/>
   <link rel="stylesheet" href="../assets/css/student.css"/>
+  <link rel="stylesheet" href="../assets/css/teacher-dashboard.css?v=20260914-icons1"/>
 </head>
-<body>
+<body class="teacher-dashboard student-dashboard">
 <div class="app-layout">
 
-  <aside class="sidebar" id="sidebar">
-    <div class="sidebar-logo">
-      <div class="sidebar-logo-icon">
-        <svg viewBox="0 0 60 60" fill="none">
-          <path d="M30 12C30 12,22 18,22 26C22 30,25 33,30 33C35 33,38 30,38 26C38 18,30 12,30 12Z" fill="#ffffff" opacity="0.9"/>
-          <path d="M30 33L30 48" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
-          <path d="M22 40L30 37L38 40" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-      </div>
-      <div class="sidebar-logo-text">
-        <div class="sidebar-logo-name">AnatomIQ</div>
-        <div class="sidebar-logo-sub">Student Portal</div>
-      </div>
-    </div>
-    <nav class="sidebar-nav">
-      <div class="nav-section-label">Learning</div>
-      <a class="nav-item" href="dashboard.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></span><span class="nav-label">Dashboard</span></a>
-      <a class="nav-item" href="anatomy.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><line x1="2" y1="12" x2="22" y2="12"/></svg></span><span class="nav-label">3D Anatomy Explorer</span></a>
-      <a class="nav-item" href="lessons.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span><span class="nav-label">My Lessons</span></a>
-      <a class="nav-item active" href="quiz.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span><span class="nav-label">Quizzes & Activities</span><span class="nav-badge" style="display:none;">0</span></a>
-      <div class="nav-section-label">My Progress</div>
-      <a class="nav-item" href="progress.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span><span class="nav-label">My Progress</span></a>
-      <a class="nav-item" href="scores.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span><span class="nav-label">My Scores</span></a>
-      <a class="nav-item" href="notifications.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3z"/></svg></span><span class="nav-label">Notifications</span><span class="nav-badge" style="display:none;">0</span></a>
-      <div class="nav-section-label">Account</div>
-      <a class="nav-item" href="settings.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span><span class="nav-label">Settings and Profile</span></a>
-    </nav>
-    <div class="sidebar-footer"><div class="user-card" onclick="window.location.href='settings.html'" style="cursor:pointer;" title="Go to Settings"><div class="avatar">MS</div><div class="user-info"><div class="user-name">Maria Santos</div><div class="user-role">Grade 10 – Narra</div></div><button class="logout-btn" onclick="event.stopPropagation(); Auth.logout();" title="Log Out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></button></div></div>
-  </aside>
+  <aside class="sidebar" id="sidebar" data-portal="student" aria-label="Student portal"><script src="../assets/js/sidebar.js?v=20260914-icons1"></script></aside>
   <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
   <main class="main-content" id="mainContent">
     <header class="topbar">
-      <button class="topbar-toggle" id="sidebarToggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+      <button class="topbar-toggle" id="sidebarToggle"><svg class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#list"/></svg></button>
       <div class="topbar-breadcrumb"><span class="breadcrumb-item">Student Portal</span><span class="breadcrumb-sep">/</span><span class="breadcrumb-current">Quizzes and Activities</span></div>
-      <div class="topbar-actions"><a href="settings.html" class="topbar-user" style="text-decoration:none;color:inherit;" title="Manage Account"><div class="avatar" style="width:32px;height:32px;font-size:0.75rem;">MS</div><div><div class="topbar-user-name">Maria Santos</div></div></a>
+      <div class="topbar-actions">
+        <div style="position:relative;">
+          <button class="notif-btn" id="notifBtn" aria-label="Notifications">
+            <svg class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#bell"/></svg>
+            <span class="notif-dot"></span>
+          </button>
+          <div class="notif-dropdown" id="notifDropdown" style="display:none;">
+            <div class="notif-header"><span>Notifications</span><a href="notifications.html" style="font-size:0.75rem;color:var(--brand);">Mark all read</a></div>
+            <div class="notif-list"></div>
+            <div class="notif-footer"><a href="notifications.html">View all</a></div>
+          </div>
+        </div>
+        <a href="settings.html" class="topbar-user" style="text-decoration:none;color:inherit;" title="Manage Account">
+          <div class="avatar" style="width:32px;height:32px;font-size:0.7rem;">MS</div>
+          <div>
+            <div class="topbar-user-name">Student</div>
+            <div class="topbar-user-role">Student</div>
+          </div>
+        </a>
       </div>
     </header>
 
     <div class="page-content" id="mainPage">
       <div class="page-header">
         <div class="page-header-left">
-          <h2>Quizzes &amp; Activities</h2>
+          <h1>Quizzes &amp; Activities</h1>
           <p>Complete your assigned assessments, practice chapter tests, and test interactive anatomical identification.</p>
         </div>
       </div>
 
       <!-- Top Summary Metrics Grid -->
-      <div class="stats-grid" style="margin-bottom:var(--space-6);">
+      <div class="stats-grid">
         <div class="stat-card">
           <div class="stat-card-header">
-            <div class="stat-icon" style="background:var(--brand-50);color:var(--brand);">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <div class="stat-icon green">
+              <svg width="20" height="20" class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#file-text"/></svg>
             </div>
             <span class="badge badge-brand">Curriculum</span>
           </div>
@@ -76,8 +67,8 @@
 
         <div class="stat-card">
           <div class="stat-card-header">
-            <div class="stat-icon" style="background:var(--success-light);color:var(--success);">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <div class="stat-icon blue">
+              <svg width="20" height="20" class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#check-circle"/></svg>
             </div>
             <span class="badge badge-green">Mastered</span>
           </div>
@@ -87,8 +78,8 @@
 
         <div class="stat-card">
           <div class="stat-card-header">
-            <div class="stat-icon" style="background:var(--warning-light);color:var(--warning);">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <div class="stat-icon gold">
+              <svg width="20" height="20" class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#clock"/></svg>
             </div>
             <span class="badge badge-amber">Action Needed</span>
           </div>
@@ -98,8 +89,8 @@
 
         <div class="stat-card">
           <div class="stat-card-header">
-            <div class="stat-icon" style="background:#eff6ff;color:#2563eb;">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            <div class="stat-icon red">
+              <svg width="20" height="20" class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#chart-bar"/></svg>
             </div>
             <span class="badge badge-blue">Performance</span>
           </div>
@@ -113,9 +104,7 @@
         <!-- Row 1: Search Input (left) & Filter Selects (right) -->
         <div class="filter-toolbar-row">
           <div class="filter-search-wrap">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-            </svg>
+            <svg class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#magnifying-glass"/></svg>
             <input type="text" id="assessmentSearchInput" class="filter-search-input" placeholder="Search by assessment title, body system, or topic..." oninput="handleAssessmentSearch(this.value)">
           </div>
 
@@ -183,8 +172,8 @@
             <div class="quiz-progress-text" id="questionProgress">Question 1 of 10</div>
           </div>
           <div class="quiz-timer" id="quizTimer">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            <span id="timerDisplay">30:00</span>
+            <svg class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#clock"/></svg>
+            <span id="timerDisplay">—</span>
           </div>
           <button class="btn btn-secondary btn-sm" onclick="confirmExitQuiz()">Exit Quiz</button>
         </div>
@@ -233,7 +222,7 @@
         <div style="display:flex;justify-content:space-between;align-items:center;margin-top:var(--space-4);">
           <button class="btn btn-secondary" id="prevBtn" onclick="prevQuestion()">Previous</button>
           <button class="btn btn-secondary btn-sm" id="flagBtn" onclick="toggleFlagCurrentQuestion()" style="display:flex;align-items:center;gap:6px;border-color:var(--border);">
-            <span id="flagIcon"><svg style="width:13px;height:13px;vertical-align:-2px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg></span> <span id="flagLabel">Flag for Review</span>
+            <span id="flagIcon"><svg style="width:13px;height:13px;vertical-align:-2px;" class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#flag"/></svg></span> <span id="flagLabel">Flag for Review</span>
           </button>
           <div style="display:flex;gap:var(--space-2);">
             <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()">Next</button>
@@ -289,7 +278,7 @@
   </main>
 </div>
 
-<script src="../assets/js/app.js"></script>
+<script src="../assets/js/app.js?v=20260914-icons1"></script>
 <script>
 'use strict';
 Auth.requireAuthSync('student');
@@ -302,6 +291,10 @@ let userAnswers = [];
 let startTime = null;
 let timerInterval = null;
 let timeLeft = 0;
+let deadlineMs = null;
+let saveTimer = null;
+let saveChain = Promise.resolve();
+let submitting = false;
 
 // ── Assessment Directory State ──────────────────────────────────
 let allAssessments = [];
@@ -493,7 +486,7 @@ function renderAssessmentCards() {
     grid.innerHTML = `
       <div style="grid-column:1/-1;text-align:center;padding:3.5rem 1.5rem;background:var(--bg-surface);border:1px dashed var(--border);border-radius:var(--radius-lg);">
         <div style="width:48px;height:48px;border-radius:50%;background:var(--bg-inset);display:flex;align-items:center;justify-content:center;margin:0 auto var(--space-3);color:var(--text-muted);">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <svg width="22" height="22" class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#magnifying-glass"/></svg>
         </div>
         <div style="font-size:1rem;font-weight:600;color:var(--text-primary);margin-bottom:4px;">No assessments match your criteria</div>
         <p style="font-size:0.8125rem;color:var(--text-secondary);max-width:380px;margin:0 auto var(--space-4);">Try adjusting your search query, selecting another category tab, or resetting your filter selections.</p>
@@ -512,7 +505,7 @@ function renderAssessmentCards() {
     const sysCleanName = (a.system_name || 'General').replace(/\s+System$/i, '');
     const dueStr = a.due_date ? `Due ${fmtDate(a.due_date)}` : 'Self-paced';
 
-    const qCount = parseInt(a.question_count) || 1;
+    const qCount = parseInt(a.question_count) || 0;
     const qText = `${qCount} Question${qCount === 1 ? '' : 's'}`;
 
     // Standardized Status Pill & Attempt Info
@@ -566,19 +559,19 @@ function renderAssessmentCards() {
 
             <div class="assessment-specs-grid">
               <div class="spec-item" title="Question Count">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                <svg class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#file-text"/></svg>
                 <span>${qText}</span>
               </div>
               <div class="spec-item" title="Time Allowed">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <svg class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#clock"/></svg>
                 <span>${a.time_limit_mins ? a.time_limit_mins + ' mins' : 'Untimed'}</span>
               </div>
               <div class="spec-item" title="Passing Score">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                <svg class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#target"/></svg>
                 <span>${Math.round(a.passing_score)}% to Pass</span>
               </div>
               <div class="spec-item" title="Schedule">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                <svg class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#calendar"/></svg>
                 <span>${dueStr}</span>
               </div>
             </div>
@@ -592,7 +585,7 @@ function renderAssessmentCards() {
           </div>
           <button type="button" class="btn ${btnClass} btn-assessment-cta" onclick="event.stopPropagation(); initiateQuiz(${a.assessment_id})">
             <span>${btnLabel}</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+            <svg class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#caret-right"/></svg>
           </button>
         </div>
       </div>
@@ -668,13 +661,14 @@ async function initiateQuiz(assessmentId) {
 
     // 3. Initialize quiz session state cleanly (fixes timer bug!)
     currentQ = 0;
-    userAnswers = new Array(questions.length).fill(null);
-    startTime = Date.now();
+    userAnswers = questions.map(q => (startData.data.answers || []).find(a => Number(a.question_id) === Number(q.question_id)) || null);
+    flaggedQuestions.clear();
+    startTime = Date.now() - (startData.data.elapsed_seconds || 0) * 1000;
 
     // Clean timer reset
     clearInterval(timerInterval);
-    const durationMinutes = activeAssessment.time_limit_mins || 30;
-    timeLeft = durationMinutes * 60;
+    deadlineMs = startData.data.remaining_seconds === null ? null : Date.now() + startData.data.remaining_seconds * 1000;
+    timeLeft = deadlineMs === null ? Infinity : startData.data.remaining_seconds;
 
     // Setup UI
     document.getElementById('activeQuizTitle').textContent = activeAssessment.title;
@@ -693,9 +687,11 @@ async function initiateQuiz(assessmentId) {
 
 // ── Timer Engine ────────────────────────────────────────────────
 function startTimer() {
+  clearInterval(timerInterval);
   updateTimerDisplay();
+  if (deadlineMs === null) return;
   timerInterval = setInterval(() => {
-    timeLeft--;
+    timeLeft = deadlineMs === null ? Infinity : Math.max(0, Math.ceil((deadlineMs - Date.now()) / 1000));
     if (timeLeft <= 0) {
       clearInterval(timerInterval);
       showToast('Time expired! Submitting assessment…', 'warning');
@@ -707,6 +703,7 @@ function startTimer() {
 }
 
 function updateTimerDisplay() {
+  if (timeLeft === Infinity) { const timer = document.getElementById('timerDisplay'); if(timer)timer.textContent='Untimed'; return; }
   const m = Math.floor(timeLeft / 60).toString().padStart(2, '0');
   const s = (timeLeft % 60).toString().padStart(2, '0');
   const display = document.getElementById('timerDisplay');
@@ -793,71 +790,24 @@ function renderQuestion() {
 
 // ── Hotspot Interactive Renderer ────────────────────────────────
 function renderHotspotQuestion(q) {
-  const wrapper = document.getElementById('hotspotSvgWrapper');
-  const pin = document.getElementById('hotspotPin');
-  const targetName = q.hotspot_data?.target_label || 'Target Structure';
-
-  document.getElementById('hotspotFeedback').innerHTML = `Click directly on the <strong>${escHtml(targetName)}</strong> to pin your answer.`;
-
-  // Draw interactive anatomy diagram (Heart / Skeleton / Organ diagram)
-  wrapper.innerHTML = `
-    <svg viewBox="0 0 400 300" style="width:100%;max-width:400px;height:260px;user-select:none;">
-      <!-- Anatomical Heart / Organ outline for Hotspot assessment -->
-      <path d="M200 60 C150 20, 90 70, 90 140 C90 200, 160 250, 200 280 C240 250, 310 200, 310 140 C310 70, 250 20, 200 60 Z" fill="#991b1b" opacity="0.85" stroke="#f87171" stroke-width="3"/>
-      <!-- Aorta arch -->
-      <path d="M180 65 C180 20, 220 15, 235 50" fill="none" stroke="#ef4444" stroke-width="18" stroke-linecap="round"/>
-      <!-- Pulmonary Artery -->
-      <path d="M210 60 C230 40, 250 50, 260 70" fill="none" stroke="#3b82f6" stroke-width="14" stroke-linecap="round"/>
-      <!-- Left Ventricle chamber area -->
-      <path id="hotspot_left_ventricle" data-label="Left Ventricle" d="M200 150 C230 150, 270 170, 260 230 C240 250, 210 265, 200 270 Z" fill="#7f1d1d" opacity="0.6" stroke="#fca5a5" stroke-width="1.5"/>
-      <!-- Right Ventricle chamber area -->
-      <path id="hotspot_right_ventricle" data-label="Right Ventricle" d="M200 150 C170 150, 130 170, 140 230 C160 250, 190 265, 200 270 Z" fill="#b91c1c" opacity="0.6" stroke="#fca5a5" stroke-width="1.5"/>
-      <!-- Left Atrium area -->
-      <circle id="hotspot_left_atrium" data-label="Left Atrium" cx="240" cy="110" r="28" fill="#991b1b" stroke="#fca5a5" stroke-width="1.5"/>
-      <!-- Right Atrium area -->
-      <circle id="hotspot_right_atrium" data-label="Right Atrium" cx="160" cy="110" r="28" fill="#b91c1c" stroke="#fca5a5" stroke-width="1.5"/>
-      <!-- Text label guides -->
-      <text x="200" y="295" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="Inter, sans-serif">Interactive Anatomical Diagram</text>
-    </svg>
-  `;
-
-  // If user already pinned this question, restore pin
-  const existing = userAnswers[currentQ]?.hotspot_clicked;
-  if (existing && existing.clientX && existing.clientY) {
-    pin.style.left = existing.clientX;
-    pin.style.top = existing.clientY;
-    pin.style.display = 'flex';
-  } else {
-    pin.style.display = 'none';
-  }
+ const wrapper=document.getElementById('hotspotSvgWrapper');wrapper.replaceChildren();
+ const pin=document.getElementById('hotspotPin');pin.style.display='none';
+ const url=q.hotspot_data?.image_url || q.image_url;
+ if (!url) {wrapper.textContent='Your teacher has not configured a diagram for this question.';return;}
+ const img=document.createElement('img');img.id='questionDiagram';img.src=url;img.alt=q.question_text;img.style.cssText='display:block;width:100%;max-width:600px;height:auto;margin:auto;';
+ img.onerror=()=>{wrapper.textContent='Diagram unavailable. Please contact your teacher.';};wrapper.append(img);
+ document.getElementById('hotspotFeedback').textContent='Select the requested structure on the diagram.';
+ const existing=userAnswers[currentQ]?.hotspot_clicked;
+ if(existing)document.getElementById('hotspotFeedback').textContent='Your previous selection is saved. Click the diagram to change it.';
 }
-
 function handleHotspotClick(e) {
-  const container = document.getElementById('hotspotCanvasContainer');
-  const rect = container.getBoundingClientRect();
-  const x = e.clientX - rect.left;
-  const y = e.clientY - rect.top;
-
-  const pin = document.getElementById('hotspotPin');
-  pin.style.left = `${x}px`;
-  pin.style.top = `${y}px`;
-  pin.style.display = 'flex';
-
-  // Identify clicked element
-  const targetElement = document.elementFromPoint(e.clientX, e.clientY);
-  const clickedLabel = targetElement?.dataset?.label || targetElement?.id?.replace('hotspot_', '') || 'heart_tissue';
-
-  userAnswers[currentQ] = {
-    question_id: questions[currentQ].question_id,
-    hotspot_clicked: {
-      label: clickedLabel,
-      clientX: `${x}px`,
-      clientY: `${y}px`
-    }
-  };
-
-  document.getElementById('hotspotFeedback').innerHTML = `Pinned: <strong>${escHtml(clickedLabel)}</strong>. Click again to reposition if needed.`;
-  updateQuestionMap();
+ const img=document.getElementById('questionDiagram');if(!img)return;
+ const rect=img.getBoundingClientRect();const x=(e.clientX-rect.left)/rect.width;const y=(e.clientY-rect.top)/rect.height;
+ if(x<0||x>1||y<0||y>1)return;
+ const container=document.getElementById('hotspotCanvasContainer').getBoundingClientRect();const pin=document.getElementById('hotspotPin');
+ pin.style.left=(e.clientX-container.left)+'px';pin.style.top=(e.clientY-container.top)+'px';pin.style.display='flex';pin.style.pointerEvents='none';
+ userAnswers[currentQ]={question_id:questions[currentQ].question_id,hotspot_clicked:{x,y}};
+ document.getElementById('hotspotFeedback').textContent='Selection saved for this question.';updateQuestionMap();
 }
 
 function handleIdentificationInput(val) {
@@ -922,12 +872,12 @@ function updateFlagButton() {
   if (isFlagged) {
     flagBtn.style.borderColor = '#d97706';
     flagBtn.style.color = '#d97706';
-    flagIcon.innerHTML = '<svg style="width:13px;height:13px;vertical-align:-2px;" viewBox="0 0 24 24" fill="currentColor"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15" stroke="currentColor" stroke-width="2"/></svg>';
+    flagIcon.innerHTML = '<svg style="width:13px;height:13px;vertical-align:-2px;" class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#flag"/></svg>';
     flagLabel.textContent = 'Flagged';
   } else {
     flagBtn.style.borderColor = 'var(--border)';
     flagBtn.style.color = 'var(--text-secondary)';
-    flagIcon.innerHTML = '<svg style="width:13px;height:13px;vertical-align:-2px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>';
+    flagIcon.innerHTML = '<svg style="width:13px;height:13px;vertical-align:-2px;" class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#flag"/></svg>';
     flagLabel.textContent = 'Flag for Review';
   }
 }
@@ -950,13 +900,15 @@ function isQuestionAnswered(i) {
 }
 
 function updateQuestionMap() {
+  clearTimeout(saveTimer);
+  if (currentSubmissionId && !submitting) saveTimer = setTimeout(saveQuizDraft, 350);
   questions.forEach((_, i) => {
     const el = document.getElementById('qmap-' + i);
     if (!el) return;
     const answered = isQuestionAnswered(i);
     const isFlagged = flaggedQuestions.has(i);
 
-    const flagBadge = isFlagged ? '<span style="position:absolute;top:2px;right:2px;display:flex;align-items:center;"><svg style="width:9px;height:9px;color:#d97706;" viewBox="0 0 24 24" fill="currentColor"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15" stroke="currentColor" stroke-width="2"/></svg></span>' : '';
+    const flagBadge = isFlagged ? '<span style="position:absolute;top:2px;right:2px;display:flex;align-items:center;"><svg style="width:9px;height:9px;color:#d97706;" class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#flag"/></svg></span>' : '';
     el.innerHTML = `${i + 1}${flagBadge}`;
 
     if (i === currentQ) {
@@ -976,7 +928,20 @@ function updateQuestionMap() {
 }
 
 // ── Submit Assessment ───────────────────────────────────────────
+function saveQuizDraft() {
+ const id=currentSubmissionId;
+ const answers=userAnswers.filter(a=>a!==null);
+ if (!id || (deadlineMs !== null && Date.now() >= deadlineMs)) return saveChain;
+ saveChain=saveChain.catch(()=>{}).then(async()=>{
+  const response=await fetch(API_BASE+'/quiz/save.php',{method:'POST',headers:{'Content-Type':'application/json'},credentials:'same-origin',body:JSON.stringify({submission_id:id,answers}),keepalive:true});
+  const result=await response.json();
+  if (!result.success && response.status!==409) throw new Error(result.message);
+ }).catch(()=>showToast('Answers could not be saved. Keep this page open and retry when connected.','warning'));
+ return saveChain;
+}
+window.addEventListener('pagehide',()=>{if(!submitting)saveQuizDraft();});
 async function submitQuiz() {
+  if (submitting) return;
   clearInterval(timerInterval);
 
   const answeredCount = questions.filter((_, i) => isQuestionAnswered(i)).length;
@@ -987,6 +952,9 @@ async function submitQuiz() {
     }
   }
 
+  submitting = true;
+  clearTimeout(saveTimer);
+  await saveQuizDraft();
   showToast('Grading assessment…', 'info');
 
   const timeUsedSecs = Math.max(1, Math.round((Date.now() - startTime) / 1000));
@@ -1011,11 +979,13 @@ async function submitQuiz() {
     }
 
     const data = result.data;
-    displayResults(data, timeUsedSecs);
+    displayResults(data, data.time_taken_secs);
+    currentSubmissionId = null;
 
   } catch (err) {
     showToast('Failed to submit assessment to server.', 'error');
-  }
+  } finally { submitting = false; }
+
 }
 
 // ── Display Assessment Results ──────────────────────────────────
@@ -1081,6 +1051,7 @@ function exitQuiz() {
 // ── Init ────────────────────────────────────────────────────────
 loadAvailableAssessments();
 </script>
+<script src="../assets/js/site-config.js"></script>
 </body>
 </html>
 

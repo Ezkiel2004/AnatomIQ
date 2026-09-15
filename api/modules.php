@@ -40,15 +40,17 @@ if ($method === 'GET') {
         $params = $isStudent ? [$studentId, $id] : [$id];
         $module = $db->fetchOne($sql, $params);
         if (!$module) jsonError('Module not found.', 404);
+        if ($isStudent && $module['status'] !== 'published') jsonError('Module unavailable.', 403);
 
         // Also fetch lessons for this module
         $lessonSql = "SELECT l.lesson_id, l.title, l.lesson_type, l.duration_mins, l.sort_order, l.status, l.media_url" .
                      ($isStudent ? ", COALESCE(slp.status, 'not_started') AS progress_status, COALESCE(slp.completion_pct, 0) AS completion_pct" : "") . "
                       FROM lessons l " .
-                      ($isStudent ? "LEFT JOIN student_lesson_progress slp ON slp.lesson_id = l.lesson_id AND slp.student_id = {$studentId} " : "") . "
+                      ($isStudent ? "LEFT JOIN student_lesson_progress slp ON slp.lesson_id = l.lesson_id AND slp.student_id = ? " : "") . "
                       WHERE l.module_id = ? AND l.status = 'published'
                       ORDER BY l.sort_order";
-        $lessons = $db->fetchAll($lessonSql, [$id]);
+        $lessonParams = $isStudent ? [$studentId, $id] : [$id];
+        $lessons = $db->fetchAll($lessonSql, $lessonParams);
 
         $module['lessons']           = $lessons;
         $module['module_id']         = (int) $module['module_id'];

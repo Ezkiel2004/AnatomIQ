@@ -1,85 +1,28 @@
 <?php
-/**
- * AnatomIQ – Start Quiz API
- * POST /api/quiz/start.php
- *
- * Initiates an assessment attempt for a student.
- * Validates active status and attempt limits.
- *
- * Request: { "assessment_id": 1 }
- * Response: { "submission_id": 12, "attempt_number": 1, "time_limit_mins": 30 }
- */
-
 require_once __DIR__ . '/../helpers.php';
 requireMethod('POST');
 $user = requireStudent();
-
-$db   = Database::getInstance();
+$db = Database::getInstance();
 $body = getJsonBody();
-
-$assessmentId = (int) requireField($body, 'assessment_id', 'Assessment ID');
-
-// Fetch assessment
-$assessment = $db->fetchOne(
-    "SELECT * FROM assessments WHERE assessment_id = ?",
-    [$assessmentId]
-);
-
-if (!$assessment) {
-    jsonError('Assessment not found.', 404);
+$id = (int)requireField($body, 'assessment_id');
+$pdo = $db->getConnection();
+$pdo->beginTransaction();
+// Serialize starts across sessions for the same student.
+$db->fetchOne('SELECT user_id FROM users WHERE user_id=? FOR UPDATE', [$user['user_id']]);
+$assessment = $db->fetchOne('SELECT *, due_date IS NOT NULL AND due_date < NOW() AS overdue FROM assessments WHERE assessment_id=?', [$id]);
+if (!$assessment || $assessment['status'] !== 'active') jsonError('Assessment is not available.', 403);
+$attempt = $db->fetchOne("SELECT * FROM assessment_submissions WHERE student_id=? AND assessment_id=? AND status='in_progress' ORDER BY submission_id DESC LIMIT 1", [$user['user_id'], $id]);
+$resumed = (bool)$attempt;
+if (!$attempt) {
+    if ($assessment['overdue']) jsonError('The assessment deadline has passed.', 403);
+    $count = (int)$db->fetchOne("SELECT COUNT(*) AS n FROM assessment_submissions WHERE student_id=? AND assessment_id=? AND status IN ('submitted','graded')", [$user['user_id'], $id])['n'];
+    if ($count >= (int)$assessment['max_attempts']) jsonError('Maximum attempts reached.', 403);
+    if (!$db->fetchOne('SELECT question_id FROM questions WHERE assessment_id=? LIMIT 1', [$id])) jsonError('Your teacher has not added questions yet.', 409);
+    $deadline = $db->fetchOne("SELECT CASE WHEN ? IS NULL THEN ? WHEN ? IS NULL THEN DATE_ADD(NOW(), INTERVAL ? MINUTE) ELSE LEAST(?, DATE_ADD(NOW(), INTERVAL ? MINUTE)) END AS value", [$assessment['time_limit_mins'], $assessment['due_date'], $assessment['due_date'], $assessment['time_limit_mins'], $assessment['due_date'], $assessment['time_limit_mins']])['value'];
+    $newId = $db->insert('assessment_submissions', ['student_id'=>$user['user_id'],'assessment_id'=>$id,'attempt_number'=>$count+1,'status'=>'in_progress','started_at'=>date('Y-m-d H:i:s'),'deadline_at'=>$deadline,'draft_answers'=>'[]']);
+    $db->query('UPDATE assessment_submissions SET started_at=NOW() WHERE submission_id=?', [$newId]);
+    $attempt = $db->fetchOne('SELECT * FROM assessment_submissions WHERE submission_id=?', [$newId]);
 }
-
-if ($assessment['status'] !== 'active') {
-    jsonError('This assessment is not currently active.', 403);
-}
-
-// Count prior completed attempts
-$pastAttempts = $db->fetchAll(
-    "SELECT submission_id FROM assessment_submissions
-     WHERE student_id = ? AND assessment_id = ? AND status IN ('submitted', 'graded')",
-    [$user['user_id'], $assessmentId]
-);
-
-$attemptCount = count($pastAttempts);
-if ($attemptCount >= (int) $assessment['max_attempts']) {
-    jsonError('Maximum attempt limit (' . $assessment['max_attempts'] . ') reached for this assessment.', 403);
-}
-
-// Check if an attempt is already in progress
-$existingInProgress = $db->fetchOne(
-    "SELECT submission_id, attempt_number, started_at
-     FROM assessment_submissions
-     WHERE student_id = ? AND assessment_id = ? AND status = 'in_progress'
-     ORDER BY started_at DESC LIMIT 1",
-    [$user['user_id'], $assessmentId]
-);
-
-if ($existingInProgress) {
-    jsonSuccess([
-        'submission_id'   => (int) $existingInProgress['submission_id'],
-        'attempt_number'  => (int) $existingInProgress['attempt_number'],
-        'time_limit_mins' => $assessment['time_limit_mins'] ? (int) $assessment['time_limit_mins'] : null,
-        'started_at'      => $existingInProgress['started_at'],
-        'resumed'         => true,
-    ], 'Resuming quiz session.');
-}
-
-// Create new submission record
-$nextAttemptNumber = $attemptCount + 1;
-$db->query(
-    "INSERT INTO assessment_submissions
-        (student_id, assessment_id, attempt_number, status, started_at)
-     VALUES (?, ?, ?, 'in_progress', NOW())",
-    [$user['user_id'], $assessmentId, $nextAttemptNumber]
-);
-
-$newSubmissionId = (int) $db->getConnection()->lastInsertId();
-
-jsonSuccess([
-    'submission_id'   => $newSubmissionId,
-    'attempt_number'  => $nextAttemptNumber,
-    'time_limit_mins' => $assessment['time_limit_mins'] ? (int) $assessment['time_limit_mins'] : null,
-    'started_at'      => date('Y-m-d H:i:s'),
-    'resumed'         => false,
-], 'Quiz attempt started.', 201);
-?>
+$timing = $db->fetchOne('SELECT TIMESTAMPDIFF(SECOND, NOW(), deadline_at) AS remaining_seconds, TIMESTAMPDIFF(SECOND, started_at, NOW()) AS elapsed_seconds FROM assessment_submissions WHERE submission_id=?', [$attempt['submission_id']]);
+$pdo->commit();
+jsonSuccess(['submission_id'=>(int)$attempt['submission_id'],'attempt_number'=>(int)$attempt['attempt_number'],'time_limit_mins'=>$assessment['time_limit_mins'],'started_at'=>$attempt['started_at'],'remaining_seconds'=>$timing['remaining_seconds'] === null ? null : max(0,(int)$timing['remaining_seconds']),'elapsed_seconds'=>(int)$timing['elapsed_seconds'],'answers'=>json_decode($attempt['draft_answers'] ?? '[]', true) ?: [],'resumed'=>$resumed]);

@@ -5,6 +5,20 @@
 
 /* ── Google Fonts: Plus Jakarta Sans loaded in HTML ── */
 
+/* Local Phosphor SVGs supplied through Supericons. */
+.ui-icon {
+  display: inline-block;
+  width: 1.25em;
+  height: 1.25em;
+  flex-shrink: 0;
+  vertical-align: -.2em;
+  fill: currentColor;
+  stroke: none;
+  pointer-events: none;
+}
+.btn .ui-icon { width: 16px; height: 16px; }
+.modal-close .ui-icon { width: 20px; height: 20px; }
+
 :root {
   /* Brand */
   --brand:       #1a6b4a;
