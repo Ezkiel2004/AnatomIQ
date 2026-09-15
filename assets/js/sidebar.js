@@ -101,24 +101,10 @@
       <div class="nav-section-label">My Progress</div>
       <a class="nav-item" href="progress.html" data-tooltip="Progress">
         <span class="nav-icon"><svg class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#chart-line"/></svg></span>
-        <span class="nav-label">My Progress</span>
-      </a>
-      <a class="nav-item" href="scores.html" data-tooltip="Scores">
-        <span class="nav-icon"><svg class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#chart-bar"/></svg></span>
-        <span class="nav-label">My Scores</span>
-      </a>
-      <a class="nav-item" href="notifications.html" data-tooltip="Notifications">
-        <span class="nav-icon"><svg class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#bell"/></svg></span>
-        <span class="nav-label">Notifications</span>
-        <span class="nav-badge" style="display:none;">0</span>
-      </a>
-      <div class="nav-section-label">Account</div>
-      <a class="nav-item" href="settings.html">
-        <span class="nav-icon"><svg class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#gear"/></svg></span>
-        <span class="nav-label">Settings and Profile</span>
+        <span class="nav-label">My Progress &amp; Scores</span>
       </a>
     </nav>
-    <div class="sidebar-footer"><div class="user-card"><a class="sidebar-profile" href="settings.html" title="Settings and profile"><div class="avatar">&#8226;</div><div class="user-info"><div class="user-name">Student</div><div class="user-role">Student</div></div></a><button type="button" class="logout-btn" title="Sign out" aria-label="Sign out"><svg class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#sign-out"/></svg></button></div></div>`
+`
     };
     const template=templates[host.dataset.portal];
     if(!template)return;

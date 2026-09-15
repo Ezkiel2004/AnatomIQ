@@ -16,6 +16,7 @@
   <script src="../assets/vendor/three/three.min.js"></script>
   <script src="../assets/vendor/three/OrbitControls.js"></script>
   <script src="../assets/vendor/three/GLTFLoader.js"></script>
+  <link rel="stylesheet" href="../assets/css/teacher-portal.css?v=20260915-layout1"/>
 </head>
 <body class="teacher-dashboard" data-anatomy-role="teacher">
 <div class="app-layout">
@@ -80,7 +81,7 @@
       <div class="anatomy-workspace">
         <section>
           <div class="model-stage">
-            <canvas id="anatomyCanvas" aria-label="Interactive anatomy model. Use the buttons below to zoom and rotate; select structures from the list." tabindex="0"></canvas>
+            <canvas id="anatomyCanvas" aria-describedby="viewerGestures" aria-label="Interactive anatomy model. Scroll to zoom at the pointer. Drag to rotate; right-drag or use arrow keys to pan. On touch screens, pinch and move two fingers to zoom and pan." tabindex="0"></canvas>
             <div id="modelMessage" class="model-message" role="status">Loading anatomy content...</div>
           </div>
           <div class="model-tools" style="margin-top:10px;">
@@ -130,7 +131,7 @@
 
 <script src="../assets/js/app.js?v=20260914-icons1"></script>
 <script src="../assets/js/anatomy.js"></script>
-<script src="../assets/js/model-viewer.js"></script>
+<script src="../assets/js/model-viewer.js?v=20260915-pointerzoom1"></script>
 <script src="../assets/js/teacher-anatomy.js"></script>
 <script src="../assets/js/anatomy-page.js"></script>
 <script src="../assets/js/site-config.js"></script>

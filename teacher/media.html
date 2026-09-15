@@ -87,6 +87,7 @@
       background: #fbfdfd;
     }
   </style>
+  <link rel="stylesheet" href="../assets/css/teacher-portal.css?v=20260915-layout1"/>
 </head>
 <body class="teacher-dashboard">
 <div class="app-layout">
@@ -289,7 +290,7 @@ function renderMediaGrid(items) {
   const container = document.getElementById('mediaGridContainer');
   if (!items.length) {
     container.innerHTML = `
-      <div style="grid-column:1/-1;text-align:center;padding:4rem 1rem;color:var(--text-muted);">
+      <div class="portal-empty" role="status">
         <div style="display:flex;justify-content:center;margin-bottom:1rem;color:var(--text-muted);">
           <svg style="width:48px;height:48px;" class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#folder"/></svg>
         </div>

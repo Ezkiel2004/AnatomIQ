@@ -16,13 +16,13 @@
   <script src="../assets/vendor/three/three.min.js"></script>
   <script src="../assets/vendor/three/OrbitControls.js"></script>
   <script src="../assets/vendor/three/GLTFLoader.js"></script>
-  <link rel="stylesheet" href="../assets/css/student-portal.css?v=20260915-consistency1"/>
+  <link rel="stylesheet" href="../assets/css/student-portal.css?v=20260915-account4"/>
 </head>
 <body class="teacher-dashboard student-dashboard" data-anatomy-role="student">
 <div class="app-layout">
 
   <!-- Student Sidebar -->
-  <aside class="sidebar" id="sidebar" data-portal="student" aria-label="Student portal"><script src="../assets/js/sidebar.js?v=20260914-icons1"></script></aside>
+  <aside class="sidebar" id="sidebar" data-portal="student" aria-label="Student portal"><script src="../assets/js/sidebar.js?v=20260915-student2"></script></aside>
 
   <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
@@ -37,7 +37,7 @@
         <div style="position:relative;">
           <button class="notif-btn" id="notifBtn" aria-label="Notifications">
             <svg class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#bell"/></svg>
-            <span class="notif-dot"></span>
+            <span class="notif-dot" style="display:none;" aria-hidden="true"></span>
           </button>
           <div class="notif-dropdown" id="notifDropdown" style="display:none;">
             <div class="notif-header"><span>Notifications</span><a href="notifications.html" style="font-size:0.75rem;color:var(--brand);">Mark all read</a></div>
@@ -71,7 +71,7 @@
       <div class="anatomy-workspace">
         <section>
           <div class="model-stage">
-            <canvas id="anatomyCanvas" aria-label="Interactive anatomy model. Use the buttons below to zoom and rotate; select structures from the list." tabindex="0"></canvas>
+            <canvas id="anatomyCanvas" aria-describedby="viewerGestures" aria-label="Interactive anatomy model. Scroll to zoom at the pointer. Drag to rotate; right-drag or use arrow keys to pan. On touch screens, pinch and move two fingers to zoom and pan." tabindex="0"></canvas>
             <div id="modelMessage" class="model-message" role="status">Loading anatomy content...</div>
           </div>
           <div class="model-tools" style="margin-top:10px;">
@@ -113,9 +113,10 @@
   </main>
 </div>
 
-<script src="../assets/js/app.js?v=20260914-icons1"></script>
+<script src="../assets/js/app.js?v=20260915-student2"></script>
+<script src="../assets/js/student-portal.js?v=20260915-account3"></script>
 <script src="../assets/js/anatomy.js"></script>
-<script src="../assets/js/model-viewer.js"></script>
+<script src="../assets/js/model-viewer.js?v=20260915-pointerzoom1"></script>
 <script src="../assets/js/anatomy-page.js"></script>
 <script src="../assets/js/site-config.js"></script>
 </body>

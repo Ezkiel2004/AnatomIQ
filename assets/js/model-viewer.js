@@ -10,12 +10,25 @@ const AnatomyViewer = {
         this.scene.add(new THREE.HemisphereLight(0xffffff,0x536077,1.6));
         const light=new THREE.DirectionalLight(0xffffff,1.4);light.position.set(4,8,6);this.scene.add(light);
         this.controls=new THREE.OrbitControls(this.camera,canvas);this.controls.enableDamping=true;
+        this.controls.enablePan=true;
+        this.controls.screenSpacePanning=true;
+        this.controls.touches.TWO=THREE.TOUCH.DOLLY_PAN;
+        this.controls.listenToKeyEvents(canvas);
         this.raycaster=new THREE.Raycaster();
+        // Intercept wheel zoom before OrbitControls' center-based wheel handler.
+        // Moving camera and orbit target around the same anchor keeps it under the pointer.
+        canvas.addEventListener('wheel',event=>{
+            if(!this.root || !this.controls.enabled || !this.controls.enableZoom)return;
+            event.preventDefault();event.stopImmediatePropagation();
+            const units=event.deltaMode===1?16:event.deltaMode===2?canvas.clientHeight:1;
+            const delta=Math.max(-200,Math.min(200,event.deltaY*units));
+            this.zoom(Math.exp(delta*.002),this.pointerAnchor(event.clientX,event.clientY));
+        },{capture:true,passive:false});
         this.observer=new ResizeObserver(()=>this.resize());this.observer.observe(canvas.parentElement);
         let pointerStart=null;
         canvas.addEventListener('pointerdown',e=>pointerStart={x:e.clientX,y:e.clientY});
         canvas.addEventListener('pointerup',e=>{
-            if(!pointerStart || Math.hypot(e.clientX-pointerStart.x,e.clientY-pointerStart.y)>6)return;
+            if(e.button!==0 || !pointerStart || Math.hypot(e.clientX-pointerStart.x,e.clientY-pointerStart.y)>6)return;
             const rect=canvas.getBoundingClientRect();
             this.raycaster.setFromCamera(new THREE.Vector2((e.clientX-rect.left)/rect.width*2-1,-(e.clientY-rect.top)/rect.height*2+1),this.camera);
             const hit=this.raycaster.intersectObjects(this.meshes,false)[0];
@@ -43,6 +56,24 @@ const AnatomyViewer = {
     highlight(structure){
         for(const mesh of this.meshes){const materials=Array.isArray(mesh.material)?mesh.material:[mesh.material];for(const material of materials){if(!material.emissive)continue;if(material.userData.originalEmissive===undefined)material.userData.originalEmissive=material.emissive.getHex();material.emissive.setHex(mesh.userData.structure===structure?0x245f64:material.userData.originalEmissive);}}
     },
-    zoom(factor){const offset=this.camera.position.clone().sub(this.controls.target).multiplyScalar(factor);this.camera.position.copy(this.controls.target).add(offset);},
+    pointerAnchor(x,y){
+        const rect=this.canvas.getBoundingClientRect();
+        this.camera.updateMatrixWorld();
+        this.raycaster.setFromCamera(new THREE.Vector2((x-rect.left)/rect.width*2-1,-(y-rect.top)/rect.height*2+1),this.camera);
+        // Raycast the whole model, including assets without individually labeled bones.
+        const hit=this.root?this.raycaster.intersectObject(this.root,true)[0]:null;
+        if(hit)return hit.point;
+        const plane=new THREE.Plane().setFromNormalAndCoplanarPoint(this.camera.getWorldDirection(new THREE.Vector3()),this.controls.target);
+        return this.raycaster.ray.intersectPlane(plane,new THREE.Vector3()) || this.controls.target.clone();
+    },
+    zoom(factor,anchor=this.controls.target.clone()){
+        if(!this.root || !Number.isFinite(factor) || factor<=0)return;
+        const distance=this.camera.position.distanceTo(this.controls.target);
+        const next=THREE.MathUtils.clamp(distance*factor,Math.max(this.camera.near*10,this.controls.minDistance),Math.min(this.camera.far*.5,this.controls.maxDistance));
+        const scale=next/Math.max(distance,Number.EPSILON);
+        this.camera.position.sub(anchor).multiplyScalar(scale).add(anchor);
+        this.controls.target.sub(anchor).multiplyScalar(scale).add(anchor);
+        this.controls.update();
+    },
     screenshot(){const link=document.createElement('a');link.download='anatomy-view.png';link.href=this.canvas.toDataURL('image/png');link.click();}
 };

@@ -207,25 +207,36 @@ const Notifications = {
     items: [],    // Populated from API
     loaded: false,
 
-    async load() {
-        if (this.loaded) return;
+    async load(force = false) {
+        if (this.loaded && !force) return;
         try {
             const res    = await fetch(`${API_BASE}/notifications.php`, { credentials: 'same-origin' });
             const result = await res.json();
             if (result.success && Array.isArray(result.data)) {
-                this.items  = result.data;
-                this.loaded = true;
-                this._updateBadge();
+                this.setItems(result.data);
             }
         } catch (e) {
             // Fallback: keep items empty; notifications page handles its own data
-            this.loaded = true;
+            this.loaded = false;
         }
+    },
+
+    setItems(items) {
+        this.items = items;
+        this.loaded = true;
+        this.render();
+        this._updateBadge();
+        document.dispatchEvent(new CustomEvent('notifications:updated', { detail: this.items }));
     },
 
     render() {
         const list = document.querySelector('#notifDropdown .notif-list');
         if (!list) return;
+
+        if (!this.loaded) {
+            list.innerHTML = '<div style="padding:1rem;text-align:center;color:var(--text-muted);">Unable to load notifications. Please reopen to try again.</div>';
+            return;
+        }
 
         if (this.items.length === 0) {
             list.innerHTML = '<div style="padding:1rem;text-align:center;color:var(--text-muted);font-size:0.82rem;">No notifications yet.</div>';
@@ -233,7 +244,7 @@ const Notifications = {
         }
 
         list.innerHTML = this.items.slice(0, 6).map(n => `
-            <div class="notif-item ${n.unread ? 'unread' : ''}" onclick="Notifications.markRead('${n.id}')">
+            <div class="notif-item ${n.unread ? 'unread' : ''}" role="button" tabindex="0" onclick="Notifications.open('${n.id}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}">
                 <div class="notif-item-icon" style="background:${n.bg || 'rgba(59,130,246,0.15)'};display:flex;align-items:center;justify-content:center;color:var(--text-secondary);">
                     ${n.icon || '<svg width="15" height="15" class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#bell"/></svg>'}
                 </div>
@@ -251,31 +262,57 @@ const Notifications = {
         if (!dd) return;
         const isVisible = dd.style.display !== 'none';
         dd.style.display = isVisible ? 'none' : 'block';
+        document.getElementById('notifBtn')?.setAttribute('aria-expanded', String(!isVisible));
         if (!isVisible) {
-            await this.load();
+            await this.load(true);
             this.render();
         }
     },
 
-    async markRead(id) {
+    async open(id) {
         const item = this.items.find(n => n.id === id);
-        if (item) item.unread = false;
-        this.render();
-        this._updateBadge();
+        if (!item) return;
+        if (item.unread && !await this.markRead(id)) return;
+        if (item.action && item.action !== '#') {
+            const destination = new URL(item.action, location.href);
+            if (destination.origin === location.origin) location.href = destination.href;
+        }
+    },
+
+    async markRead(id) {
+        return this._saveRead({ id });
+    },
+
+    async markAllRead() {
+        return this._saveRead({ all: true });
+    },
+
+    async _saveRead(body) {
         try {
-            await fetch(`${API_BASE}/notifications/mark-read.php`, {
+            const response = await fetch(`${API_BASE}/notifications/mark-read.php`, {
                 method:      'POST',
                 headers:     { 'Content-Type': 'application/json' },
                 credentials: 'same-origin',
-                body:        JSON.stringify({ id }),
+                body:        JSON.stringify(body),
             });
-        } catch (e) { /* Best effort */ }
+            const result = await response.json();
+            if (!response.ok || !result.success) throw new Error('Unable to mark notifications as read.');
+            this.setItems(this.items.map(item => body.all || item.id === body.id ? { ...item, unread: false } : item));
+            return true;
+        } catch (e) {
+            showToast('Unable to mark notifications as read. Please try again.', 'error');
+            return false;
+        }
     },
 
     _updateBadge() {
         const unread = this.items.filter(n => n.unread).length;
         const dot    = document.querySelector('.notif-dot');
-        if (dot) dot.style.display = unread > 0 ? 'block' : 'none';
+        if (dot) {
+            dot.style.display = unread > 0 ? 'flex' : 'none';
+            if (document.body.classList.contains('student-dashboard')) dot.textContent = unread;
+        }
+        document.getElementById('notifBtn')?.setAttribute('aria-label', unread > 0 ? `Notifications, ${unread} unread` : 'Notifications, no unread notifications');
 
         document.querySelectorAll('.sidebar-nav a[href*="notifications"] .nav-badge').forEach(badge => {
             badge.textContent = unread;
@@ -538,6 +575,7 @@ function initApp() {
         const dd = document.getElementById('notifDropdown');
         if (dd && !dd.contains(e.target) && !e.target.closest('.notif-btn')) {
             dd.style.display = 'none';
+            document.getElementById('notifBtn')?.setAttribute('aria-expanded', 'false');
         }
     });
 

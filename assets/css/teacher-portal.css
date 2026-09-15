@@ -1,0 +1,24 @@
+/* Teacher portal layout shared by every management page. */
+.teacher-dashboard .stats-grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); }
+.teacher-dashboard .stats-grid .stat-card { flex-direction: column; align-items: stretch; min-width: 0; gap: 12px; padding: 18px; grid-column: auto; }
+.teacher-dashboard .stat-info { min-width: 0; display: grid; gap: 8px; }
+.teacher-dashboard .stat-value { line-height: 1.2; overflow-wrap: anywhere; }
+.teacher-dashboard .stat-label { overflow-wrap: anywhere; }
+.teacher-dashboard .sidebar::before { opacity: .12; }
+.teacher-dashboard .sidebar:not(.collapsed) .user-name { white-space: normal; overflow-wrap: anywhere; line-height: 1.4; }
+.teacher-dashboard .user-info { min-width: 0; }
+.teacher-dashboard .module-grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); }
+.teacher-dashboard .module-card { min-width: 0; overflow-wrap: anywhere; }
+.teacher-dashboard .portal-empty { grid-column: 1 / -1; text-align: center; padding: 48px 24px; background: var(--bg-surface); border: 1px dashed var(--border); border-radius: 11px; color: var(--text-muted); }
+.teacher-dashboard .portal-empty p { max-width: 480px; margin-inline: auto; }
+.teacher-dashboard .search-bar { max-width: 100%; min-width: 0; }
+.teacher-dashboard .search-bar input { min-width: 0; width: 100%; }
+.teacher-dashboard .page-header-left { min-width: 0; }
+.teacher-dashboard .page-header h1 { overflow-wrap: anywhere; }
+.teacher-dashboard .page-header-right { flex-wrap: wrap; }
+@media(max-width:600px) {
+ .teacher-dashboard .topbar-breadcrumb { min-width: 0; }
+ .teacher-dashboard .breadcrumb-item, .teacher-dashboard .breadcrumb-sep { display: none; }
+ .teacher-dashboard .topbar-user-name { max-width: 150px; overflow-wrap: anywhere; }
+ .teacher-dashboard .page-header-right .btn { min-height: 40px; font-size: .75rem; }
+}

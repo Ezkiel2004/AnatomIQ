@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="../assets/css/sidebar.css?v=20260914-bg1"/>
   <link rel="stylesheet" href="../assets/css/teacher.css"/>
   <link rel="stylesheet" href="../assets/css/teacher-dashboard.css?v=20260914-icons1"/>
+  <link rel="stylesheet" href="../assets/css/teacher-portal.css?v=20260915-layout1"/>
 </head>
 <body class="teacher-dashboard">
 <div class="app-layout">
@@ -307,7 +308,7 @@ async function viewStudent(userId) {
       </div>
 
       <div style="font-size:0.85rem;font-weight:600;color:var(--text-primary);margin-bottom:var(--space-3);">Body System Progress Breakdown</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3);margin-bottom:var(--space-5);">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:var(--space-3);margin-bottom:var(--space-5);">
         ${sysProgress.map(sys => {
           const tot = parseInt(sys.total_lessons, 10) || 0;
           const comp = parseInt(sys.completed_lessons, 10) || 0;

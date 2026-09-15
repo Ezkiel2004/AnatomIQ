@@ -11,12 +11,12 @@
   <link rel="stylesheet" href="../assets/css/sidebar.css?v=20260914-bg1"/>
   <link rel="stylesheet" href="../assets/css/student.css"/>
   <link rel="stylesheet" href="../assets/css/teacher-dashboard.css?v=20260914-icons1"/>
-  <link rel="stylesheet" href="../assets/css/student-portal.css?v=20260915-consistency1"/>
+  <link rel="stylesheet" href="../assets/css/student-portal.css?v=20260915-assessments8"/>
 </head>
 <body class="teacher-dashboard student-dashboard">
 <div class="app-layout">
 
-  <aside class="sidebar" id="sidebar" data-portal="student" aria-label="Student portal"><script src="../assets/js/sidebar.js?v=20260914-icons1"></script></aside>
+  <aside class="sidebar" id="sidebar" data-portal="student" aria-label="Student portal"><script src="../assets/js/sidebar.js?v=20260915-student2"></script></aside>
   <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
   <main class="main-content" id="mainContent">
@@ -27,7 +27,7 @@
         <div style="position:relative;">
           <button class="notif-btn" id="notifBtn" aria-label="Notifications">
             <svg class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#bell"/></svg>
-            <span class="notif-dot"></span>
+            <span class="notif-dot" style="display:none;" aria-hidden="true"></span>
           </button>
           <div class="notif-dropdown" id="notifDropdown" style="display:none;">
             <div class="notif-header"><span>Notifications</span><a href="notifications.html" style="font-size:0.75rem;color:var(--brand);">Mark all read</a></div>
@@ -101,6 +101,7 @@
       </div>
 
       <!-- Filter & Search Toolbar -->
+      <section class="card assessment-browser" aria-labelledby="availableAssessmentsTitle">
       <div class="filter-toolbar">
         <!-- Row 1: Search Input (left) & Filter Selects (right) -->
         <div class="filter-toolbar-row">
@@ -147,11 +148,12 @@
       </div>
 
       <!-- Section Title & Results Counter -->
+      <div class="assessment-browser-results">
       <div class="lesson-results-heading">
-        <div style="font-size:1rem;font-weight:700;color:var(--text-primary);">
+        <h2 id="availableAssessmentsTitle">
           Available Assessments
-        </div>
-        <div style="font-size:0.8125rem;color:var(--text-muted);" id="assessmentResultsCount">
+        </h2>
+        <div style="font-size:0.8125rem;color:var(--text-muted);" id="assessmentResultsCount" role="status">
           Loading assessments…
         </div>
       </div>
@@ -160,6 +162,8 @@
       <div class="assessments-grid" id="availableAssessmentsGrid">
         <div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--text-muted);">Loading assessments from database…</div>
       </div>
+      </div>
+      </section>
     </div>
 
     <!-- Quiz Interface (hidden by default) -->
@@ -269,7 +273,7 @@
 
           <div style="display:flex;gap:var(--space-3);justify-content:center;margin-top:var(--space-6);">
             <button class="btn btn-secondary" onclick="exitQuiz()">Back to Assessments</button>
-            <a href="scores.html" class="btn btn-secondary">View All Scores</a>
+            <a href="progress.html#scores" class="btn btn-secondary">View All Scores</a>
             <a id="resultStudyLink" href="anatomy.html" class="btn btn-primary">Explore System in 3D</a>
           </div>
         </div>
@@ -279,7 +283,8 @@
   </main>
 </div>
 
-<script src="../assets/js/app.js?v=20260914-icons1"></script>
+<script src="../assets/js/app.js?v=20260915-student2"></script>
+<script src="../assets/js/student-portal.js?v=20260915-account3"></script>
 <script>
 'use strict';
 Auth.requireAuthSync('student');
@@ -485,13 +490,13 @@ function renderAssessmentCards() {
 
   if (!filtered.length) {
     grid.innerHTML = `
-      <div style="grid-column:1/-1;text-align:center;padding:3.5rem 1.5rem;background:var(--bg-surface);border:1px dashed var(--border);border-radius:var(--radius-lg);">
+      <div class="assessment-browser-empty">
         <div style="width:48px;height:48px;border-radius:50%;background:var(--bg-inset);display:flex;align-items:center;justify-content:center;margin:0 auto var(--space-3);color:var(--text-muted);">
           <svg width="22" height="22" class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#magnifying-glass"/></svg>
         </div>
         <div style="font-size:1rem;font-weight:600;color:var(--text-primary);margin-bottom:4px;">${allAssessments.length ? 'No assessments match your criteria' : 'No assessments published yet'}</div>
         <p style="font-size:0.8125rem;color:var(--text-secondary);max-width:380px;margin:0 auto var(--space-4);">${allAssessments.length ? 'Try another filter or clear your search.' : 'Your teacher will publish quizzes and activities here.'}</p>
-        <button type="button" class="btn btn-secondary btn-sm" onclick="resetAssessmentFilters()">Reset All Filters</button>
+        ${allAssessments.length ? '<button type="button" class="btn btn-secondary btn-sm" onclick="resetAssessmentFilters()">Reset All Filters</button>' : ''}
       </div>
     `;
     return;

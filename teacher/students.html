@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="../assets/css/sidebar.css?v=20260914-bg1"/>
   <link rel="stylesheet" href="../assets/css/teacher.css"/>
   <link rel="stylesheet" href="../assets/css/teacher-dashboard.css?v=20260914-icons1"/>
+  <link rel="stylesheet" href="../assets/css/teacher-portal.css?v=20260915-layout1"/>
 </head>
 <body class="teacher-dashboard">
 <div class="app-layout">
@@ -162,7 +163,7 @@
     <form id="addStudentForm" onsubmit="handleAddStudent(event)">
       <div class="modal-body">
         <div style="display:flex;flex-direction:column;gap:var(--space-4);">
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3);">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:var(--space-3);">
             <div class="form-group">
               <label>Full Name *</label>
               <div class="input-wrapper"><input type="text" id="addFullName" placeholder="Student full name" required/></div>
@@ -172,7 +173,7 @@
               <div class="input-wrapper"><input type="text" id="addSchoolId" placeholder="School-issued student ID" required/></div>
             </div>
           </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3);">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:var(--space-3);">
             <div class="form-group">
               <label>Username *</label>
               <div class="input-wrapper"><input type="text" id="addUsername" placeholder="Choose a unique username" required/></div>
@@ -182,7 +183,7 @@
               <div class="input-wrapper"><input type="password" id="addPassword" required minlength="8" autocomplete="new-password"/></div>
             </div>
           </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3);">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:var(--space-3);">
             <div class="form-group">
               <label>Section *</label>
               <div class="input-wrapper"><input type="text" id="addSection" placeholder="Student section" required/></div>
@@ -196,7 +197,7 @@
             <label>Email Address</label>
             <div class="input-wrapper"><input type="email" id="addEmail" placeholder="Student email address"/></div>
           </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3);">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:var(--space-3);">
             <div class="form-group">
               <label>Guardian Name</label>
               <div class="input-wrapper"><input type="text" id="addGuardian" placeholder="Parent or guardian name"/></div>
@@ -459,7 +460,7 @@ async function viewStudentDetails(userId) {
         </div>
       </div>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:var(--space-4);">
         <div>
           <div style="font-weight:600;font-size:0.85rem;margin-bottom:var(--space-3);">Progress by Body System</div>
           <div style="max-height:220px;overflow-y:auto;padding-right:4px;">

@@ -11,13 +11,13 @@
   <link rel="stylesheet" href="../assets/css/sidebar.css?v=20260914-bg1"/>
   <link rel="stylesheet" href="../assets/css/student.css"/>
   <link rel="stylesheet" href="../assets/css/teacher-dashboard.css"/>
-  <link rel="stylesheet" href="../assets/css/student-portal.css?v=20260915-consistency1"/>
+  <link rel="stylesheet" href="../assets/css/student-portal.css?v=20260915-account4"/>
 </head>
 <body class="teacher-dashboard student-dashboard">
 <div class="app-layout">
 
   <!-- Sidebar -->
-  <aside class="sidebar" id="sidebar" data-portal="student" aria-label="Student portal"><script src="../assets/js/sidebar.js?v=20260914-icons1"></script></aside>
+  <aside class="sidebar" id="sidebar" data-portal="student" aria-label="Student portal"><script src="../assets/js/sidebar.js?v=20260915-student2"></script></aside>
 
   <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
@@ -36,7 +36,7 @@
         <div style="position:relative;">
           <button class="notif-btn" id="notifBtn" aria-label="View notifications">
             <svg class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#bell"/></svg>
-            <span class="notif-dot"></span>
+            <span class="notif-dot" style="display:none;" aria-hidden="true"></span>
           </button>
           <div class="notif-dropdown" id="notifDropdown" style="display:none;">
             <div class="notif-header"><span>Notifications</span></div>
@@ -62,7 +62,7 @@
       <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(min(100%, 320px), 1fr));gap:var(--space-5);">
 
         <!-- Personal Info & Academic Card -->
-        <div class="card">
+        <div class="card" id="profile" tabindex="-1">
           <h3 style="margin-bottom:var(--space-4);display:flex;align-items:center;gap:var(--space-2);font-size:1.125rem;font-weight:700;color:var(--text-primary);">
             <svg style="width:18px;height:18px;color:var(--brand);" class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#user-circle"/></svg>
             <span>Student Information</span>
@@ -130,7 +130,7 @@
         </div>
 
         <!-- Security & Password Card -->
-        <div class="card">
+        <div class="card" id="settings" tabindex="-1">
           <h3 style="margin-bottom:var(--space-4);font-size:1.125rem;font-weight:700;color:var(--text-primary);">Security &amp; Password</h3>
           <form id="passwordForm" onsubmit="handlePasswordChange(event)">
             <div style="display:flex;flex-direction:column;gap:var(--space-4);">
@@ -188,7 +188,7 @@
           <h3 style="margin:0;font-size:1.125rem;font-weight:700;color:var(--text-primary);">Academic Learning Summary</h3>
           <div style="display:flex;gap:var(--space-2);">
             <a href="progress.html" class="btn btn-secondary btn-sm">Full Progress Report</a>
-            <a href="scores.html" class="btn btn-secondary btn-sm">Assessment History</a>
+            <a href="progress.html#scores" class="btn btn-secondary btn-sm">Assessment History</a>
           </div>
         </div>
 
@@ -220,7 +220,8 @@
   </main>
 </div>
 
-<script src="../assets/js/app.js?v=20260914-icons1"></script>
+<script src="../assets/js/app.js?v=20260915-student2"></script>
+<script src="../assets/js/student-portal.js?v=20260915-account3"></script>
 <script>
 Auth.requireAuthSync('student');
 
@@ -372,21 +373,6 @@ async function handlePasswordChange(e) {
     btn.disabled = false;
     btn.textContent = 'Update Password';
   }
-}
-
-// Dropdown toggle
-const notifBtn = document.getElementById('notifBtn');
-const notifDropdown = document.getElementById('notifDropdown');
-if (notifBtn && notifDropdown) {
-  notifBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    notifDropdown.style.display = notifDropdown.style.display === 'none' ? 'block' : 'none';
-  });
-  document.addEventListener('click', (e) => {
-    if (!notifDropdown.contains(e.target) && e.target !== notifBtn) {
-      notifDropdown.style.display = 'none';
-    }
-  });
 }
 
 document.addEventListener('DOMContentLoaded', () => {

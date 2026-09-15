@@ -82,3 +82,9 @@ Finish by stopping the temporary server/browser and running tests/database.php c
 ## Interface icons
 
 Teacher and student portals use a shared, locally served Phosphor SVG icon set selected through Supericons. Navigation, dashboard cards, notifications, media types, modal controls, and common actions share the same family. See assets/icons/README.md for usage and assets/icons/LICENSE for attribution. Branding and database-configured anatomy symbols remain separate.
+
+## Supplied skeletal model
+
+The bundled `system_model/male_human_skeleton_-_zbrush_-_anatomy_study.glb` is connected to the active Skeletal System in this installation. Both teacher and student anatomy explorers load it through the database-managed model URL.
+
+For another installation, run `C:/xampp/php/php.exe database/integrate_skeleton.php` after installing the schema. The command validates the GLB, creates the skeletal system if absent, connects the file, enables student visibility, and preserves existing facts and structures. Attribution is read from the asset metadata. This model is one combined mesh; separate bone selection requires an asset with separately named parts.

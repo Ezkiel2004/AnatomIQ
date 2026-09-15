@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="../assets/css/sidebar.css?v=20260914-bg1"/>
   <link rel="stylesheet" href="../assets/css/teacher.css"/>
   <link rel="stylesheet" href="../assets/css/teacher-dashboard.css?v=20260914-icons1"/>
+  <link rel="stylesheet" href="../assets/css/teacher-portal.css?v=20260915-layout1"/>
 </head>
 <body class="teacher-dashboard">
 <div class="app-layout">
@@ -291,7 +292,7 @@ async function loadModules() {
 function renderModules(modules) {
   const grid = document.getElementById('moduleGrid');
   if (!modules.length) {
-    grid.innerHTML = `<div style="padding:3rem;text-align:center;color:var(--text-muted);">
+    grid.innerHTML = `<div class="portal-empty" role="status">
       <div style="font-size:3rem;margin-bottom:1rem;"><svg class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#cube"/></svg></div>
       <p>No modules yet. Click <strong>+ New Module</strong> to create one.</p>
     </div>`;
@@ -466,4 +467,3 @@ loadModules();
 <script src="../assets/js/site-config.js"></script>
 </body>
 </html>
-

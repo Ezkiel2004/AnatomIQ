@@ -11,11 +11,11 @@
   <link rel="stylesheet" href="../assets/css/sidebar.css?v=20260914-bg1"/>
   <link rel="stylesheet" href="../assets/css/student.css"/>
   <link rel="stylesheet" href="../assets/css/teacher-dashboard.css"/>
-  <link rel="stylesheet" href="../assets/css/student-portal.css?v=20260915-consistency1"/>
+  <link rel="stylesheet" href="../assets/css/student-portal.css?v=20260915-account4"/>
 </head>
 <body class="teacher-dashboard student-dashboard">
 <div class="app-layout">
-  <aside class="sidebar" id="sidebar" data-portal="student" aria-label="Student portal"><script src="../assets/js/sidebar.js?v=20260914-icons1"></script></aside>
+  <aside class="sidebar" id="sidebar" data-portal="student" aria-label="Student portal"><script src="../assets/js/sidebar.js?v=20260915-student2"></script></aside>
   <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
   <main class="main-content" id="mainContent">
@@ -26,7 +26,7 @@
         <div style="position:relative;">
           <button class="notif-btn" id="notifBtn" aria-label="View notifications">
             <svg class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#bell"/></svg>
-            <span class="notif-dot"></span>
+            <span class="notif-dot" style="display:none;" aria-hidden="true"></span>
           </button>
           <div class="notif-dropdown" id="notifDropdown" style="display:none;">
             <div class="notif-header"><span>Notifications</span></div>
@@ -66,7 +66,8 @@
   </main>
 </div>
 
-<script src="../assets/js/app.js?v=20260914-icons1"></script>
+<script src="../assets/js/app.js?v=20260915-student2"></script>
+<script src="../assets/js/student-portal.js?v=20260915-account3"></script>
 <script>
 Auth.requireAuthSync('student');
 
@@ -74,20 +75,17 @@ let notifItems = [];
 let currentFilter = 'all';
 
 async function loadNotifications() {
-  try {
-    const res = await fetch(`${API_BASE}/notifications.php`, { credentials: 'same-origin' });
-    const result = await res.json();
-    if (!result.success) throw new Error(result.message);
-
-    notifItems = Array.isArray(result.data) ? result.data : [];
-    updateCounts();
-    renderNotifs();
-  } catch (err) {
-    console.error('Failed to load notifications:', err);
-    document.getElementById('notifList').innerHTML = `<div style="text-align:center;padding:var(--space-8);color:var(--error);">Failed to load notifications: ${escHtml(err.message)}</div>`;
+  await Notifications.load(true);
+  if (!Notifications.loaded) {
+    document.getElementById('notifList').innerHTML = '<div style="padding:2rem;color:var(--error);">Unable to load notifications. Please refresh to try again.</div>';
   }
 }
 
+document.addEventListener('notifications:updated', event => {
+  notifItems = event.detail;
+  updateCounts();
+  renderNotifs();
+});
 function updateCounts() {
   const total = notifItems.length;
   const unread = notifItems.filter(n => n.unread).length;
@@ -98,11 +96,7 @@ function updateCounts() {
   const countUnread = document.getElementById('countUnread');
   if (countUnread) countUnread.textContent = `(${unread})`;
 
-  // Update nav badge in sidebar
-  document.querySelectorAll('.sidebar-nav a[href*="notifications"] .nav-badge').forEach(badge => {
-    badge.textContent = unread;
-    badge.style.display = unread > 0 ? 'inline-block' : 'none';
-  });
+
 }
 
 function filterNotifs(el, f) {
@@ -128,7 +122,7 @@ function renderNotifs() {
   }
 
   document.getElementById('notifList').innerHTML = data.map((n, i) => `
-    <div onclick="readNotif('${n.id}', '${n.action || '#'}')"
+    <div role="button" tabindex="0" onclick="readNotif('${n.id}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}"
          style="display:flex;gap:var(--space-4);padding:var(--space-4) var(--space-5);background:${n.unread ? 'var(--brand-50)' : 'var(--bg-surface)'};border:1px solid var(--border);${n.unread ? 'border-left:3px solid var(--brand);' : ''}border-radius:var(--radius-lg);cursor:pointer;transition:all 0.2s;"
          id="notif-card-${n.id}">
       <div style="width:40px;height:40px;border-radius:var(--radius-md);background:var(--bg-inset);border:1px solid var(--border-light);display:flex;align-items:center;justify-content:center;color:var(--text-secondary);flex-shrink:0;">${n.icon || '<svg width="18" height="18" class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#bell"/></svg>'}</div>
@@ -144,74 +138,13 @@ function renderNotifs() {
   `).join('');
 }
 
-async function readNotif(id, action) {
-  const item = notifItems.find(n => n.id === id);
-  if (item && item.unread) {
-    item.unread = false;
-    updateCounts();
-
-    const card = document.getElementById(`notif-card-${id}`);
-    if (card) {
-      card.style.background = 'var(--bg-surface)';
-      card.style.borderColor = 'var(--border)';
-      card.style.borderLeft = '1px solid var(--border)';
-      const dot = card.querySelector('[style*="border-radius:50%"]');
-      if (dot) dot.remove();
-    }
-
-    try {
-      await fetch(`${API_BASE}/notifications/mark-read.php`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        credentials: 'same-origin',
-        body: JSON.stringify({ id: id })
-      });
-    } catch (e) {
-      console.warn('Could not mark notification as read:', e);
-    }
-  }
-
-  if (action && action !== '#' && !action.includes('notifications.html')) {
-    setTimeout(() => { window.location.href = action; }, 150);
-  }
+async function readNotif(id) {
+  await Notifications.open(id);
 }
 
 async function markAllRead() {
-  notifItems.forEach(n => n.unread = false);
-  updateCounts();
-  renderNotifs();
-
-  try {
-    const res = await fetch(`${API_BASE}/notifications/mark-read.php`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      credentials: 'same-origin',
-      body: JSON.stringify({ all: true })
-    });
-    const result = await res.json();
-    if (result.success) {
-      showToast('All notifications marked as read!', 'success');
-    }
-  } catch (err) {
-    showToast('Failed to mark all as read.', 'error');
-  }
+  if (await Notifications.markAllRead()) showToast('All notifications marked as read!', 'success');
 }
-
-// Dropdown toggle
-const notifBtn = document.getElementById('notifBtn');
-const notifDropdown = document.getElementById('notifDropdown');
-if (notifBtn && notifDropdown) {
-  notifBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    notifDropdown.style.display = notifDropdown.style.display === 'none' ? 'block' : 'none';
-  });
-  document.addEventListener('click', (e) => {
-    if (!notifDropdown.contains(e.target) && e.target !== notifBtn) {
-      notifDropdown.style.display = 'none';
-    }
-  });
-}
-
 // Initial load
 loadNotifications();
 </script>

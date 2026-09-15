@@ -11,13 +11,13 @@
   <link rel="stylesheet" href="../assets/css/sidebar.css?v=20260914-bg1"/>
   <link rel="stylesheet" href="../assets/css/student.css"/>
   <link rel="stylesheet" href="../assets/css/teacher-dashboard.css?v=20260914-icons1"/>
-  <link rel="stylesheet" href="../assets/css/student-portal.css?v=20260915-consistency1"/>
+  <link rel="stylesheet" href="../assets/css/student-portal.css?v=20260915-dashboard5"/>
 </head>
 <body class="teacher-dashboard student-dashboard">
 <div class="app-layout">
 
   <!-- Student Sidebar -->
-  <aside class="sidebar" id="sidebar" data-portal="student" aria-label="Student portal"><script src="../assets/js/sidebar.js?v=20260914-icons1"></script></aside>
+  <aside class="sidebar" id="sidebar" data-portal="student" aria-label="Student portal"><script src="../assets/js/sidebar.js?v=20260915-student2"></script></aside>
 
   <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
@@ -35,7 +35,7 @@
         <div style="position:relative;">
           <button class="notif-btn" id="notifBtn" aria-label="Notifications">
             <svg class="ui-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="../assets/icons/interface.svg?v=20260914-icons1#bell"/></svg>
-            <span class="notif-dot"></span>
+            <span class="notif-dot" style="display:none;" aria-hidden="true"></span>
           </button>
           <div class="notif-dropdown" id="notifDropdown" style="display:none;">
             <div class="notif-header"><span>Notifications</span><a href="notifications.html" style="font-size:0.75rem;color:var(--brand);">Mark all read</a></div>
@@ -125,8 +125,8 @@
         <!-- Continue Learning -->
         <div class="card">
           <div class="section-title">Continue Learning</div>
-          <div class="lesson-grid" id="continueLearningGrid" style="grid-template-columns:repeat(auto-fill,minmax(220px,1fr));">
-            <div style="color:var(--text-muted);padding:1rem;">Loading recommended lesson...</div>
+          <div class="lesson-grid" id="continueLearningGrid">
+            <div class="dashboard-empty">Loading recommended lesson...</div>
           </div>
         </div>
         <!-- Upcoming Activities -->
@@ -142,8 +142,9 @@
       <div class="dashboard-row-equal">
         <div class="card">
           <div class="section-title">Score History</div>
-          <div class="chart-container" style="height:200px;">
-            <canvas id="scoreChart" style="width:100%;height:100%;"></canvas>
+          <div id="scoreChartEmpty" class="dashboard-empty" role="status">Loading score history...</div>
+          <div id="scoreChartContainer" class="chart-container" style="height:200px;" hidden>
+            <canvas id="scoreChart" style="width:100%;height:100%;" role="img" aria-label="Recent quiz scores"></canvas>
           </div>
         </div>
         <div class="card">
@@ -164,7 +165,7 @@
       <div class="card">
         <div class="monitoring-toolbar">
           <div class="section-title" style="margin:0;">Recent Quiz Results</div>
-          <a href="scores.html" class="btn btn-secondary btn-sm">View All</a>
+          <a href="progress.html#scores" class="btn btn-secondary btn-sm">View All</a>
         </div>
         <div class="table-wrapper">
           <table class="data-table">
@@ -180,7 +181,8 @@
   </main>
 </div>
 
-<script src="../assets/js/app.js?v=20260914-icons1"></script>
+<script src="../assets/js/app.js?v=20260915-student2"></script>
+<script src="../assets/js/student-portal.js?v=20260915-account3"></script>
 <script>
 'use strict';
 Auth.requireAuthSync('student');
@@ -189,7 +191,7 @@ async function loadStudentDashboard() {
   try {
     const res = await fetch(`${API_BASE}/dashboard/student-stats.php`, { credentials: 'same-origin' });
     const result = await res.json();
-    if (!result.success) return;
+    if (!res.ok || !result.success) throw new Error('Unable to load dashboard.');
 
     const data = result.data;
     const p = data.profile;
@@ -233,11 +235,12 @@ async function loadStudentDashboard() {
         </a>
       `;
     } else {
-      continueGrid.innerHTML = `
-        <div style="padding:1.5rem;text-align:center;color:var(--text-muted);">
-          All published lessons are complete.
-        </div>
-      `;
+      const totalLessons = Number(p.total_lessons) || 0;
+      const completedLessons = Number(p.completed_lessons) || 0;
+      const message = totalLessons === 0 ? 'No lessons available yet.'
+        : completedLessons >= totalLessons ? 'All published lessons are complete.'
+        : 'Visit My Lessons to continue learning.';
+      continueGrid.innerHTML = `<div class="dashboard-empty">${message}</div>`;
     }
 
     // Upcoming Assessments
@@ -256,33 +259,37 @@ async function loadStudentDashboard() {
         </div>
       `).join('');
     } else {
-      upcomingList.innerHTML = '<div style="color:var(--text-muted);padding:1rem;">No pending quizzes.</div>';
+      upcomingList.innerHTML = '<div class="dashboard-empty">No pending activities.</div>';
     }
 
     // System Progress Overview
     const sysGrid = document.getElementById('systemProgressGrid');
     const systems = data.systems || [];
-    sysGrid.innerHTML = systems.map(s => `
+    sysGrid.innerHTML = systems.length ? systems.map(s => `
       <div style="text-align:center;padding:var(--space-3);background:var(--bg-inset);border:1px solid var(--border-light);border-radius:var(--radius-md);">
         <div style="font-size:0.8125rem;font-weight:600;margin-bottom:4px;color:var(--text-primary);">${escHtml(s.system_name.replace(' System',''))}</div>
-        <div class="progress-bar" style="height:6px;margin-bottom:4px;"><div class="progress-fill" style="width:${s.pct}%;"></div></div>
-        <div style="font-size:0.6875rem;color:var(--text-muted);">${s.completed_lessons}/${s.total_lessons} (${s.pct}%)</div>
+        ${Number(s.total_lessons) > 0 ? `<div class="progress-bar" style="height:6px;margin-bottom:4px;"><div class="progress-fill" style="width:${s.pct}%;"></div></div>
+        <div style="font-size:0.6875rem;color:var(--text-muted);">${s.completed_lessons}/${s.total_lessons} (${s.pct}%)</div>`
+        : '<div style="font-size:0.75rem;color:var(--text-muted);">No lessons available yet.</div>'}
       </div>
-    `).join('');
+    `).join('') : '<div class="dashboard-empty">No body systems available yet.</div>';
 
     // Dynamic Achievements
     renderDynamicAchievements(result.data.achievements || []);
 
-    // Score Chart and Recent Table
-    loadRecentScoresAndChart();
-
   } catch (err) {
     console.error(err);
+    for (const id of ['continueLearningGrid', 'upcomingList', 'achievementList', 'systemProgressGrid']) {
+      document.getElementById(id).innerHTML = '<div class="dashboard-empty" role="status">Unable to load this section. Please refresh to try again.</div>';
+    }
   }
 }
 
 function renderDynamicAchievements(achs) {
-  if (!achs.length) { document.getElementById('achievementList').textContent = 'No achievement goals configured yet.'; return; }
+  if (!achs.length) {
+    document.getElementById('achievementList').innerHTML = '<div class="dashboard-empty">No achievements available yet.</div>';
+    return;
+  }
   document.getElementById('achievementList').innerHTML = achs.map(a => `
     <div style="text-align:center;padding:var(--space-2) var(--space-3);border-radius:var(--radius-md);background:${a.earned ? 'var(--brand-light)' : 'var(--bg-inset)'};border:1px solid ${a.earned ? 'var(--brand)' : 'var(--border-light)'};opacity:${a.earned ? 1 : 0.4};">
       <div style="font-size:0.75rem;font-weight:600;color:${a.earned ? 'var(--brand)' : 'var(--text-muted)'};">${escHtml(a.name)}</div>
@@ -294,56 +301,72 @@ async function loadRecentScoresAndChart() {
   try {
     const res = await fetch(`${API_BASE}/scores.php`, { credentials: 'same-origin' });
     const result = await res.json();
-    if (!result.success) return;
+    if (!res.ok || !result.success) throw new Error('Unable to load scores.');
 
     const subs = result.data.submissions || [];
     const tbody = document.getElementById('recentScoresTable');
 
     if (!subs.length) {
       tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;padding:2rem;color:var(--text-muted);">No quiz submissions yet. Take your first quiz today.</td></tr>';
-      drawLineChart('scoreChart', {
-        labels: [],
-        datasets: [{ values: [], color: '#1a6b4a' }]
-      });
+      showScoreChartMessage('No scores yet. Your quiz results will appear here.');
       return;
     }
 
     // Populate recent table
     tbody.innerHTML = subs.slice(0, 5).map(s => {
+      const hasScore = s.score !== null && s.score !== '' && Number.isFinite(Number(s.score));
       const scoreColor = s.passed ? 'var(--success)' : 'var(--error)';
       return `
         <tr>
           <td style="font-weight:600;">${escHtml(s.assessment_title)}</td>
-          <td><span class="badge badge-blue">${escHtml(s.system_name || 'General')}</span></td>
-          <td style="font-weight:700;color:${scoreColor};">${Math.round(s.score)}%</td>
-          <td><span class="badge ${s.passed ? 'badge-green' : 'badge-red'}">${s.passed ? 'Passed' : 'Review'}</span></td>
+          <td><span class="badge badge-blue">${escHtml(s.assessment_type || 'Quiz')}</span></td>
+          <td style="font-weight:700;color:${hasScore ? scoreColor : 'var(--text-muted)'};">${hasScore ? Math.round(s.score) + '%' : 'Pending'}</td>
+          <td><span class="badge ${hasScore ? (s.passed ? 'badge-green' : 'badge-red') : 'badge-neutral'}">${hasScore ? (s.passed ? 'Passed' : 'Review') : 'Awaiting score'}</span></td>
           <td style="font-size:0.75rem;color:var(--text-muted);">${fmtDate(s.submitted_at)}</td>
         </tr>
       `;
     }).join('');
 
     // Score Chart
-    const chartSubs = subs.slice(0, 6).reverse();
+    const chartSubs = subs.filter(s => s.score !== null && s.score !== '' && Number.isFinite(Number(s.score))).slice(0, 6).reverse();
+    if (!chartSubs.length) {
+      showScoreChartMessage('No scores yet. Your quiz results will appear here.');
+      return;
+    }
     const labels = chartSubs.map((_, i) => `Attempt ${i + 1}`);
     const values = chartSubs.map(s => Math.round(s.score));
 
     _cachedScoreData = {
-      labels: labels.length ? labels : ['Start'],
-      datasets: [{ values: values.length ? values : [0], color: '#1a6b4a' }]
+      labels,
+      datasets: [{ values, color: '#1a6b4a' }]
     };
+    document.getElementById('scoreChartEmpty').hidden = true;
+    document.getElementById('scoreChartContainer').hidden = false;
+    document.getElementById('scoreChart').setAttribute('aria-label', `Recent quiz scores: ${values.map(v => v + '%').join(', ')}`);
     drawLineChart('scoreChart', _cachedScoreData);
 
   } catch (e) {
     console.error(e);
+    showScoreChartMessage('Unable to load score history. Please refresh to try again.');
+    document.getElementById('recentScoresTable').innerHTML = '<tr><td colspan="5"><div class="dashboard-empty">Unable to load recent results. Please refresh to try again.</div></td></tr>';
   }
 }
 
 let _cachedScoreData = null;
 
+function showScoreChartMessage(message) {
+  _cachedScoreData = null;
+  document.getElementById('scoreChartContainer').hidden = true;
+  const empty = document.getElementById('scoreChartEmpty');
+  empty.textContent = message;
+  empty.hidden = false;
+}
+
 // ── Init ────────────────────────────────────────────────────────
 const dEl = document.getElementById('currentDate');
 if (dEl) dEl.textContent = new Date().toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
 loadStudentDashboard();
+loadRecentScoresAndChart();
 initChartResize(() => {
   if (_cachedScoreData) drawLineChart('scoreChart', _cachedScoreData);
 });

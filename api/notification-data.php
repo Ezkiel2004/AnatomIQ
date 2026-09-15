@@ -14,7 +14,7 @@ function notificationData(array $user, Database $db): array {
         $graded = $db->fetchAll("SELECT sub.submission_id, sub.score, sub.graded_at, a.title FROM assessment_submissions sub JOIN assessments a ON a.assessment_id=sub.assessment_id WHERE sub.student_id=? AND sub.status='graded' AND sub.graded_at>DATE_SUB(NOW(),INTERVAL 7 DAY) ORDER BY sub.graded_at DESC LIMIT 10", [$user['user_id']]);
         foreach ($graded as $grade) {
             $key = 'score:' . $grade['submission_id'];
-            $notifications[] = ['id'=>$key,'type'=>'score','title'=>'Score posted: '.$grade['title'],'body'=>'Your quiz score is '.round((float)$grade['score'],1).'%.','time'=>$grade['graded_at'],'event_at'=>$grade['graded_at'],'unread'=>!in_array($key,$read,true),'action'=>'scores.html'];
+            $notifications[] = ['id'=>$key,'type'=>'score','title'=>'Score posted: '.$grade['title'],'body'=>'Your quiz score is '.round((float)$grade['score'],1).'%.','time'=>$grade['graded_at'],'event_at'=>$grade['graded_at'],'unread'=>!in_array($key,$read,true),'action'=>'progress.html#scores'];
         }
         $upcoming = $db->fetchAll("SELECT a.assessment_id, a.title, a.due_date, a.created_at FROM assessments a WHERE a.status='active' AND a.due_date BETWEEN NOW() AND DATE_ADD(NOW(),INTERVAL 3 DAY) AND NOT EXISTS (SELECT 1 FROM assessment_submissions sub WHERE sub.student_id=? AND sub.assessment_id=a.assessment_id AND sub.status IN ('submitted','graded')) ORDER BY a.due_date LIMIT 10", [$user['user_id']]);
         foreach ($upcoming as $assessment) {
